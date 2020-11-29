@@ -1,0 +1,11 @@
+#微信支付配置
+wxpay:
+  appId: 应用编号
+  keyPath: key.pem
+  certPath: cert.pem
+  certP12Path: cert.p12
+  platformCertPath: wx_cert.pem
+  mchId: 微信商户号
+  apiKey3: Api-v3 密钥
+  apiKey: Api 密钥
+  domain: https://ijpay.javen.com

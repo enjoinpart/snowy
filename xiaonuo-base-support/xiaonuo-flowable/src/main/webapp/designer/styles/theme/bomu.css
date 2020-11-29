@@ -1,0 +1,284 @@
+ul.filter-list li.current a {
+    color: #f5222d;
+    border-left: 4px solid #f5222d;
+}
+
+ul.filter-list li.current a:hover, ul.filter-list li.current a:focus {
+    color: #f5222d;
+}
+
+table.history .version {
+    color: #f5222d;
+}
+
+.comment .author {
+    color: #f5222d;
+}
+
+.sharing-list .sharing-entry .active-permission {
+    color: #f5222d;
+}
+
+.simple-content-wrapper p.subtle a:hover {
+    color: #f5222d;
+}
+
+.popover .grid .item.active {
+    color: #f5222d;
+}
+
+.stencil-info-filter-dropdown button:hover {
+    background-color: #f5222d;
+}
+
+.stencil-info-group-selected, .stencil-info-groupItem-selected {
+    color: #f5222d;
+}
+
+.stencil-info-group:hover, .stencil-info-groupitem:hover, .restoreable-stencil-item:hover {
+    color: #f5222d;
+}
+
+.process-treeview-header {
+    background: #f5222d;
+}
+
+button.btn, a.btn {
+    background-color: #f5222d;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > ul > li > a:hover {
+    background: #f5222d;
+}
+
+.open a.dropdown-toggle, a.dropdown-toggle:hover {
+    color: #f5222d;
+}
+
+.navbar-nav > li.active > a {
+    color: #f5222d;
+}
+
+.subheader  .version {
+    color: #f5222d;
+}
+
+.list-header .summary .filter-action:hover {
+    color: #f5222d;
+}
+
+.full-list li .badge, .simple-list li .badge{
+    color: #f5222d;
+}
+
+.full-list li.active > div {
+    border-left-color: #f5222d;
+}
+
+.header .detail a:hover {
+    color: #f5222d;
+}
+
+.jumpers li.selected {
+    background-color: #f5222d;
+}
+
+.dropzone.dragover {
+    border: 1px dotted #f5222d;
+}
+
+.dropzone.dragover .message {
+    color: #f5222d;
+}
+
+.dropdown-menu.datepicker th .btn:hover, .dropdown-menu.datepicker th .btn:focus {
+    color: #f5222d;
+}
+
+.dropdown-menu.datepicker .calendar-grid .btn-primary, .dropdown-menu.datepicker .calendar-grid .btn-primary:hover, .dropdown-menu.datepicker .calendar-grid .btn-primary:focus {
+    background-color: #f5222d;
+}
+
+.crumb:hover {
+    color: #f5222d;
+}
+
+.user-picture {
+    background: #f5222d no-repeat center center;
+}
+
+.user-picture.no-picture {
+    border-color: #f5222d;
+}
+
+.help-entry:hover > span {
+    color: #f5222d;
+}
+
+.btn:hover, .btn.active, .btn:focus,
+.btn[disabled]:hover, .btn[disabled].active, .btn[disabled]:focus {
+    background-color: #d63439;
+}
+
+.canvas_resize_indicator.N, .canvas_resize_indicator.S, .canvas_resize_indicator.E, .canvas_resize_indicator.W {
+    background: #d34d50;
+}
+
+.editor-toolbar .btn.btn-inverse.disabled, .editor-toolbar .btn.btn-inverse[disabled], .editor-toolbar .btn.btn-inverse[disabled]:active, .editor-toolbar .btn.btn-inverse[disabled]:hover {
+    background-color: #de676a;
+    border-color: #de676a;
+}
+
+.decision-table .ui-grid-row-selected .customRowHeader {
+    background-color: #c9dde1;
+}
+
+.selected-item-body .property-row:hover {
+    background-color: #f7e3e3;
+}
+
+.editor-toolbar .btn.btn-inverse.separator {
+    background: transparent;
+}
+
+.btn.disabled, .btn[disabled], .btn[disabled]:active, .btn[disabled]:hover {
+    background-color: #de676a;
+}
+
+.subheader .details .counter {
+    background-color: #f7e3e3;
+}
+
+ul.filter-list li a:hover, ul.filter-list li a:focus {
+    background-color: #f7e3e3;
+}
+
+.item-wrapper .item .item-box {
+    border: 1px solid #f7e3e3;
+}
+
+.item-box .details {
+    background-color: #f7e3e3;
+}
+
+.create-inline {
+    border: 1px solid #f7e3e3;
+}
+
+.show-more a:hover {
+    background: #f7e3e3;
+}
+
+table.history tr.current:hover {
+    background-color: #f7e3e3;
+}
+
+table.history tr.current {
+    background-color: #f7e3e3;
+}
+
+table.history tr.current td {
+    background-color: #f7e3e3;
+}
+
+.stencil-info-filter-dropdown button {
+    border-color: #f7e3e3;
+}
+
+.stencil-info-actions {
+    border-left: 1px solid #f7e3e3;
+}
+
+.stencil-info-box {
+    border: 1px solid #f7e3e3;
+}
+
+.stencil-info-items-box {
+    border-right: 1px solid #f7e3e3;
+}
+
+.stencil-info-properties-box {
+    border-right: 1px solid #f7e3e3;
+}
+
+div.propertySection {
+    background-color: #f7e3e3;
+}
+
+#paletteSectionFooter {
+    background-color: #f7e3e3;
+}
+
+#paletteSectionOpen {
+    background-color: #f7e3e3;
+}
+
+.modal-header .btn, .header .btn {
+    border-color: #f7e3e3;
+}
+
+.dropdown-menu > li.active > a, .dropdown-menu > li.active > a:hover {
+    background: #f7e3e3;
+}
+
+.popover.bottom-left>.arrow:after, .popover.bottom-right>.arrow:after, .popover.bottom>.arrow:after {
+    border-bottom-color: #f7e3e3;
+}
+
+.popover-header {
+    background-color: #f7e3e3;
+}
+
+.subheader {
+    background-color: #f7e3e3;
+}
+
+.subheader .btn {
+    border-color: #f7e3e3;
+}
+
+button.btn-subtle, a.btn-subtle {
+    background-color: #fafafb;
+}
+
+.btn-subtle:hover, .btn-subtle.active, .btn-subtle:focus {
+    background-color: #f6f6f7;
+}
+
+.subheader a.btn:hover, .subheader a.btn:focus  {
+    border-color: #f7e3e3;
+}
+
+.full-list li .badge, .simple-list li .badge{
+    background-color: #f7e3e3;
+
+}
+
+.full-list li > div {
+    border-left: 4px solid #f7e3e3;
+}
+
+.main-content > .header {
+    background-color: #f7e3e3;
+}
+
+.main-content > .header .btn:hover, .main-content > .header .btn:focus  {
+    border-color: #f7e3e3;
+}
+
+.jumpers li {
+    border: 1px solid #f7e3e3;
+}
+
+.modal .modal-header {
+    background-color: #f7e3e3;
+}
+
+.dropdown-menu.datepicker th {
+    background-color: #f7e3e3;
+}
+
+.dropdown-menu.datepicker th .btn {
+    background-color: #f7e3e3;
+    border-color: #f7e3e3;
+}

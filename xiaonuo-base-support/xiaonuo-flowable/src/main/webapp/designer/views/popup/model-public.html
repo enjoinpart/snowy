@@ -1,0 +1,53 @@
+<div class="modal" ng-controller="PublicModelPopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h2>{{'PROCESS.POPUP.PUBLIC-TITLE' | translate}}</h2>
+            </div>
+            <div class="modal-body">
+            	<p>{{'PROCESS.POPUP.PUBLIC-DESCRIPTION' | translate}}</p>
+            	<div ng-if="popup.errorMessage && popup.errorMessage.length > 0" class="alert error" style="font-size: 14px; margin-top:20px">
+                  <div class="popup-error" style="font-size: 14px">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    <span>{{popup.errorMessage}}</span>
+                  </div>
+                </div>
+            	<div class="form-group">
+            	    <label for="publicModelName">{{'PROCESS.NAME' | translate}}</label>
+            	    <input ng-disabled="true" type="text" class="form-control"
+                           id="publicModelName" ng-model="popup.modelName">
+            	</div>
+            	<div class="form-group">
+            	    <label for="publicModelKey">{{'PROCESS.KEY' | translate}}</label>
+            	    <input ng-disabled="true" type="text" class="form-control"
+                           id="publicModelKey" ng-model="popup.modelKey">
+            	</div>
+            	<div class="form-group">
+            	    <label for="publicModelDescription">{{'PROCESS.DESCRIPTION' | translate}}</label>
+            		<textarea ng-disabled="true" class="form-control" id="publicModelDescription" rows="5" ng-model="popup.modelDescription"></textarea>
+            	</div>
+
+				<div class="form-group">
+					<label for="publicModelCategory">{{'PROCESS.CATEGORY' | translate}}</label>
+					<select id="publicModelCategory" class="form-control" ng-model="popup.selectedCategory" ng-options="y.name for (x, y) in popup.modelCategory">
+					</select>
+				</div>
+
+            </div>
+
+            <div class="modal-footer">
+            	<div class="pull-right">
+            		<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="popup.loading" auto-focus>
+            			{{'GENERAL.ACTION.CANCEL' | translate}}
+            		</button>
+            		<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="popup.loading || !popup.modelName || popup.modelName.length == 0 || !popup.modelKey || popup.modelKey.length == 0">
+            			{{'PROCESS.ACTION.EDIT-CONFIRM' | translate}}
+            		</button>
+            	</div>
+            	<div class="loading pull-right" ng-show="popup.loading">
+            		<div class="l1"></div><div class="l2"></div><div class="l2"></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
