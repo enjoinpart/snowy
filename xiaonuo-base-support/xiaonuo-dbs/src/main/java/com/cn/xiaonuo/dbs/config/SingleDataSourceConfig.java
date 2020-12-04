@@ -24,8 +24,8 @@ XiaoNuo采用APACHE LICENSE 2.0开源协议，您在使用过程中，需要注�
  */
 package com.cn.xiaonuo.dbs.config;
 
-import com.cn.xiaonuo.core.pojo.druid.DruidProperties;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.cn.xiaonuo.core.pojo.druid.DruidProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 

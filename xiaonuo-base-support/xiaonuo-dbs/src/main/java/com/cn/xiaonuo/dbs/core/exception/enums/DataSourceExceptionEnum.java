@@ -4,7 +4,6 @@ import com.cn.xiaonuo.core.annotion.ExpEnumType;
 import com.cn.xiaonuo.core.exception.enums.abs.AbstractBaseExceptionEnum;
 import com.cn.xiaonuo.core.factory.ExpEnumCodeFactory;
 import com.cn.xiaonuo.dbs.core.consts.DataSourceExpEnumConstant;
-import com.cn.xiaonuo.dbs.core.consts.DataSourceExpEnumConstant;
 
 /**
  * 数据源初始化异常枚举

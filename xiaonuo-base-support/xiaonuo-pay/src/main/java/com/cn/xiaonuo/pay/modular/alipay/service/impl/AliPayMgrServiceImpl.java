@@ -12,15 +12,6 @@ import com.cn.xiaonuo.pay.modular.alipay.param.AliPayParam;
 import com.cn.xiaonuo.pay.modular.alipay.service.AliPayMgrService;
 import com.cn.xiaonuo.pay.modular.alipay.service.AliPayService;
 import com.cn.xiaonuo.pay.modular.alipay.service.AliPayTradeHistoryService;
-import com.cn.xiaonuo.pay.core.consts.AliPayConstant;
-import com.cn.xiaonuo.pay.core.pojo.AliPayBean;
-import com.cn.xiaonuo.pay.core.utils.AliPayModelGenUtil;
-import com.cn.xiaonuo.pay.modular.alipay.enums.AliPayExceptionEnum;
-import com.cn.xiaonuo.pay.modular.alipay.enums.AliPayTradeHistoryStatusEnum;
-import com.cn.xiaonuo.pay.modular.alipay.param.AliPayParam;
-import com.cn.xiaonuo.pay.modular.alipay.service.AliPayMgrService;
-import com.cn.xiaonuo.pay.modular.alipay.service.AliPayService;
-import com.cn.xiaonuo.pay.modular.alipay.service.AliPayTradeHistoryService;
 import com.ijpay.alipay.AliPayApi;
 import org.springframework.stereotype.Service;
 

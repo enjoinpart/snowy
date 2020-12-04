@@ -2,12 +2,11 @@ package com.cn.xiaonuo.pay.modular.alipay.factory;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateTime;
-import com.cn.xiaonuo.pay.modular.alipay.entity.AliPayTradeHistory;
-import com.cn.xiaonuo.pay.modular.alipay.enums.AliPayTradeHistoryStatusEnum;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.cn.xiaonuo.pay.modular.alipay.entity.AliPayTradeHistory;
+import com.cn.xiaonuo.pay.modular.alipay.enums.AliPayTradeHistoryStatusEnum;
 
 /**
  * 支付宝交易记录工厂类
