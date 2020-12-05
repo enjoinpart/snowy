@@ -1,8 +1,8 @@
 package com.cn.xiaonuo.dbs.core.factory;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.cn.xiaonuo.core.pojo.druid.DruidProperties;
 import com.cn.xiaonuo.dbs.modular.entity.DatabaseInfo;
-import com.alibaba.druid.pool.DruidDataSource;
 
 /**
  * Druid数据源创建

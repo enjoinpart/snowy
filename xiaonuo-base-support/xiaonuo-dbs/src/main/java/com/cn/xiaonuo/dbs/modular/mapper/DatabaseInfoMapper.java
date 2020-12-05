@@ -1,6 +1,5 @@
 package com.cn.xiaonuo.dbs.modular.mapper;
 
-import com.cn.xiaonuo.dbs.modular.entity.DatabaseInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cn.xiaonuo.dbs.modular.entity.DatabaseInfo;
 

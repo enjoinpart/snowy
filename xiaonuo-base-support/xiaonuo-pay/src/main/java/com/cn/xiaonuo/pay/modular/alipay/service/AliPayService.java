@@ -3,7 +3,6 @@ package com.cn.xiaonuo.pay.modular.alipay.service;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.json.JSONObject;
 import com.cn.xiaonuo.pay.modular.alipay.param.AliPayParam;
-import com.cn.xiaonuo.pay.modular.alipay.param.AliPayParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

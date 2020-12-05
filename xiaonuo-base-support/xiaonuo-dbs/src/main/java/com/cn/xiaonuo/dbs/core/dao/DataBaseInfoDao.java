@@ -1,23 +1,20 @@
 package com.cn.xiaonuo.dbs.core.dao;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.cn.xiaonuo.core.pojo.druid.DruidProperties;
+import com.cn.xiaonuo.dbs.core.consts.DatabaseConstant;
 import com.cn.xiaonuo.dbs.core.dao.sqls.AddDatabaseInfoSql;
 import com.cn.xiaonuo.dbs.core.dao.sqls.DatabaseListSql;
 import com.cn.xiaonuo.dbs.core.dao.sqls.DeleteDatabaseInfoSql;
 import com.cn.xiaonuo.dbs.core.exception.DataSourceException;
 import com.cn.xiaonuo.dbs.core.exception.enums.DataSourceExceptionEnum;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.cn.xiaonuo.dbs.core.consts.DatabaseConstant;
-import com.cn.xiaonuo.dbs.core.dao.sqls.DatabaseListSql;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.cn.xiaonuo.dbs.core.consts.DatabaseConstant.MASTER_DATASOURCE_NAME;
 
 /**
  * 操作数据源信息的dao

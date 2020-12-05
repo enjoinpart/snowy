@@ -15,8 +15,6 @@ import org.springframework.core.Ordered;
 
 import java.lang.reflect.Method;
 
-import static com.cn.xiaonuo.dbs.core.consts.DatabaseConstant.MASTER_DATASOURCE_NAME;
-
 
 /**
  * 多数据源切换的aop

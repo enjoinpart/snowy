@@ -2,7 +2,6 @@ package com.cn.xiaonuo.pay.core.config;
 
 import com.cn.xiaonuo.pay.core.factory.YamlConfigFactory;
 import com.cn.xiaonuo.pay.core.pojo.AliPayBean;
-import com.cn.xiaonuo.pay.core.pojo.AliPayBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

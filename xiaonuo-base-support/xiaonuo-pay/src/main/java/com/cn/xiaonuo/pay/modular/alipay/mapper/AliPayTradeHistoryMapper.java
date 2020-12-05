@@ -1,6 +1,5 @@
 package com.cn.xiaonuo.pay.modular.alipay.mapper;
 
-import com.cn.xiaonuo.pay.modular.alipay.entity.AliPayTradeHistory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cn.xiaonuo.pay.modular.alipay.entity.AliPayTradeHistory;
 

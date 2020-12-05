@@ -26,8 +26,6 @@ package com.cn.xiaonuo.dbs.config;
 
 import com.cn.xiaonuo.dbs.core.DynamicDataSource;
 import com.cn.xiaonuo.dbs.core.aop.MultiSourceExAop;
-import com.cn.xiaonuo.dbs.core.DynamicDataSource;
-import com.cn.xiaonuo.dbs.core.aop.MultiSourceExAop;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

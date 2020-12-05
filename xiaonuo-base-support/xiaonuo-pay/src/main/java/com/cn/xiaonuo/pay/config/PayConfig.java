@@ -2,8 +2,6 @@ package com.cn.xiaonuo.pay.config;
 
 import com.cn.xiaonuo.pay.core.interceptor.AliPayInterceptor;
 import com.cn.xiaonuo.pay.core.interceptor.WxPayInterceptor;
-import com.cn.xiaonuo.pay.core.interceptor.AliPayInterceptor;
-import com.cn.xiaonuo.pay.core.interceptor.WxPayInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
