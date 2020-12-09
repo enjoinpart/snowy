@@ -20,7 +20,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>xiaonuo-base-support</module>
+        <module>xiaonuo-base</module>
         <module>xiaonuo-main</module>
     </modules>
 

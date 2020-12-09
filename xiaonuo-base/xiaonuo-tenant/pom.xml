@@ -6,22 +6,27 @@
 
     <parent>
         <groupId>cn.xiaonuo</groupId>
-        <artifactId>xiaonuo-vue</artifactId>
+        <artifactId>xiaonuo-base</artifactId>
         <version>1.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>xiaonuo-base-support</artifactId>
+    <artifactId>xiaonuo-tenant</artifactId>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>xiaonuo-core</module>
-        <module>xiaonuo-dbs</module>
-        <module>xiaonuo-flowable</module>
-        <module>xiaonuo-pay</module>
-        <module>xiaonuo-system</module>
-        <module>xiaonuo-tenant</module>
-    </modules>
+    <dependencies>
 
+        <!--基础组件-->
+        <dependency>
+            <groupId>cn.xiaonuo</groupId>
+            <artifactId>xiaonuo-dbs</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 </project>

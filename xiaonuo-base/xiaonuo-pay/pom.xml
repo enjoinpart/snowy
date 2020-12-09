@@ -6,23 +6,39 @@
 
     <parent>
         <groupId>cn.xiaonuo</groupId>
-        <artifactId>xiaonuo-base-support</artifactId>
+        <artifactId>xiaonuo-base</artifactId>
         <version>1.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>xiaonuo-tenant</artifactId>
+    <artifactId>xiaonuo-pay</artifactId>
 
     <packaging>jar</packaging>
 
-    <dependencies>
+    <properties>
+        <ijpay.version>2.6.3</ijpay.version>
+    </properties>
 
-        <!--基础组件-->
+    <dependencies>
         <dependency>
             <groupId>cn.xiaonuo</groupId>
-            <artifactId>xiaonuo-dbs</artifactId>
+            <artifactId>xiaonuo-core</artifactId>
             <version>1.1.0</version>
         </dependency>
+
+		<!-- 支付宝支付 -->
+		<dependency>
+			<groupId>com.github.javen205</groupId>
+			<artifactId>IJPay-AliPay</artifactId>
+			<version>${ijpay.version}</version>
+		</dependency>
+
+		<!-- 微信支付 -->
+		<dependency>
+			<groupId>com.github.javen205</groupId>
+			<artifactId>IJPay-WxPay</artifactId>
+			<version>${ijpay.version}</version>
+		</dependency>
 
     </dependencies>
 
