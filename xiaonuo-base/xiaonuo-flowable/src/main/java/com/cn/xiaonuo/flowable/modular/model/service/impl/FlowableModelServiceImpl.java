@@ -69,7 +69,7 @@ public class FlowableModelServiceImpl implements FlowableModelService {
     /**
      * 模型资源后缀
      */
-    private static final String MODEL_BPMN_SUFFIX_BPMN20 = ".bpmn20.xml";
+    private static final String MODEL_BPMN_SUFFIX_XML = ".xml";
 
     private final BpmnXMLConverter bpmnXmlConverter = new BpmnXMLConverter();
 
@@ -209,7 +209,7 @@ public class FlowableModelServiceImpl implements FlowableModelService {
         if (ObjectUtil.isNull(fileName)) {
             throw new ServiceException(FlowableModelExceptionEnum.MODEL_FILE_SUFFIX_ERROR);
         }
-        if (!fileName.endsWith(MODEL_BPMN_SUFFIX_BPMN) && !fileName.endsWith(MODEL_BPMN_SUFFIX_BPMN20)) {
+        if (!fileName.endsWith(MODEL_BPMN_SUFFIX_BPMN) && !fileName.endsWith(MODEL_BPMN_SUFFIX_XML)) {
             throw new ServiceException(FlowableModelExceptionEnum.MODEL_FILE_SUFFIX_ERROR);
         } else {
             try {
