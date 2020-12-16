@@ -213,6 +213,7 @@ public class FlowableModelServiceImpl implements FlowableModelService {
             throw new ServiceException(FlowableModelExceptionEnum.MODEL_FILE_SUFFIX_ERROR);
         } else {
             try {
+                FlowableUserFactory.assumeUser();
                 XMLInputFactory xif = XmlUtil.createSafeXmlInputFactory();
                 InputStreamReader xmlIn = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8);
                 XMLStreamReader xtr = xif.createXMLStreamReader(xmlIn);
