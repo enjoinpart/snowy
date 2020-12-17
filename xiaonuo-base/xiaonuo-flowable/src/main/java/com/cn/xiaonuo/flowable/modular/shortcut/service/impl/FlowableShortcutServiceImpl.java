@@ -146,10 +146,10 @@ public class FlowableShortcutServiceImpl extends ServiceImpl<FlowableShortcutMap
         int countByKey = this.count(queryWrapperByProcessInstanceId);
 
         if (countByName >= 1) {
-            throw new ServiceException(FlowableCategoryExceptionEnum.CATEGORY_NAME_REPEAT);
+            throw new ServiceException(FlowableShortcutExceptionEnum.SHORTCUT_NAME_REPEAT);
         }
         if (countByKey >= 1) {
-            throw new ServiceException(FlowableCategoryExceptionEnum.CATEGORY_CODE_REPEAT);
+            throw new ServiceException(FlowableShortcutExceptionEnum.SHORTCUT_CODE_REPEAT);
         }
     }
 
