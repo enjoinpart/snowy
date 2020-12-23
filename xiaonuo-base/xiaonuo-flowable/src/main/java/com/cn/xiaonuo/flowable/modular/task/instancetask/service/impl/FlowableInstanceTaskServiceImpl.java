@@ -2,6 +2,7 @@ package com.cn.xiaonuo.flowable.modular.task.instancetask.service.impl;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
+import com.cn.xiaonuo.core.consts.SymbolConstant;
 import com.cn.xiaonuo.core.factory.PageFactory;
 import com.cn.xiaonuo.core.pojo.page.PageResult;
 import com.cn.xiaonuo.flowable.modular.task.instancetask.factory.FlowableInstanceTaskFactory;
@@ -44,7 +45,7 @@ public class FlowableInstanceTaskServiceImpl implements FlowableInstanceTaskServ
 
             if (ObjectUtil.isNotEmpty(flowableInstanceTaskParam.getName())) {
                 //根据任务名称模糊查询
-                historicTaskInstanceQuery.taskNameLike(flowableInstanceTaskParam.getName());
+                historicTaskInstanceQuery.taskNameLike(SymbolConstant.PERCENT + flowableInstanceTaskParam.getName() + SymbolConstant.PERCENT);
             }
 
             if (ObjectUtil.isNotEmpty(flowableInstanceTaskParam.getFinished())) {

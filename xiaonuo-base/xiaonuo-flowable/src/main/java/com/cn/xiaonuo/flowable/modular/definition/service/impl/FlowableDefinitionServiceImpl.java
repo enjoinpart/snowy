@@ -6,6 +6,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cn.xiaonuo.core.consts.SymbolConstant;
 import com.cn.xiaonuo.core.context.constant.ConstantContextHolder;
 import com.cn.xiaonuo.core.enums.CommonStatusEnum;
 import com.cn.xiaonuo.core.exception.DemoException;
@@ -115,11 +116,11 @@ public class FlowableDefinitionServiceImpl implements FlowableDefinitionService 
         if (ObjectUtil.isNotNull(flowableDefinitionParam)) {
             //根据key模糊查询
             if (ObjectUtil.isNotEmpty(flowableDefinitionParam.getKey())) {
-                processDefinitionQuery.processDefinitionKeyLike(flowableDefinitionParam.getKey());
+                processDefinitionQuery.processDefinitionKeyLike(SymbolConstant.PERCENT + flowableDefinitionParam.getKey() + SymbolConstant.PERCENT);
             }
             //根据名称模糊查询
             if (ObjectUtil.isNotEmpty(flowableDefinitionParam.getName())) {
-                processDefinitionQuery.processDefinitionNameLike(flowableDefinitionParam.getName());
+                processDefinitionQuery.processDefinitionNameLike(SymbolConstant.PERCENT + flowableDefinitionParam.getName() + SymbolConstant.PERCENT);
             }
             //根据分类查询
             if (ObjectUtil.isNotEmpty(flowableDefinitionParam.getCategory())) {

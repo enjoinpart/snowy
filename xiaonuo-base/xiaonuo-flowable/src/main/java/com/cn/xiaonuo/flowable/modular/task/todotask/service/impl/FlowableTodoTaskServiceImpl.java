@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.cn.xiaonuo.core.consts.SymbolConstant;
 import com.cn.xiaonuo.core.context.login.LoginContextHolder;
 import com.cn.xiaonuo.core.factory.PageFactory;
 import com.cn.xiaonuo.core.pojo.page.PageResult;
@@ -53,11 +54,11 @@ public class FlowableTodoTaskServiceImpl implements FlowableTodoTaskService {
         if (ObjectUtil.isNotNull(flowableTodoTaskParam)) {
             //流程名称模糊查询
             if (ObjectUtil.isNotEmpty(flowableTodoTaskParam.getProcessName())) {
-                taskQuery.processDefinitionNameLike(flowableTodoTaskParam.getProcessName());
+                taskQuery.processDefinitionNameLike(SymbolConstant.PERCENT + flowableTodoTaskParam.getProcessName() + SymbolConstant.PERCENT);
             }
             //任务名称模糊查询
             if (ObjectUtil.isNotEmpty(flowableTodoTaskParam.getName())) {
-                taskQuery.taskNameLike(flowableTodoTaskParam.getName());
+                taskQuery.taskNameLike(SymbolConstant.PERCENT + flowableTodoTaskParam.getName() + SymbolConstant.PERCENT);
             }
             //流程分类查询
             if (ObjectUtil.isNotEmpty(flowableTodoTaskParam.getCategory())) {
