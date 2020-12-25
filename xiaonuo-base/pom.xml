@@ -22,6 +22,7 @@
         <module>xiaonuo-pay</module>
         <module>xiaonuo-system</module>
         <module>xiaonuo-tenant</module>
+        <module>xiaonuo-gen</module>
     </modules>
 
 </project>
