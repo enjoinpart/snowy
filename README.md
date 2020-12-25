@@ -26,7 +26,7 @@
 
 ### 快速启动
 
-您的开发电脑需要安装：NodeJs（最新版）、npm或yarn（最新版）建议使用yarn、Mysql5.7、Jdk1.8
+您的开发电脑需要安装：NodeJs（最新版）、npm或yarn（最新版）建议使用yarn、Mysql5.7、Jdk1.8、Maven3.6.3（配置阿里仓库地址）、开发工具推荐idea
 
 * 启动前端：打开_web文件夹，进行依赖下载，运行npm install或yarn命令，再运行npm run serve或 yarn run serve
 * 启动后端：打开application-local中配置数据库信息，运行XiaoNuoApplication类即可启动
@@ -34,14 +34,27 @@
 
 ### 框架说明及后续补充
 
-* 利用空闲时间纯手研发搭建框架脚手架，在自己用的时候，也为各位小伙伴打下坚固的接私活利器。
+* 纯手研发搭建框架脚手架，在自己用的时候，也为各位小伙伴打下坚固的接私活利器。
 * 后续我们会行发多个版本，将适配多个数据库环境，国产化环境，并且根据多年经验会出相关系统中用到的案例，提供给大家使用！
 * 如需了解我们更多，请移步官网：https://xiaonuo.vip
 * 当然，有问题讨论的小伙伴还可以加入我们的QQ技术群：732230670，一起学习讨论。
 
 ### 在线演示
 
-* 账号密码：superAdmin/123456，地址：http://vue.xiaonuo.vip
+* 账号密码：superAdmin/123456，地址：https://vue.xiaonuo.vip
+
+### 效果图
+
+<table>
+    <tr>
+        <td><img src="https://oscimg.oschina.net/oscnet/up-62d4b535dadbfa8ff343cb290d58be43ef0.png"/></td>
+        <td><img src="https://oscimg.oschina.net/oscnet/up-98b3e79f8008b6319ce6394d80172ff02a3.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://images.gitee.com/uploads/images/2020/1208/133142_37420daa_1980003.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2020/1208/133250_3749a395_1980003.jpeg"/></td>
+    </tr>
+</table>
 
 ### 框架优势
 
@@ -54,7 +67,7 @@
 6. 基于hibernate validator实现的校验框架，支持自定义校验注解。
 7. 提供Request-No的响应header快速定位线上异常问题。
 8. 在线用户可查，可在线踢人，同账号登录可同时在线，可单独在线（通过系统参数配置）。
-9. 支持前端 + 后端在线代码生成（开发中）。
+9. 支持前端 + 后端在线代码生成。
 10. 文件，短信，缓存，邮件等，利用接口封装，方便拓展。
 11. 文件默认使用本地文件，短信默认使用阿里云sms，缓存默认使用内存缓存。
 
@@ -80,6 +93,15 @@
 18. 邮件发送、发送邮件功能。
 19. 短信发送、短信发送功能，可使用阿里云sms，腾讯云sms，支持拓展。
 
+### 更新日志：
+----
+#### v1.1.1
+- 1、代码生成中查询条件增加为全部字段，可根据不同程序删减代码
+
+#### v1.1
+- 1、新增代码生成器，以独立的模块存在，更加方便维护
+- 2、修复多处细节问题
+
 ### 版权说明
 
 XiaoNuo生态技术框架全系版本采用 Apache License2.0协议
@@ -91,3 +113,5 @@ XiaoNuo生态技术框架全系版本采用 Apache License2.0协议
 | :---: | :---: |
 | 俞宝山 | 全栈 |
 | 徐玉祥 | 全栈 | 
+| 董夏雨 | 全栈 |
+
