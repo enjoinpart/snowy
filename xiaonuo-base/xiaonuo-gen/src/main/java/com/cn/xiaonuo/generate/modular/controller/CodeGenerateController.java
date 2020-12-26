@@ -24,14 +24,11 @@ XiaoNuo采用APACHE LICENSE 2.0开源协议，您在使用过程中，需要注�
  */
 package com.cn.xiaonuo.generate.modular.controller;
 
-
 import com.cn.xiaonuo.core.annotion.BusinessLog;
 import com.cn.xiaonuo.core.annotion.Permission;
 import com.cn.xiaonuo.core.enums.LogAnnotionOpTypeEnum;
-import com.cn.xiaonuo.core.pojo.page.PageResult;
 import com.cn.xiaonuo.core.pojo.response.ResponseData;
 import com.cn.xiaonuo.core.pojo.response.SuccessResponseData;
-import com.cn.xiaonuo.generate.modular.entity.CodeGenerate;
 import com.cn.xiaonuo.generate.modular.param.CodeGenerateParam;
 import com.cn.xiaonuo.generate.modular.service.CodeGenerateService;
 import org.springframework.validation.annotation.Validated;
@@ -61,8 +58,8 @@ public class CodeGenerateController {
     @Permission
     @GetMapping("/codeGenerate/page")
     @BusinessLog(title = "代码生成配置_查询", opType = LogAnnotionOpTypeEnum.QUERY)
-    public PageResult<CodeGenerate> page(CodeGenerateParam codeGenerateParam) {
-        return codeGenerateService.page(codeGenerateParam);
+    public ResponseData page(CodeGenerateParam codeGenerateParam) {
+        return new SuccessResponseData(codeGenerateService.page(codeGenerateParam));
     }
 
     /**
