@@ -18,7 +18,7 @@ public enum FlowableDraftExceptionEnum implements AbstractBaseExceptionEnum {
     /**
      * 申请草稿不存在
      */
-    DRAFT_NOT_EXIST(1, "表单不存在");
+    DRAFT_NOT_EXIST(1, "申请草稿不存在");
 
     private final Integer code;
 
