@@ -66,7 +66,10 @@ public class FlowableCommentHistoryFactory {
         flowableCommentHistoryResult.setCreateTime(historicTaskInstance.getCreateTime());
         flowableCommentHistoryResult.setClaimTime(historicTaskInstance.getClaimTime());
         flowableCommentHistoryResult.setEndTime(historicTaskInstance.getEndTime());
-        flowableCommentHistoryResult.setDuration(DateUtil.formatBetween(historicTaskInstance.getDurationInMillis(), BetweenFormater.Level.SECOND));
+        flowableCommentHistoryResult.setDuration("-");
+        if(ObjectUtil.isNotEmpty(historicTaskInstance.getDurationInMillis())) {
+            flowableCommentHistoryResult.setDuration(DateUtil.formatBetween(historicTaskInstance.getDurationInMillis(), BetweenFormater.Level.SECOND));
+        }
         flowableCommentHistoryResult.setComment(getTaskComments(historicTaskInstance.getId()));
         return flowableCommentHistoryResult;
     }

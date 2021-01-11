@@ -221,9 +221,9 @@ public class FlowableInstanceServiceImpl implements FlowableInstanceService {
     public List<FlowableCommentHistoryResult> commentHistory(FlowableInstanceParam flowableInstanceParam) {
         HistoricProcessInstance historicProcessInstance = this.queryHistoricProcessInstance(flowableInstanceParam);
         String processInstanceId = historicProcessInstance.getId();
-        //查询历史任务，只查询办理过的
+        //查询历史任务，查询所有的
         List<HistoricTaskInstance> historicTaskInstanceList = historyService.createHistoricTaskInstanceQuery()
-                .processInstanceId(processInstanceId).finished().orderByHistoricTaskInstanceEndTime().asc().list();
+                .processInstanceId(processInstanceId).orderByHistoricTaskInstanceStartTime().asc().list();
         return FlowableCommentHistoryFactory.convertToFlowableCommentHistoryResultList(historicTaskInstanceList);
     }
 
