@@ -2,6 +2,7 @@ package com.cn.xiaonuo.flowable.modular.task.handletask.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.cn.xiaonuo.core.context.login.LoginContextHolder;
 import com.cn.xiaonuo.flowable.core.enums.DelegateStatusEnum;
@@ -73,6 +74,13 @@ public class FlowableSubmitTaskServiceImpl implements FlowableSubmitTaskService 
                 taskService.resolveTask(taskId, BeanUtil.beanToMap(variables));
             }
         } else {
+            //获取当前操作人id
+            Long userId = LoginContextHolder.me().getSysLoginUser().getId();
+            String assignee = task.getAssignee();
+            if(ObjectUtil.isEmpty(assignee)) {
+                //设置办理人为当前用户
+                taskService.setAssignee(taskId, Convert.toStr(userId));
+            }
             //提交任务并设置参数
             formService.submitTaskFormData(taskId, variables);
         }

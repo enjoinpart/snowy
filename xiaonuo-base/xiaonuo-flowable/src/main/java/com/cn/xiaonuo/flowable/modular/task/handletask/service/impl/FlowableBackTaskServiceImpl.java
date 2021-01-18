@@ -1,10 +1,13 @@
 package com.cn.xiaonuo.flowable.modular.task.handletask.service.impl;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ObjectUtil;
 import com.cn.xiaonuo.core.context.login.LoginContextHolder;
 import com.cn.xiaonuo.flowable.core.utils.BpmCommentUtil;
 import com.cn.xiaonuo.flowable.modular.task.handletask.operator.FlowableCommonOperator;
 import com.cn.xiaonuo.flowable.modular.task.handletask.service.FlowableBackTaskService;
 import org.flowable.engine.RuntimeService;
+import org.flowable.engine.TaskService;
 import org.flowable.task.api.Task;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,9 @@ import javax.annotation.Resource;
  **/
 @Service
 public class FlowableBackTaskServiceImpl implements FlowableBackTaskService {
+
+    @Resource
+    private TaskService taskService;
 
     @Resource
     private RuntimeService runtimeService;
@@ -38,6 +44,13 @@ public class FlowableBackTaskServiceImpl implements FlowableBackTaskService {
         comment = BpmCommentUtil.genBackComment(name, targetActName, comment);
         //添加意见
         FlowableCommonOperator.me().addComment(taskId, comment);
+        //获取当前操作人id
+        Long userId = LoginContextHolder.me().getSysLoginUser().getId();
+        String assignee = task.getAssignee();
+        if(ObjectUtil.isEmpty(assignee)) {
+            //设置办理人为当前用户
+            taskService.setAssignee(taskId, Convert.toStr(userId));
+        }
         //执行退回操作
         runtimeService.createChangeActivityStateBuilder()
                 .processInstanceId(processInstanceId)
