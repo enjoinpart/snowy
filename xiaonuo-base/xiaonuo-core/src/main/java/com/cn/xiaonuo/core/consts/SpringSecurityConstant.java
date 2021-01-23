@@ -73,7 +73,12 @@ public interface SpringSecurityConstant {
 
             //获取租户列表
             "/getTenantOpen",
-            "/tenantInfo/listTenants"
+            "/tenantInfo/listTenants",
+
+            //获取验证码
+            "/captcha/**",
+            "/getCaptchaOpen",
+
     };
 
 }
