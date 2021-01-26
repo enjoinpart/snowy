@@ -124,7 +124,7 @@
        * 获取当前任务的按钮
        */
       buttonTrace (record) {
-        buttonTrace({ actId: record.activityId }).then((res) => {
+        buttonTrace({ actId: record.activityId, processDefinitionId: record.procIns.procDef.id }).then((res) => {
           this.buttonList = res.data
         })
       },
