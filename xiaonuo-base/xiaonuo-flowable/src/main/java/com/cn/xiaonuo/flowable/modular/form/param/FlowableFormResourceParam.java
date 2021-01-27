@@ -36,16 +36,32 @@ public class FlowableFormResourceParam extends BaseParam {
     private String name;
 
     /**
+     * 表单类型（字典1 自行开发 2在线设计）
+     */
+    @NotNull(message = "表单类型不能为空，请检查type参数", groups = {add.class, edit.class})
+    private Integer type;
+
+    /**
      * 表单分类
      */
     @NotBlank(message = "表单分类不能为空，请检查category参数", groups = {add.class, edit.class})
     private String category;
 
     /**
-     * 表单json数据
+     * PC端表单数据，适用于在线设计的表单
      */
     @NotBlank(message = "表单json数据不能为空，请检查formJson参数", groups = {force.class})
     private String formJson;
+
+    /**
+     * PC端表单url，适用于自行开发的表单
+     */
+    private String formUrl;
+
+    /**
+     * 移动端表单url
+     */
+    private String appFormUrl;
 
     /**
      * 备注

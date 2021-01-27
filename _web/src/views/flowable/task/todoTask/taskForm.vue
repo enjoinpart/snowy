@@ -1,39 +1,71 @@
 <template>
-  <a-card
-    :bordered="false"
-    :loading="cardLoading"
-  >
+  <a-card :bordered="false" :loading="cardLoading">
     <a-spin :spinning="spinningLoading">
       <div>
-        <a-button class="but_item" type="dashed" @click="returnPage" icon="rollback" :loading="butLoading">返回</a-button>
-        <a-button class="but_item" @click="handleOpenSubmit" :disabled="buttonList.submit === 'N'" type="primary" icon="check">提交</a-button>
+        <a-button
+          class="but_item"
+          type="dashed"
+          @click="returnPage"
+          icon="rollback"
+          :loading="butLoading"
+        >返回</a-button>
+        <a-button
+          class="but_item"
+          @click="handleOpenSubmit"
+          :disabled="buttonList.submit === 'N'"
+          type="primary"
+          icon="check"
+        >提交</a-button>
         <a-button class="but_item" @click="handleSave" :disabled="buttonList.save === 'N'">保存</a-button>
         <a-button class="but_item" @click="handleOpenBack" :disabled="buttonList.back === 'N'">退回</a-button>
         <a-button class="but_item" @click="handleOpenTurn" :disabled="buttonList.turn === 'N'">转办</a-button>
-        <a-button class="but_item" @click="handleOpenEntrust" :disabled="buttonList.entrust === 'N'">委托</a-button>
+        <a-button
+          class="but_item"
+          @click="handleOpenEntrust"
+          :disabled="buttonList.entrust === 'N'"
+        >委托</a-button>
         <a-button class="but_item" @click="handleOpenEnd" :disabled="buttonList.end === 'N'">终止</a-button>
-        <a-button class="but_item" @click="$refs.tracking.tracking(recordData.procIns.id)" :disabled="buttonList.trace === 'N'">追踪</a-button>
-        <a-popconfirm placement="top" :title="'确定挂起该任务？'" @confirm="() => handleSuspend()">
+        <a-button
+          class="but_item"
+          @click="$refs.tracking.tracking(recordData.procIns.id)"
+          :disabled="buttonList.trace === 'N'"
+        >追踪</a-button>
+        <a-popconfirm
+          placement="top"
+          :title="'确定挂起该任务？'"
+          @confirm="() => handleSuspend()"
+          :disabled="buttonList.suspend === 'N'"
+        >
           <a-button class="but_item" :disabled="buttonList.suspend === 'N'">挂起</a-button>
         </a-popconfirm>
         <a-button class="but_item" @click="handleOpenJump" :disabled="buttonList.jump === 'N'">跳转</a-button>
-        <a-button class="but_item" @click="handleOpenAddSign" :disabled="buttonList.addSign === 'N'">加签</a-button>
-        <a-button class="but_item" @click="handleOpenDeleteSign" :disabled="buttonList.deleteSign === 'N'">减签</a-button>
-        <a-button class="but_item" @click="handlePrintRow" >打印</a-button>
+        <a-button
+          class="but_item"
+          @click="handleOpenAddSign"
+          :disabled="buttonList.addSign === 'N'"
+        >加签</a-button>
+        <a-button
+          class="but_item"
+          @click="handleOpenDeleteSign"
+          :disabled="buttonList.deleteSign === 'N'"
+        >减签</a-button>
+        <a-button class="but_item" @click="handlePrintRow">打印</a-button>
       </div>
       <div>
-        <submit ref="submit" @close="returnPage" v-if="buttonList.submit === 'Y'"/>
-        <back ref="back" @close="returnPage" v-if="buttonList.back === 'Y'"/>
-        <turn ref="turn" @close="returnPage" v-if="buttonList.turn === 'Y'"/>
-        <entrust ref="entrust" @close="returnPage" v-if="buttonList.entrust === 'Y'"/>
-        <end ref="end" @close="returnPage" v-if="buttonList.end === 'Y'"/>
-        <tracking ref="tracking" v-if="buttonList.trace === 'Y'"/>
-        <jump ref="jump" @close="returnPage" v-if="buttonList.jump === 'Y'"/>
-        <add-sign ref="addSign" @close="returnPage" v-if="buttonList.addSign === 'Y'"/>
-        <delete-sign ref="deleteSign" @close="returnPage" v-if="buttonList.deleteSign === 'Y'"/>
+        <submit ref="submit" @close="returnPage" v-if="buttonList.submit === 'Y'" />
+        <back ref="back" @close="returnPage" v-if="buttonList.back === 'Y'" />
+        <turn ref="turn" @close="returnPage" v-if="buttonList.turn === 'Y'" />
+        <entrust ref="entrust" @close="returnPage" v-if="buttonList.entrust === 'Y'" />
+        <end ref="end" @close="returnPage" v-if="buttonList.end === 'Y'" />
+        <tracking ref="tracking" v-if="buttonList.trace === 'Y'" />
+        <jump ref="jump" @close="returnPage" v-if="buttonList.jump === 'Y'" />
+        <add-sign ref="addSign" @close="returnPage" v-if="buttonList.addSign === 'Y'" />
+        <delete-sign ref="deleteSign" @close="returnPage" v-if="buttonList.deleteSign === 'Y'" />
       </div>
       <div id="printDiv">
-        <k-form-build ref="kfb" :value="jsonData"/>
+        <component v-if="isCustomForm" ref="customFormRef" :is="allCustomFormComps[formCompKey]"></component>
+
+        <k-form-build v-else ref="kfb" :value="jsonData" />
       </div>
     </a-spin>
   </a-card>
@@ -43,6 +75,8 @@
   import { formTaskFormData } from '@/api/modular/flowable/formManage'
   import { handleTaskSave, handleTaskTaskData, handleTaskSuspend } from '@/api/modular/flowable/handleTaskManage'
   import { buttonTrace } from '@/api/modular/flowable/buttonManage'
+  // 导入全部自定义表单
+  import allCustomForm from '@/views/main/customForm/index.js'
   import Print from 'print-js'
   // 导入按钮功能的界面
   import submit from '../handleTask/submit'
@@ -68,8 +102,9 @@
       addSign,
       deleteSign
     },
-    data () {
+    data() {
       return {
+        allCustomFormComps: allCustomForm,
         jsonData: {},
         visible: false,
         confirmLoading: false,
@@ -78,83 +113,178 @@
         processDefinitionId: '',
         butLoading: false,
         buttonList: {},
-        recordData: []
+        recordData: [],
+        // 是否为自行开发表单
+        isCustomForm: false,
+        formCompKey: ''
       }
     },
     methods: {
       /**
        * 初始化方法
        */
-      open (record) {
+      open(record) {
         this.recordData = record
         this.formTaskFormDataTaskData(record)
         this.buttonTrace(record)
       },
+      /*
+       * 判断字符串是否为 JSON
+       * return Boolean
+       */
+      isJSON(str) {
+        if (typeof str === 'string') {
+          try {
+            const obj = JSON.parse(str)
+            if (typeof obj === 'object' && obj) {
+              return true
+            } else {
+              return false
+            }
+          } catch (e) {
+            // console.log('error：' + str + '!!!' + e)
+            return false
+          }
+        }
+        console.log('It is not a string!')
+      },
       /**
        * 当前任务的任务表单及数据
        */
-      formTaskFormDataTaskData (record) {
+      formTaskFormDataTaskData(record) {
         this.cardLoading = true
         const values = {}
         values.processDefinitionId = record.procIns.procDef.id
         values.actId = record.activityId
-        formTaskFormData(values).then((res) => {
-          this.cardLoading = false
-          if (res.success) {
-            this.spinningLoading = true
-            this.jsonData = JSON.parse(res.data)
-            handleTaskTaskData({ taskId: record.id }).then((res) => {
-              this.spinningLoading = false
-              if (res.success) {
-                this.$refs.kfb.setData(JSON.parse(res.data.formData))
-              } else {
-                this.$message.error(res.message)
-              }
-            })
-          } else {
+        formTaskFormData(values)
+          .then(res => {
+            this.cardLoading = false
+            if (!res.success) {
+              this.$message.error(res.message)
+              this.returnPage()
+              return
+            }
+
+            this.isCustomForm = !this.isJSON(res.data)
+
+            if (this.isCustomForm) {
+              this.jsonData = {}
+              this.formCompKey = res.data
+              this.getTaskData(record)
+            } else {
+              this.jsonData = JSON.parse(res.data)
+              this.getTaskData(record)
+            }
+
+            // eslint-disable-next-line handle-callback-err
+          })
+          .catch(() => {
+            this.jsonData = {}
+          })
+      },
+      /*
+       * 获取表单数据接口
+       */
+      getTaskData(params) {
+        this.spinningLoading = true
+
+        handleTaskTaskData({ taskId: params.id }).then(res => {
+          this.spinningLoading = false
+          if (!res.success) {
             this.$message.error(res.message)
-            this.returnPage()
+            return
           }
-        // eslint-disable-next-line handle-callback-err
-        }).catch(err => {
-          this.jsonData = {}
+
+          if (this.isCustomForm) {
+            this.$refs.customFormRef.init(res.data.formData)
+          } else {
+            this.$refs.kfb.setData(JSON.parse(res.data.formData))
+          }
+
+          // if (res.success) {
+          //   this.$refs.kfb.setData(JSON.parse(res.data.formData))
+          // } else {
+          //   this.$message.error(res.message)
+          // }
         })
       },
       /**
        * 获取当前任务的按钮
        */
-      buttonTrace (record) {
-        buttonTrace({ actId: record.activityId, processDefinitionId: record.procIns.procDef.id }).then((res) => {
+      buttonTrace(record) {
+        buttonTrace({ actId: record.activityId }).then(res => {
           this.buttonList = res.data
         })
       },
       /**
        * 返回并清空已生成的表单
        */
-      returnPage () {
+      returnPage() {
         this.$emit('close')
         this.jsonData = {}
       },
-      handleOpenSubmit () {
-        this.$refs.kfb.getData().then(values => {
-          const formData = {}
-          formData.formData = JSON.stringify(values)
-          this.$refs.submit.open(this.recordData, this.buttonList, formData)
-        }).catch(() => {})
+      // TODO: 自定义列表处理
+      handleOpenSubmit() {
+        if (this.isCustomForm) {
+          // 自定义表单 do something
+          this.$refs.customFormRef
+            .getDataForSubmit()
+            .then(values => {
+              const formData = {}
+              formData.formData = JSON.stringify(values)
+              this.$refs.submit.open(this.recordData, this.buttonList, formData)
+            })
+            .catch(() => {})
+        } else {
+          this.$refs.kfb
+            .getData()
+            .then(values => {
+              const formData = {}
+              formData.formData = JSON.stringify(values)
+              this.$refs.submit.open(this.recordData, this.buttonList, formData)
+            })
+            .catch(() => {})
+        }
       },
+
       /**
        * 保存
        */
-      handleSave () {
-        this.$refs.kfb.getData().then(values => {
-          values.processDefinitionId = this.recordData.processDefinitionId
-          this.spinningLoading = true
-          const formData = {}
-          formData.formData = JSON.stringify(values)
-          const req = {}
-          req.taskId = this.recordData.id
-          req.variables = formData
-          handleTaskSave(req).then((res) => {
+      handleSave() {
+        if (this.isCustomForm) {
+          this.$refs.customFormRef
+            .getDataForDraft()
+            .then(values => {
+              this.postHandleSave(values)
+            })
+            .catch(() => {
+              this.$message.error('获取表单数据失败')
+            })
+        } else {
+          this.$refs.kfb
+            .getData()
+            .then(values => {
+              this.postHandleSave(values)
+            })
+            .catch(() => {
+              this.$message.error('获取表单数据失败')
+            })
+        }
+      },
+      /*
+       * 保存操作接口
+       */
+      postHandleSave(values) {
+        values.processDefinitionId = this.recordData.processDefinitionId
+        const formData = {}
+        formData.formData = JSON.stringify(values)
+        const req = {}
+        req.taskId = this.recordData.id
+        req.variables = formData
+
+        this.spinningLoading = true
+        handleTaskSave(req)
+          .then(res => {
             this.spinningLoading = false
             if (res.success) {
               this.$message.success('保存成功')
@@ -163,25 +293,25 @@
               this.$message.error('保存失败：' + res.message)
             }
           })
-        }).catch(() => {
-          // console.log('验证未通过，获取失败')
-        })
+          .catch(() => {
+            this.spinningLoading = false
+          })
       },
-      handleOpenBack () {
+      handleOpenBack() {
         this.$refs.back.open(this.recordData)
       },
-      handleOpenTurn () {
+      handleOpenTurn() {
         this.$refs.turn.open(this.recordData)
       },
-      handleOpenEntrust () {
+      handleOpenEntrust() {
         this.$refs.entrust.open(this.recordData)
       },
-      handleOpenEnd () {
+      handleOpenEnd() {
         this.$refs.end.open(this.recordData)
       },
-      handleSuspend () {
+      handleSuspend() {
         this.spinningLoading = true
-        handleTaskSuspend({ taskId: this.recordData.id }).then((res) => {
+        handleTaskSuspend({ taskId: this.recordData.id }).then(res => {
           this.spinningLoading = false
           if (res.success) {
             this.$message.success('挂起成功')
@@ -191,23 +321,23 @@
           }
         })
       },
-      handleOpenJump () {
+      handleOpenJump() {
         this.$refs.jump.open(this.recordData)
       },
-      handleOpenAddSign () {
+      handleOpenAddSign() {
         this.$refs.addSign.open(this.recordData)
       },
-      handleOpenDeleteSign () {
+      handleOpenDeleteSign() {
         this.$refs.deleteSign.open(this.recordData)
       },
-      handlePrintRow (index, row) {
+      handlePrintRow(index, row) {
         Print({ printable: 'printDiv', type: 'html', targetStyles: ['*'] })
       }
     }
   }
 </script>
 <style>
-  .but_item{
+  .but_item {
     margin-right: 10px;
     margin-bottom: 20px;
   }

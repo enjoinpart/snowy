@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.cn.xiaonuo.core.exception.ServiceException;
 import com.cn.xiaonuo.flowable.core.enums.FormNodeTypeEnum;
+import com.cn.xiaonuo.flowable.core.enums.FormResourceTypeEnum;
 import com.cn.xiaonuo.flowable.modular.form.entity.FlowableForm;
 import com.cn.xiaonuo.flowable.modular.form.entity.FlowableFormResource;
 import com.cn.xiaonuo.flowable.modular.form.enums.FlowableFormExceptionEnum;
@@ -110,7 +111,14 @@ public class FlowableFormServiceImpl extends ServiceImpl<FlowableFormMapper, Flo
         FlowableFormResourceParam flowableFormResourceParam = new FlowableFormResourceParam();
         flowableFormResourceParam.setId(flowableForm.getFormId());
         FlowableFormResource formResource = flowableFormResourceService.detail(flowableFormResourceParam);
-        return formResource.getFormJson();
+        //如果是自行开发则返回url
+        Integer type = formResource.getType();
+        if(FormResourceTypeEnum.DEV.getCode().equals(type)) {
+            return formResource.getFormUrl();
+        } else {
+            //否则返回表单json
+            return formResource.getFormJson();
+        }
     }
 
     @Override
@@ -125,7 +133,14 @@ public class FlowableFormServiceImpl extends ServiceImpl<FlowableFormMapper, Flo
         FlowableFormResourceParam flowableFormResourceParam = new FlowableFormResourceParam();
         flowableFormResourceParam.setId(flowableForm.getFormId());
         FlowableFormResource formResource = flowableFormResourceService.detail(flowableFormResourceParam);
-        return formResource.getFormJson();
+        //如果是自行开发则返回url
+        Integer type = formResource.getType();
+        if(FormResourceTypeEnum.DEV.getCode().equals(type)) {
+            return formResource.getFormUrl();
+        } else {
+            //否则返回表单json
+            return formResource.getFormJson();
+        }
     }
 
     @Override
@@ -142,7 +157,14 @@ public class FlowableFormServiceImpl extends ServiceImpl<FlowableFormMapper, Flo
         FlowableFormResourceParam flowableFormResourceParam = new FlowableFormResourceParam();
         flowableFormResourceParam.setId(flowableForm.getFormId());
         FlowableFormResource formResource = flowableFormResourceService.detail(flowableFormResourceParam);
-        return formResource.getFormJson();
+        //如果是自行开发则返回url
+        Integer type = formResource.getType();
+        if(FormResourceTypeEnum.DEV.getCode().equals(type)) {
+            return formResource.getFormUrl();
+        } else {
+            //否则返回表单json
+            return formResource.getFormJson();
+        }
     }
 
     @Override

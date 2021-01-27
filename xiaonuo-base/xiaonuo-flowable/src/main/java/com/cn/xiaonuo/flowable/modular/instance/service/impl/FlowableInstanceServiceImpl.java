@@ -252,6 +252,22 @@ public class FlowableInstanceServiceImpl implements FlowableInstanceService {
     }
 
     @Override
+    public void delete(List<FlowableInstanceParam> flowableInstanceParamList) {
+        flowableInstanceParamList.forEach(flowableInstanceParam -> {
+            String processInstanceId = flowableInstanceParam.getId();
+            ProcessInstance processInstance = runtimeService.createProcessInstanceQuery()
+                    .processInstanceId(processInstanceId).singleResult();
+            if (ObjectUtil.isNotNull(processInstance)) {
+                runtimeService.deleteProcessInstance(processInstanceId, null);
+            }
+            HistoricProcessInstance historicProcessInstance = this.queryHistoricProcessInstance(flowableInstanceParam);
+            if(ObjectUtil.isNotEmpty(historicProcessInstance)) {
+                historyService.deleteHistoricProcessInstance(processInstanceId);
+            }
+        });
+    }
+
+    @Override
     public Map<String, Object> formData(FlowableInstanceParam flowableInstanceParam) {
         Map<String, Object> variables = CollectionUtil.newHashMap();
         //获取流程实例id

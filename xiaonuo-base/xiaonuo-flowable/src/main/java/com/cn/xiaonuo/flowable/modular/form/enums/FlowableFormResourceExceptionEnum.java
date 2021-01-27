@@ -33,7 +33,12 @@ public enum FlowableFormResourceExceptionEnum implements AbstractBaseExceptionEn
     /**
      * 该表单已关联流程定义
      */
-    FORM_CANNOT_DELETE(4, "该表单已关联流程定义，无法删除");
+    FORM_CANNOT_DELETE(4, "该表单已关联流程定义，无法删除"),
+
+    /**
+     * 表单url为空
+     */
+    FORM_URL_EMPTY(5, "表单url为空，请检查formUrl参数");
 
     private final Integer code;
 

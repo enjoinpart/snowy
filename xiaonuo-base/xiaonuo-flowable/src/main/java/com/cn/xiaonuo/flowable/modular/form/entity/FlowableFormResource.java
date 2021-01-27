@@ -33,14 +33,29 @@ public class FlowableFormResource extends BaseEntity {
     private String name;
 
     /**
+     * 表单类型（1自行开发 2在线设计）
+     */
+    private Integer type;
+
+    /**
      * 表单分类
      */
     private String category;
 
     /**
-     * 表单json数据
+     * PC端表单数据，适用于在线设计的表单
      */
     private String formJson;
+
+    /**
+     * PC端表单url，适用于自行开发的表单
+     */
+    private String formUrl;
+
+    /**
+     * 移动端表单url
+     */
+    private String appFormUrl;
 
     /**
      * 备注

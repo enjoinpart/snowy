@@ -18,45 +18,39 @@ XiaoNuo采用APACHE LICENSE 2.0开源协议，您在使用过程中，需要注�
 1.请不要删除和修改根目录下的LICENSE文件。
 2.请不要删除和修改XiaoNuo源码头部的版权声明。
 3.请保留源码和相关描述文件的项目出处，作者声明等。
-4.分发源码时候，请注明软件出处 https://gitee.com/xiaonuobase/xiaonuo-vue
-5.在修改包名，模块名称，项目代码等时，请注明软件出处 https://gitee.com/xiaonuobase/xiaonuo-vue
+4.分发源码时候，请注明软件出处 https://gitee.com/xiaonuobase/xiaonuo-layui
+5.在修改包名，模块名称，项目代码等时，请注明软件出处 https://gitee.com/xiaonuobase/xiaonuo-layui
 6.若您的项目无法满足以上几点，可申请商业授权，获取XiaoNuo商业授权许可，请在官网购买授权，地址为 https://www.xiaonuo.vip
  */
-package com.cn.xiaonuo.flowable.modular.definition.enums;
+package com.cn.xiaonuo.flowable.core.enums;
 
 import lombok.Getter;
 
 /**
- * 模型类型的枚举
+ * 表单资源类型枚举
  *
  * @author xuyuxiang
- * @date 2020/8/4 11:00
- **/
+ * @date 2020/5/25 15:18
+ */
 @Getter
-public enum FlowableDefinitionModelTypeEnum {
+public enum FormResourceTypeEnum {
 
     /**
-     * 流程模型
+     * 自行开发
      */
-    MODEL_PROCESS(0, "流程模型"),
+    DEV(1, "自行开发"),
 
     /**
-     * 案例模型（暂时用不到）
+     * 在线设计
      */
-    MODEL_CASE(1, "案例模型"),
-
-    /**
-     * 表单模型
-     */
-    MODEL_FORM(2, "表单模型");
+    ONLINE(2, "在线设计");
 
     private final Integer code;
 
     private final String message;
 
-    FlowableDefinitionModelTypeEnum(Integer code, String message) {
+    FormResourceTypeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
-
 }

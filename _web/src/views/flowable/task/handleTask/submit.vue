@@ -14,34 +14,30 @@
           :labelCol="labelCol"
           :wrapperCol="wrapperCol"
           has-feedback
-        >
-          {{ this.recordData.name }}
-        </a-form-item>
-        <a-form-item
-          label="审批意见"
-          :labelCol="labelCol"
-          :wrapperCol="wrapperCol"
-          has-feedback
-        >
-          <a-textarea :rows="4" placeholder="请输入审批意见" v-decorator="['comment',{rules: [{required: true, message: '请输入审批意见！'}]}]"></a-textarea>
+        >{{ this.recordData.name }}</a-form-item>
+        <a-form-item label="审批意见" :labelCol="labelCol" :wrapperCol="wrapperCol" has-feedback>
+          <a-textarea
+            :rows="4"
+            placeholder="请输入审批意见"
+            v-decorator="['comment',{rules: [{required: true, message: '请输入审批意见！'}]}]"
+          ></a-textarea>
         </a-form-item>
         <div v-show="this.buttonList.next === 'Y'">
-          <a-form-item
-            label="下一步完成人"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-            has-feedback
-          >
-            <a-select show-search :filter-option="filterOption" v-decorator="['nextAssignee']" placeholder="请选择下一步完成人">
-              <a-select-option v-for="(item,index) in userSelector" :key="index" :value="item.id" >{{ item.name }}</a-select-option>
+          <a-form-item label="下一步完成人" :labelCol="labelCol" :wrapperCol="wrapperCol" has-feedback>
+            <a-select
+              show-search
+              :filter-option="filterOption"
+              v-decorator="['nextAssignee']"
+              placeholder="请选择下一步完成人"
+            >
+              <a-select-option
+                v-for="(item,index) in userSelector"
+                :key="index"
+                :value="item.id"
+              >{{ item.name }}</a-select-option>
             </a-select>
           </a-form-item>
-          <a-form-item
-            label="下一步完成期限"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-            has-feedback
-          >
+          <a-form-item label="下一步完成期限" :labelCol="labelCol" :wrapperCol="wrapperCol" has-feedback>
             <a-date-picker
               v-decorator="['nextDueDate']"
               style="width: 100%"
@@ -49,12 +45,14 @@
               :show-time="{ defaultValue: moment('00:00:00', 'HH:mm:ss') }"
             />
           </a-form-item>
-          <a-form-item
-            label="下一步优先级"
-            :labelCol="labelCol"
-            :wrapperCol="wrapperCol"
-          >
-            <a-input-number placeholder="请输入下一步优先级" style="width: 100%" v-decorator="['nextPriority',{initialValue: 0}]" :min="0" :max="1000" />
+          <a-form-item label="下一步优先级" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input-number
+              placeholder="请输入下一步优先级"
+              style="width: 100%"
+              v-decorator="['nextPriority',{initialValue: 0}]"
+              :min="0"
+              :max="1000"
+            />
           </a-form-item>
         </div>
       </a-form>
@@ -67,7 +65,7 @@
   import moment from 'moment'
   import { sysUserSelector } from '@/api/modular/system/userManage'
   export default {
-    data () {
+    data() {
       return {
         labelCol: {
           xs: { span: 24 },
@@ -92,7 +90,7 @@
       /**
        * 初始化方法
        */
-      open (record, buttonList, formDataReq) {
+      open(record, buttonList, formDataReq) {
         this.formDataReq = formDataReq
         this.buttonList = buttonList
         this.recordData = record
@@ -101,16 +99,18 @@
           this.sysUserSelector()
         }
       },
-      sysUserSelector () {
-        sysUserSelector().then((res) => {
+      sysUserSelector() {
+        sysUserSelector().then(res => {
           this.userSelector = res.data
         })
       },
       /**
        * 提交
        */
-      handleSubmit () {
-        const { form: { validateFields } } = this
+      handleSubmit() {
+        const {
+          form: { validateFields }
+        } = this
         validateFields((errors, values) => {
           if (!errors) {
             if (values.nextDueDate != null) {
@@ -125,23 +125,25 @@
             values.processDefinitionId = this.recordData.procIns.id
             values.taskId = this.recordData.id
             values.variables = this.formDataReq
-            handleTaskSubmit(values).then((res) => {
-              if (res.success) {
-                this.$message.success('审批成功')
-                this.returnPage()
-              } else {
-                this.$message.error('审批失败：' + res.message)
-              }
-            }).finally((res) => {
-              this.confirmLoading = false
-            })
+            handleTaskSubmit(values)
+              .then(res => {
+                if (res.success) {
+                  this.$message.success('审批成功')
+                  this.returnPage()
+                } else {
+                  this.$message.error('审批失败：' + res.message)
+                }
+              })
+              .finally(res => {
+                this.confirmLoading = false
+              })
           }
         })
       },
       /**
        * 返回并清空界面缓存
        */
-      returnPage () {
+      returnPage() {
         this.visible = false
         this.form.resetFields()
         this.$emit('close')
@@ -149,14 +151,12 @@
       /**
        * 关闭
        */
-      handleCancel () {
+      handleCancel() {
         this.form.resetFields()
         this.visible = false
       },
-      filterOption (input, option) {
-        return (
-          option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        )
+      filterOption(input, option) {
+        return option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
       }
     }
   }

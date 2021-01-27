@@ -5,12 +5,12 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="表单名称" >
-                <a-input v-model="queryParam.name" allow-clear placeholder="请输入表单名称"/>
+              <a-form-item label="表单名称">
+                <a-input v-model="queryParam.name" allow-clear placeholder="请输入表单名称" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
-              <a-form-item label="唯一编码" >
+              <a-form-item label="唯一编码">
                 <a-input v-model="queryParam.code" allow-clear placeholder="请输入唯一编码" />
               </a-form-item>
             </a-col>
@@ -21,8 +21,13 @@
           </a-row>
         </a-form>
       </div>
-      <div class="table-operator" v-if="hasPerm('flowableFormResource:add')" >
-        <a-button type="primary" v-if="hasPerm('flowableFormResource:add')" icon="plus" @click="$refs.addForm.add()">新增表单</a-button>
+      <div class="table-operator" v-if="hasPerm('flowableFormResource:add')">
+        <a-button
+          type="primary"
+          v-if="hasPerm('flowableFormResource:add')"
+          icon="plus"
+          @click="$refs.addForm.add()"
+        >新增表单</a-button>
       </div>
       <s-table
         ref="table"
@@ -33,30 +38,40 @@
         :rowKey="(record) => record.code"
         :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
       >
-        <span slot="category" slot-scope="text">
-          {{ categoryFilter(text) }}
-        </span>
+        <span slot="category" slot-scope="text">{{ categoryFilter(text) }}</span>
         <span slot="remark" slot-scope="text">
           <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
         </span>
         <span slot="action" slot-scope="text, record">
           <a @click="$refs.preview.preview(record)">预览</a>
-          <a-divider type="vertical" v-if="hasPerm('flowableFormResource:design')"/>
-          <a @click="openDesign(record)" v-if="hasPerm('flowableFormResource:design')" >设计</a>
-          <a-divider type="vertical"/>
+          <a-divider type="vertical" v-if="hasPerm('flowableFormResource:design')" />
+          <a
+            @click="openDesign(record)"
+            v-if="hasPerm('flowableFormResource:design')"
+            :disabled="!record.formJson"
+          >设计</a>
+          <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">
-              更多 <a-icon type="down"/>
+              更多
+              <a-icon type="down" />
             </a>
             <a-menu slot="overlay">
               <a-menu-item>
-                <a v-if="hasPerm('flowableFormResource:add')" @click="$refs.copyForm.copy(record)">复制</a>
+                <a
+                  v-if="hasPerm('flowableFormResource:add')"
+                  @click="$refs.copyForm.copy(record)"
+                >复制</a>
               </a-menu-item>
               <a-menu-item v-if="hasPerm('flowableFormResource:edit')">
                 <a @click="$refs.editForm.edit(record)">编辑</a>
               </a-menu-item>
               <a-menu-item v-if="hasPerm('flowableFormResource:delete')">
-                <a-popconfirm placement="topRight" title="确认删除？" @confirm="() => formResourceDelete(record)">
+                <a-popconfirm
+                  placement="topRight"
+                  title="确认删除？"
+                  @confirm="() => formResourceDelete(record)"
+                >
                   <a>删除</a>
                 </a-popconfirm>
               </a-menu-item>
@@ -64,13 +79,17 @@
           </a-dropdown>
         </span>
       </s-table>
-      <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:add')"/>
-      <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:edit')"/>
-      <copy-form ref="copyForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:add')"/>
-      <preview ref="preview"/>
+      <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:add')" />
+      <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:edit')" />
+      <copy-form ref="copyForm" @ok="handleOk" v-if="hasPerm('flowableFormResource:add')" />
+      <preview ref="preview" />
     </a-card>
     <div v-show="designFormShow">
-      <design-form ref="designForm" @close="closeDesign" v-if="hasPerm('flowableFormResource:design')"/>
+      <design-form
+        ref="designForm"
+        @close="closeDesign"
+        v-if="hasPerm('flowableFormResource:design')"
+      />
     </div>
   </div>
 </template>
@@ -93,7 +112,7 @@
       copyForm,
       preview
     },
-    data () {
+    data() {
       return {
         // 查询参数
         queryParam: {},
@@ -120,7 +139,7 @@
         ],
         // 加载数据方法 必须为 Promise 对象
         loadData: parameter => {
-          return formResourcePage(Object.assign(parameter, this.queryParam)).then((res) => {
+          return formResourcePage(Object.assign(parameter, this.queryParam)).then(res => {
             return res.data
           })
         },
@@ -131,9 +150,13 @@
         designFormShow: false
       }
     },
-    created () {
+    created() {
       this.flowableCategoryList()
-      if (this.hasPerm('flowableFormResource:design') || this.hasPerm('flowableFormResource:edit') || this.hasPerm('flowableFormResource:delete')) {
+      if (
+        this.hasPerm('flowableFormResource:design') ||
+        this.hasPerm('flowableFormResource:edit') ||
+        this.hasPerm('flowableFormResource:delete')
+      ) {
         this.columns.push({
           title: '操作',
           width: '200px',
@@ -146,7 +169,7 @@
       /**
        * 打开表单设计
        */
-      openDesign (record) {
+      openDesign(record) {
         this.indexPageShow = false
         this.designFormShow = true
         this.$refs.designForm.design(record)
@@ -154,7 +177,7 @@
       /**
        * 关闭表单设计
        */
-      closeDesign () {
+      closeDesign() {
         this.indexPageShow = true
         this.designFormShow = false
         this.$refs.table.refresh()
@@ -162,12 +185,12 @@
       /**
        * 获取分类
        */
-      flowableCategoryList () {
-        flowableCategoryList().then((res) => {
+      flowableCategoryList() {
+        flowableCategoryList().then(res => {
           this.flowableCategoryListData = res.data
         })
       },
-      categoryFilter (text) {
+      categoryFilter(text) {
         // eslint-disable-next-line eqeqeq
         const values = this.flowableCategoryListData.filter(item => item.code == text)
         if (values.length > 0) {
@@ -177,8 +200,8 @@
       /**
        * 删除
        */
-      formResourceDelete (record) {
-        formResourceDelete(record).then((res) => {
+      formResourceDelete(record) {
+        formResourceDelete(record).then(res => {
           if (res.success) {
             this.$message.success('删除成功')
             this.$refs.table.refresh()
@@ -190,10 +213,10 @@
       /**
        * 回调事件
        */
-      handleOk () {
+      handleOk() {
         this.$refs.table.refresh()
       },
-      onSelectChange (selectedRowKeys, selectedRows) {
+      onSelectChange(selectedRowKeys, selectedRows) {
         this.selectedRowKeys = selectedRowKeys
         this.selectedRows = selectedRows
       }

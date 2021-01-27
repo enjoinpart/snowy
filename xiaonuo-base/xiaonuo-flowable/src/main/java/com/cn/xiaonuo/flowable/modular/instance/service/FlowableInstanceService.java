@@ -91,6 +91,15 @@ public interface FlowableInstanceService {
     void end(FlowableInstanceParam flowableInstanceParam);
 
     /**
+     * 删除流程实例
+     *
+     * @param flowableInstanceParamList 删除参数
+     * @author xuyuxiang
+     * @date 2020/8/11 14:22
+     **/
+    void delete(List<FlowableInstanceParam> flowableInstanceParamList);
+
+    /**
      * 获取流程实例中表单填写的数据
      *
      * @param flowableInstanceParam 获取参数

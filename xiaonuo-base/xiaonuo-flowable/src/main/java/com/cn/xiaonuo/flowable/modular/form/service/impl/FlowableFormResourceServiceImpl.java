@@ -6,6 +6,7 @@ import com.cn.xiaonuo.core.enums.CommonStatusEnum;
 import com.cn.xiaonuo.core.exception.ServiceException;
 import com.cn.xiaonuo.core.factory.PageFactory;
 import com.cn.xiaonuo.core.pojo.page.PageResult;
+import com.cn.xiaonuo.flowable.core.enums.FormResourceTypeEnum;
 import com.cn.xiaonuo.flowable.modular.form.entity.FlowableFormResource;
 import com.cn.xiaonuo.flowable.modular.form.enums.FlowableFormResourceExceptionEnum;
 import com.cn.xiaonuo.flowable.modular.form.mapper.FlowableFormResourceMapper;
@@ -143,6 +144,15 @@ public class FlowableFormResourceServiceImpl extends ServiceImpl<FlowableFormRes
         Long id = flowableFormResourceParam.getId();
         String name = flowableFormResourceParam.getName();
         String code = flowableFormResourceParam.getCode();
+        Integer type = flowableFormResourceParam.getType();
+        String formUrl = flowableFormResourceParam.getFormUrl();
+
+        //如果是自行开发，则url必填
+        if (FormResourceTypeEnum.DEV.getCode().equals(type)) {
+            if (ObjectUtil.isEmpty(formUrl)) {
+                throw new ServiceException(FlowableFormResourceExceptionEnum.FORM_URL_EMPTY);
+            }
+        }
 
         //构建带name和code的查询条件
         LambdaQueryWrapper<FlowableFormResource> queryWrapperByName = new LambdaQueryWrapper<>();
