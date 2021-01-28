@@ -78,7 +78,8 @@ public class FlowableButtonServiceImpl extends ServiceImpl<FlowableButtonMapper,
         String actId = flowableButtonParam.getActId();
         FlowableButtonResult flowableButtonResult = new FlowableButtonResult();
         LambdaQueryWrapper<FlowableButton> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(FlowableButton::getActId, actId);
+        queryWrapper.eq(FlowableButton::getActId, actId)
+                .eq(FlowableButton::getProcessDefinitionId, flowableButtonParam.getProcessDefinitionId());
         FlowableButton flowableButton = this.getOne(queryWrapper);
         if (ObjectUtil.isNull(flowableButton)) {
             flowableButtonResult = FlowableButtonFactory.genFlowableButtonResult();
