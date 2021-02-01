@@ -48,7 +48,7 @@
           <a
             @click="openDesign(record)"
             v-if="hasPerm('flowableFormResource:design')"
-            :disabled="!record.formJson"
+            :disabled="record.type === 1"
           >设计</a>
           <a-divider type="vertical" />
           <a-dropdown>
