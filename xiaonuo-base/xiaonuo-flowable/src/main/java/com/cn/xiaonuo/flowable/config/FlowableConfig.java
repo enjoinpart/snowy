@@ -1,8 +1,10 @@
 package com.cn.xiaonuo.flowable.config;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.lang.Dict;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.cn.xiaonuo.flowable.core.listener.*;
+import com.cn.xiaonuo.flowable.core.utils.BpmScriptUtil;
 import org.flowable.common.engine.api.delegate.event.FlowableEngineEventType;
 import org.flowable.common.engine.api.delegate.event.FlowableEventDispatcher;
 import org.flowable.common.engine.impl.event.FlowableEventDispatcherImpl;
@@ -12,6 +14,10 @@ import org.flowable.spring.boot.FlowableProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * flowable配置
  *
@@ -20,6 +26,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class FlowableConfig implements EngineConfigurationConfigurer<SpringProcessEngineConfiguration> {
+
+    @Resource
+    private BpmScriptUtil bpmScriptUtil;
 
     /**
      * FlowableProperties配置，关闭定时任务
@@ -73,5 +82,9 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         eventDispatcher.addEventListener(new GlobalSequenceflowTakenListener(), FlowableEngineEventType.SEQUENCEFLOW_TAKEN);
         //设置EventDispatcher
         springProcessEngineConfiguration.setEventDispatcher(eventDispatcher);
+        //自定义的bean，注册到流程引擎，可用在UEL表达式中，比如，请假天数判断，可以在表达式中使用${BpmScriptUtl.getFormDataKey(execution, "days") > 3 }
+        Map<Object, Object> beanMap = new HashMap<>();
+        beanMap.put("BpmScriptUtl", bpmScriptUtil);
+        springProcessEngineConfiguration.setBeans(beanMap);
     }
 }

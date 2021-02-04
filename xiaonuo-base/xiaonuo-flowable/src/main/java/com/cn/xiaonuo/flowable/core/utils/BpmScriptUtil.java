@@ -1,7 +1,7 @@
 package com.cn.xiaonuo.flowable.core.utils;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -10,9 +10,11 @@ import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.delegate.DelegateExecution;
 import org.flowable.task.api.Task;
+import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 流程脚本工具类，用于脚本编写
@@ -20,15 +22,12 @@ import java.util.Map;
  * @author xuyuxiang
  * @date 2020/5/26 16:46
  */
+@Component
 public class BpmScriptUtil {
 
     private static final Log log = Log.get();
 
     public static final String FORM_DATA_VARIABLE_KEY = "formData";
-
-    private static final RuntimeService runtimeService = SpringUtil.getBean(RuntimeService.class);
-
-    private static final TaskService taskService = SpringUtil.getBean(TaskService.class);
 
     /**
      * 给流程实例设置变量
@@ -42,6 +41,7 @@ public class BpmScriptUtil {
     public static void setVariableForInstance(DelegateExecution delegateExecution,
                                               String variableName,
                                               Object variableValue) {
+        RuntimeService runtimeService = SpringUtil.getBean(RuntimeService.class);
         if (ObjectUtil.isNotNull(delegateExecution)) {
             String processInstanceId = delegateExecution.getProcessInstanceId();
             runtimeService.setVariable(processInstanceId, variableName, variableValue);
@@ -62,6 +62,8 @@ public class BpmScriptUtil {
     public static void setVariableForTask(DelegateExecution delegateExecution,
                                           String variableName,
                                           Object variableValue) {
+        RuntimeService runtimeService = SpringUtil.getBean(RuntimeService.class);
+        TaskService taskService = SpringUtil.getBean(TaskService.class);
         if (ObjectUtil.isNotNull(delegateExecution)) {
             String executionId = delegateExecution.getId();
             Task task = taskService.createTaskQuery().executionId(executionId).singleResult();
@@ -76,53 +78,41 @@ public class BpmScriptUtil {
     }
 
     /**
-     * 获取流程表单数据
+     * 获取流程表单数据，可以通过修改此接口，将获取到的表单数据保存到自己的业务表
      *
      * @param delegateExecution 执行实例
+     * @return 表单数据的map
      * @author xuyuxiang
      * @date 2021/1/4 10:48
      **/
-    public static JSONObject getFormData(DelegateExecution delegateExecution) {
+    public static Map<String, Object> getFormData(DelegateExecution delegateExecution) {
         Map<String, Object> variables = delegateExecution.getVariables();
-        cn.hutool.json.JSONObject resultData = new cn.hutool.json.JSONObject();
+        AtomicReference<Map<String, Object>> formData = new AtomicReference<>();
         variables.forEach((s, o) -> {
+            //名字为formData的参数，就是表单数据，因此注意只能有一个参数formData，否则前面的会被后面的覆盖
             if(FORM_DATA_VARIABLE_KEY.equals(s)) {
-                cn.hutool.json.JSONObject jsonObject = JSONUtil.parseObj(o);
-                log.info(">>> 获取到的表单数据：{}", jsonObject);
+                JSONObject jsonObject = JSONUtil.parseObj(o);
+                formData.set(jsonObject);
+                //此处可以自定义处理
+                log.info(">>> 任务完成时接受到的表单数据:{}", jsonObject);
             }
         });
-        return resultData;
+        return formData.get();
     }
 
     /**
-     * 利用反射调用service的方法保存表单数据
+     * 获取流程表单数据的key对应的value
      *
-     * @param serviceName
-     * @param methodName
-     * @param businessData
+     * @param key 表单数据key
+     * @return 表单数据key对应的value
      * @author xuyuxiang
-     * @date 2021/1/21 14:19
+     * @date 2021/2/4 12:04
      */
-    public static void saveBusinessData(String serviceName, String methodName, JSONObject businessData) {
-        if(ObjectUtil.isAllNotEmpty(serviceName, methodName, businessData)) {
-            Object serviceClass = SpringUtil.getBean(serviceName);
-            if(ObjectUtil.isNull(serviceClass)) {
-                log.error(">>> 利用反射调用service的方法保存表单数据错误：service不存在，请检查service是否存在或被spring管理");
-            } else {
-                Method method = ReflectUtil.getMethod(serviceClass.getClass(), methodName, JSONObject.class);
-                if(ObjectUtil.isNull(method)) {
-                    log.error(">>> 利用反射调用service的方法保存表单数据错误：方法不存在，请检查方法是否存在或方法参数是否正确");
-                } else {
-                    try {
-                        Object invoke = ReflectUtil.invoke(serviceClass, method, businessData);
-                        log.info(">>> 执行保存表单数据完成，保存的参数：{}", businessData);
-                    } catch (Exception e) {
-                        log.error(">>> 利用反射调用service的方法保存表单数据错误：保存方法执行失败，请参加日志");
-                    }
-                }
-            }
-        } else {
-            log.error(">>> 利用反射调用service的方法保存表单数据错误：参数不完整");
+    public static Object getFormDataKey(DelegateExecution delegateExecution, String key) {
+        Map<String, Object> formData = getFormData(delegateExecution);
+        if(ObjectUtil.isNotEmpty(formData)) {
+            return formData.get(key);
         }
+        return null;
     }
 }
