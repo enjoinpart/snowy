@@ -84,7 +84,7 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         springProcessEngineConfiguration.setEventDispatcher(eventDispatcher);
         //自定义的bean，注册到流程引擎，可用在UEL表达式中，比如，请假天数判断，可以在表达式中使用${BpmScriptUtl.getFormDataKey(execution, "days") > 3 }
         Map<Object, Object> beanMap = new HashMap<>();
-        beanMap.put("BpmScriptUtl", bpmScriptUtil);
+        beanMap.put("BpmScriptUtil", bpmScriptUtil);
         springProcessEngineConfiguration.setBeans(beanMap);
     }
 }
