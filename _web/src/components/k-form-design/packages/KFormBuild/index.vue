@@ -143,7 +143,7 @@ export default {
           } else {
             // 将json中数组形式的字符串还原，例如时间
             for (const key in json) {
-              if (json[key].indexOf('[') > -1) {
+              if (json[key] instanceof String && json[key].indexOf('[') > -1) {
                 json[key] = JSON.parse(json[key])
               }
             }
