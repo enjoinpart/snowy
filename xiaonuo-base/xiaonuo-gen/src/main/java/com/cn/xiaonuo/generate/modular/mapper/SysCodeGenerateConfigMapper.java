@@ -22,50 +22,16 @@ XiaoNuo采用APACHE LICENSE 2.0开源协议，您在使用过程中，需要注�
 5.在修改包名，模块名称，项目代码等时，请注明软件出处 https://gitee.com/xiaonuobase/xiaonuo-vue
 6.若您的项目无法满足以上几点，可申请商业授权，获取XiaoNuo商业授权许可，请在官网购买授权，地址为 https://www.xiaonuo.vip
  */
-package ${packageName}.${modularName}.${busName}.entity;
+package com.cn.xiaonuo.generate.modular.mapper;
 
-import com.baomidou.mybatisplus.annotation.*;
-import com.cn.xiaonuo.core.pojo.base.entity.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import java.util.*;
-#foreach ($column in $tableField)
-#if (${column.javaType} == 'BigDecimal')
-import java.math.BigDecimal;
-#end
-#if(${column.javaType} == "Date")
-import cn.afterturn.easypoi.excel.annotation.Excel;
-#end
-#end
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.cn.xiaonuo.generate.modular.entity.SysCodeGenerateConfig;
 
 /**
- * ${functionName}
+ * 代码生成详细配置
  *
- * @author ${authorName}
- * @date ${createDateString}
+ * @author yubaoshan
+ * @date 2021-02-06 20:19:49
  */
-@EqualsAndHashCode(callSuper = true)
-@Data
-@TableName("${tableName}")
-public class ${ClassName} extends BaseEntity {
-
-#foreach ($column in $tableField)
-#if (${column.columnKey} == "PRI")
-    /**
-     * ${column.columnComment}
-     */
-    @TableId(type = IdType.ASSIGN_ID)
-    private ${column.javaType} ${column.javaName};
-#elseif (${column.whetherCommon} == 'N')
-
-    /**
-     * ${column.columnComment}
-     */
-#if(${column.javaType} == "Date")
-    @Excel(name = "${column.columnComment}", databaseFormat = "yyyy-MM-dd HH:mm:ss", format = "yyyy-MM-dd", width = 20)
-#end
-    private ${column.javaType} ${column.javaName};
-#end
-#end
-
+public interface SysCodeGenerateConfigMapper extends BaseMapper<SysCodeGenerateConfig> {
 }
