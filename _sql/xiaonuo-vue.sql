@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本机
+Source Server         : ybs
 Source Server Version : 50710
 Source Host           : localhost:3306
 Source Database       : xiaonuo-vue
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2021-01-28 00:45:47
+Date: 2021-02-24 19:32:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2356,6 +2356,53 @@ CREATE TABLE `sys_code_generate` (
 -- ----------------------------
 -- Records of sys_code_generate
 -- ----------------------------
+INSERT INTO `sys_code_generate` VALUES ('1362310959781744641', 'yubaoshan、xuyuxiang、dongxiayu', 'CodeGenTest', 'Y', '2', 'xn_code_gen_test', 'com.cn.xiaonuo', 'codegentest', '测试', '1265476890672672808', '2021-02-18 16:00:18', null, null);
+
+-- ----------------------------
+-- Table structure for `sys_code_generate_config`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_code_generate_config`;
+CREATE TABLE `sys_code_generate_config` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `code_gen_id` bigint(20) DEFAULT NULL COMMENT '代码生成主表ID',
+  `column_name` varchar(255) DEFAULT NULL COMMENT '数据库字段名',
+  `java_name` varchar(255) DEFAULT NULL COMMENT 'java类字段名',
+  `data_type` varchar(255) DEFAULT NULL COMMENT '物理类型',
+  `column_comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '字段描述',
+  `java_type` varchar(255) DEFAULT NULL COMMENT 'java类型',
+  `effect_type` varchar(255) DEFAULT NULL COMMENT '作用类型（字典）',
+  `dict_type_code` varchar(255) DEFAULT NULL COMMENT '字典code',
+  `whether_table` varchar(255) DEFAULT NULL COMMENT '列表展示',
+  `whether_add_update` varchar(255) DEFAULT NULL COMMENT '增改',
+  `whether_retract` varchar(255) DEFAULT NULL COMMENT '列表是否缩进（字典）',
+  `whether_required` varchar(255) DEFAULT NULL COMMENT '是否必填（字典）',
+  `query_whether` varchar(255) DEFAULT NULL COMMENT '是否是查询条件',
+  `query_type` varchar(255) DEFAULT NULL COMMENT '查询方式',
+  `column_key` varchar(255) DEFAULT NULL COMMENT '主键',
+  `column_key_name` varchar(255) DEFAULT NULL COMMENT '主外键名称',
+  `whether_common` varchar(255) DEFAULT NULL COMMENT '是否是通用字段',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(255) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='代码生成详细配置';
+
+-- ----------------------------
+-- Records of sys_code_generate_config
+-- ----------------------------
+INSERT INTO `sys_code_generate_config` VALUES ('1362310959903379458', '1362310959781744641', 'id', 'id', 'bigint', '主键', 'Long', 'input', null, 'N', 'N', 'N', 'N', 'N', 'eq', 'PRI', 'Id', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310959941128193', '1362310959781744641', 'name', 'name', 'varchar', '姓名', 'String', 'input', null, 'Y', 'Y', 'N', 'Y', 'Y', 'like', '', 'Name', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310959978876929', '1362310959781744641', 'age', 'age', 'int', '年龄', 'Integer', 'input', null, 'Y', 'Y', 'N', 'Y', 'Y', 'eq', '', 'Age', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960008237058', '1362310959781744641', 'interest', 'interest', 'varchar', '兴趣', 'String', 'checkbox', 'sex', 'Y', 'Y', 'N', 'Y', 'N', 'eq', '', 'Interest', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960033402881', '1362310959781744641', 'switchTest', 'switchtest', 'varchar', '开关', 'String', 'radio', 'yes_or_no', 'Y', 'Y', 'N', 'Y', 'Y', 'eq', '', 'Switchtest', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960062763009', '1362310959781744641', 'birthday', 'birthday', 'date', '日期', 'Date', 'datepicker', null, 'Y', 'Y', 'N', 'Y', 'Y', 'eq', '', 'Birthday', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960096317442', '1362310959781744641', 'whether', 'whether', 'varchar', '是否已婚', 'String', 'select', 'yes_or_no', 'Y', 'Y', 'N', 'Y', 'Y', 'eq', '', 'Whether', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960121483266', '1362310959781744641', 'explainTest', 'explaintest', 'varchar', '简介', 'String', 'textarea', null, 'N', 'Y', 'N', 'Y', 'Y', 'eq', '', 'Explain', 'N', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960150843393', '1362310959781744641', 'create_time', 'createTime', 'datetime', '创建时间', 'Date', 'datepicker', null, 'N', 'N', 'N', 'N', 'N', 'eq', '', 'CreateTime', 'Y', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960176009218', '1362310959781744641', 'create_user', 'createUser', 'bigint', '', 'Long', 'input', null, 'N', 'N', 'N', 'N', 'N', 'eq', '', 'CreateUser', 'Y', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960201175041', '1362310959781744641', 'update_time', 'updateTime', 'datetime', '', 'Date', 'datepicker', null, 'N', 'N', 'N', 'N', 'N', 'eq', '', 'UpdateTime', 'Y', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
+INSERT INTO `sys_code_generate_config` VALUES ('1362310960234729473', '1362310959781744641', 'update_user', 'updateUser', 'bigint', '', 'Long', 'input', null, 'N', 'N', 'N', 'N', 'N', 'eq', '', 'UpdateUser', 'Y', '2021-02-18 16:00:18', '1265476890672672808', '2021-02-18 16:02:31', '1265476890672672808');
 
 -- ----------------------------
 -- Table structure for `sys_config`
@@ -2380,7 +2427,7 @@ CREATE TABLE `sys_config` (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO `sys_config` VALUES ('1265117443880853504', '验证码开关', 'XIAONUO_CAPTCHA_OPEN', 'true', 'Y', '登录验证码开关 false关闭 true打开', '0', 'DEFAULT', '2020-04-14 23:30:14', '1265476890672672808', null, null);
+INSERT INTO `sys_config` VALUES ('1265117443880853504', '验证码开关', 'XIAONUO_CAPTCHA_OPEN', 'true', 'Y', '登录验证码开关 false关闭 true打开', '0', 'DEFAULT', '2020-04-14 23:30:14', '1265476890672672808', '2021-02-18 16:19:01', '1265476890672672808');
 INSERT INTO `sys_config` VALUES ('1265117443880853506', 'jwt密钥', 'XIAONUO_JWT_SECRET', 'xiaonuo', 'Y', '（重要）jwt密钥，默认为空，自行设置', '0', 'DEFAULT', '2020-05-26 06:35:19', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1265117443880853507', '默认密码', 'XIAONUO_DEFAULT_PASSWORD', '123456', 'Y', '默认密码', '0', 'DEFAULT', '2020-05-26 06:37:56', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1265117443880853508', 'token过期时间', 'XIAONUO_TOKEN_EXPIRE', '86400', 'Y', 'token过期时间（单位：秒）', '0', 'DEFAULT', '2020-05-27 11:54:49', '1265476890672672808', null, null);
@@ -2405,9 +2452,8 @@ INSERT INTO `sys_config` VALUES ('1270380786649972739', 'linux/mac本地上传�
 INSERT INTO `sys_config` VALUES ('1270380786649982740', 'XiaoNuo演示环境', 'XIAONUO_DEMO_ENV_FLAG', 'false', 'Y', 'XiaoNuo演示环境的开关，true-打开，false-关闭，如果演示环境开启，则只能读数据不能写数据', '0', 'DEFAULT', '2020-06-09 23:42:37', '1265476890672672808', '2020-09-03 14:38:17', '1265476890672672808');
 INSERT INTO `sys_config` VALUES ('1270380786649982741', 'XiaoNuo放开XSS过滤的接口', 'XIAONUO_UN_XSS_FILTER_URL', '/demo/xssfilter,/demo/unxss', 'Y', '多个url可以用英文逗号隔开', '0', 'DEFAULT', '2020-06-09 23:42:37', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1270380786649982742', '单用户登陆的开关', 'XIAONUO_ENABLE_SINGLE_LOGIN', 'false', 'Y', '单用户登陆的开关，true-打开，false-关闭，如果一个人登录两次，就会将上一次登陆挤下去', '0', 'DEFAULT', '2020-06-09 23:42:37', '1265476890672672808', null, null);
-INSERT INTO `sys_config` VALUES ('1270380786649982743', '登录验证码的开关', 'XIAONUO_CAPTCHA_OPEN', 'true', 'Y', '登录验证码的开关，true-打开，false-关闭', '0', 'DEFAULT', '2020-06-09 23:42:37', '1265476890672672808', null, null);
-INSERT INTO `sys_config` VALUES ('1280694183769792514', 'druid监控登录账号', 'XIAONUO_DRUID_USERNAME', 'superAdmin', 'Y', 'druid监控登录账号', '0', 'DEFAULT', '2020-07-08 10:44:22', '1265476890672672808', null, null);
-INSERT INTO `sys_config` VALUES ('1280694281648070658', 'druid监控界面登录密码', 'XIAONUO_DRUID_PASSWORD', '123456', 'Y', 'druid监控登录密码', '0', 'DEFAULT', '2020-07-08 10:44:46', '1265476890672672808', null, null);
+INSERT INTO `sys_config` VALUES ('1280694183769792514', 'druid监控登录账号', 'XIAONUO_DRUID_USERNAME', 'superAdmin', 'Y', 'druid监控登录账号', '0', 'DEFAULT', '2020-07-08 10:44:22', '1265476890672672808', '2021-02-18 16:18:30', '1265476890672672808');
+INSERT INTO `sys_config` VALUES ('1280694281648070658', 'druid监控界面登录密码', 'XIAONUO_DRUID_PASSWORD', '123456', 'Y', 'druid监控登录密码', '0', 'DEFAULT', '2020-07-08 10:44:46', '1265476890672672808', '2021-02-18 16:18:36', '1265476890672672808');
 INSERT INTO `sys_config` VALUES ('1280694281648070659', '阿里云定位api接口地址', 'XIAONUO_IP_GEO_API', 'http://api01.aliyun.venuscn.com/ip?ip=%s', 'Y', '阿里云定位api接口地址', '0', 'DEFAULT', '2020-07-20 10:44:46', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1280694281648070660', '阿里云定位appCode', 'XIAONUO_IP_GEO_APP_CODE', '461535aabeae4f34861884d392f5d452', 'Y', '阿里云定位appCode', '0', 'DEFAULT', '2020-07-20 10:44:46', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1288309751255412737', 'Oauth用户登录的开关', 'XIAONUO_ENABLE_OAUTH_LOGIN', 'true', 'Y', 'Oauth用户登录的开关', '0', 'OAUTH', '2020-07-29 11:05:55', '1265476890672672808', null, null);
@@ -2416,7 +2462,7 @@ INSERT INTO `sys_config` VALUES ('1288310157876408321', 'Oauth码云登录Client
 INSERT INTO `sys_config` VALUES ('1288310280056483841', 'Oauth码云登录回调地址', 'XIAONUO_OAUTH_GITEE_REDIRECT_URI', 'http://127.0.0.1:82/oauth/callback/gitee', 'Y', 'Oauth码云登录回调地址', '0', 'OAUTH', '2020-07-29 11:08:01', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1288358228593221633', '前端项目地址', 'XIAONUO_WEB_URL', 'http://localhost:8080', 'Y', '前端项目地址', '0', 'DEFAULT', '2020-07-29 14:18:33', '1265476890672672808', null, null);
 INSERT INTO `sys_config` VALUES ('1288358228593221634', '支付宝支付跳转地址', 'XIAONUO_ALIPAY_RETURN_URL', 'http://localhost:8080/pay/index', 'Y', '支付宝支付跳转地址', '0', 'DEFAULT', '2020-07-29 14:18:33', '1265476890672672808', null, null);
-INSERT INTO `sys_config` VALUES ('1288358228593221635', '是否开启多租户', 'XIAONUO_TENANT_OPEN', 'false', 'Y', '是否开启多租户', '0', 'DEFAULT', '2020-09-03 17:45:58', '1265476890672672808', '2020-09-23 22:23:38', '1265476890672672808');
+INSERT INTO `sys_config` VALUES ('1288358228593221635', '是否开启多租户', 'XIAONUO_TENANT_OPEN', 'true', 'Y', '是否开启多租户', '0', 'DEFAULT', '2020-09-03 17:45:58', '1265476890672672808', '2021-02-16 00:09:24', '1265476890672672808');
 
 -- ----------------------------
 -- Table structure for `sys_database_info`
@@ -2441,7 +2487,7 @@ CREATE TABLE `sys_database_info` (
 INSERT INTO `sys_database_info` VALUES ('1298984760954310657', 'backup', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://49.232.20.132:3306/xiaonuo-vue-backup?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '备份数据源', '2020-08-27 22:04:36');
 INSERT INTO `sys_database_info` VALUES ('1304687049021960193', 'xiaonuo_tenant_db_beijing', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://39.107.82.232:3306/xiaonuo_tenant_db_beijing?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '北京客户数据源', '2020-09-12 15:43:27');
 INSERT INTO `sys_database_info` VALUES ('1304687901644279809', 'xiaonuo_tenant_db_guangzhou', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://39.107.82.232:3306/xiaonuo_tenant_db_guangzhou?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '广州客户数据源', '2020-09-12 15:46:50');
-INSERT INTO `sys_database_info` VALUES ('1354469599461343234', 'master', 'com.mysql.cj.jdbc.Driver', 'root', '123456', 'jdbc:mysql://localhost:3306/xiaonuo-vue?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '主数据源，项目启动数据源！', '2021-01-28 00:41:31');
+INSERT INTO `sys_database_info` VALUES ('1364538410226274306', 'master', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://localhost:3306/xiaonuo-vue?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '主数据源，项目启动数据源！', '2021-02-24 19:31:23');
 
 -- ----------------------------
 -- Table structure for `sys_demo_leave`
@@ -2613,6 +2659,29 @@ INSERT INTO `sys_dict_data` VALUES ('1342451445578534913', '1342451383595110402'
 INSERT INTO `sys_dict_data` VALUES ('1342451490893795329', '1342451383595110402', '生成到本项目', '2', '100', '生成到本项目', '0', '2020-12-25 20:45:52', '1265476890672672808', null, null);
 INSERT INTO `sys_dict_data` VALUES ('1354106182690942978', '1354106042974482433', '自行开发', '1', '100', '自行开发', '0', '2021-01-27 00:37:27', '1265476890672672808', null, null);
 INSERT INTO `sys_dict_data` VALUES ('1354106244473040897', '1354106042974482433', '在线设计', '2', '100', '在线设计', '0', '2021-01-27 00:37:41', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358094655567454210', '1358094419419750401', '输入框', 'input', '100', '输入框', '0', '2021-02-07 00:46:13', '1265476890672672808', '2021-02-08 01:01:28', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358094740510498817', '1358094419419750401', '时间选择', 'datepicker', '100', '时间选择', '0', '2021-02-07 00:46:33', '1265476890672672808', '2021-02-08 01:04:07', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358094793149014017', '1358094419419750401', '下拉框', 'select', '100', '下拉框', '0', '2021-02-07 00:46:46', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358095496009506817', '1358094419419750401', '单选框', 'radio', '100', '单选框', '0', '2021-02-07 00:49:33', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358095673084633090', '1358094419419750401', '开关', 'switch', '100', '开关', '2', '2021-02-07 00:50:15', '1265476890672672808', '2021-02-11 19:07:18', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358458689433190402', '1358457818733428737', '等于', 'eq', '1', '等于', '0', '2021-02-08 00:52:45', '1265476890672672808', '2021-02-13 23:35:36', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358458785168179202', '1358457818733428737', '模糊', 'like', '2', '模糊', '0', '2021-02-08 00:53:08', '1265476890672672808', '2021-02-13 23:35:46', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358460475682406401', '1358094419419750401', '多选框', 'checkbox', '100', '多选框', '0', '2021-02-08 00:59:51', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358460819019743233', '1358094419419750401', '数字输入框', 'inputnumber', '100', '数字输入框', '0', '2021-02-08 01:01:13', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358470210267725826', '1358470065111252994', 'Long', 'Long', '100', 'Long', '0', '2021-02-08 01:38:32', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358470239351029762', '1358470065111252994', 'String', 'String', '100', 'String', '0', '2021-02-08 01:38:39', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358470265640927233', '1358470065111252994', 'Date', 'Date', '100', 'Date', '0', '2021-02-08 01:38:45', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358470300168437761', '1358470065111252994', 'Integer', 'Integer', '100', 'Integer', '0', '2021-02-08 01:38:53', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358470697377415169', '1358470065111252994', 'boolean', 'boolean', '100', 'boolean', '0', '2021-02-08 01:40:28', '1265476890672672808', '2021-02-08 01:40:47', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358471133434036226', '1358470065111252994', 'int', 'int', '100', 'int', '0', '2021-02-08 01:42:12', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358471188291338241', '1358470065111252994', 'double', 'double', '100', 'double', '0', '2021-02-08 01:42:25', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1358756511688761346', '1358457818733428737', '大于', 'gt', '3', '大于', '0', '2021-02-08 20:36:12', '1265476890672672808', '2021-02-13 23:45:24', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358756547159990274', '1358457818733428737', '小于', 'lt', '4', '大于', '0', '2021-02-08 20:36:20', '1265476890672672808', '2021-02-13 23:45:29', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358756609990664193', '1358457818733428737', '不等于', 'ne', '7', '不等于', '0', '2021-02-08 20:36:35', '1265476890672672808', '2021-02-13 23:45:46', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358756685030957057', '1358457818733428737', '大于等于', 'ge', '5', '大于等于', '0', '2021-02-08 20:36:53', '1265476890672672808', '2021-02-13 23:45:35', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1358756800525312001', '1358457818733428737', '小于等于', 'le', '6', '小于等于', '0', '2021-02-08 20:37:20', '1265476890672672808', '2021-02-13 23:45:40', '1265476890672672808');
+INSERT INTO `sys_dict_data` VALUES ('1360529773814083586', '1358094419419750401', '文本域', 'textarea', '100', '文本域', '0', '2021-02-13 18:02:30', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_data` VALUES ('1360606105914732545', '1358457818733428737', '不为空', 'isNotNull', '8', '不为空', '0', '2021-02-13 23:05:49', '1265476890672672808', '2021-02-13 23:45:50', '1265476890672672808');
 
 -- ----------------------------
 -- Table structure for `sys_dict_type`
@@ -2667,6 +2736,9 @@ INSERT INTO `sys_dict_type` VALUES ('1300767512828354562', 'JDBC驱动类型', '
 INSERT INTO `sys_dict_type` VALUES ('1300767512828354563', '支付宝交易状态', 'alipay_trade_status', '100', '支付宝交易状态', '0', '2020-09-23 10:36:53', '1265476890672672808', null, null);
 INSERT INTO `sys_dict_type` VALUES ('1342451383595110402', '代码生成方式', 'code_gen_create_type', '100', '代码生成方式', '0', '2020-12-25 20:45:26', '1265476890672672808', null, null);
 INSERT INTO `sys_dict_type` VALUES ('1354106042974482433', '流程表单类型', 'form_resource_type', '100', '流程表单类型', '0', '2021-01-27 00:36:53', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_type` VALUES ('1358094419419750401', '代码生成作用类型', 'code_gen_effect_type', '100', '代码生成作用类型', '0', '2021-02-07 00:45:16', '1265476890672672808', '2021-02-08 00:47:48', '1265476890672672808');
+INSERT INTO `sys_dict_type` VALUES ('1358457818733428737', '代码生成查询类型', 'code_gen_query_type', '100', '代码生成查询类型', '0', '2021-02-08 00:49:18', '1265476890672672808', null, null);
+INSERT INTO `sys_dict_type` VALUES ('1358470065111252994', '代码生成java类型', 'code_gen_java_type', '100', '代码生成java类型', '0', '2021-02-08 01:37:57', '1265476890672672808', null, null);
 
 -- ----------------------------
 -- Table structure for `sys_emp`
@@ -3050,6 +3122,7 @@ INSERT INTO `sys_menu` VALUES ('1264622039642257681', '1264622039642257671', '[0
 INSERT INTO `sys_menu` VALUES ('1264622039642257691', '1264622039642257671', '[0],[1264622039642257671],', '支付订单', 'pay_manage_order', '1', null, '/pay/alipay/index', 'pay/alipay/index', null, 'experience', '1', 'Y', null, null, '1', '100', null, '0', '2020-09-03 00:39:56', '1265476890672672808', null, null);
 INSERT INTO `sys_menu` VALUES ('1264622039642257701', '0', '[0],', '设计表单', 'form_design', '1', 'pic-left', '/formdesign', 'formDesign', null, 'experience', '1', 'Y', null, null, '1', '100', null, '0', '2020-08-15 15:48:23', '1265476890672672808', null, null);
 INSERT INTO `sys_menu` VALUES ('1342451789402411009', '0', '[0],', '代码生成', 'code_gen', '1', 'thunderbolt', '/codeGenerate/index', 'gen/codeGenerate/index', '', 'system_tool', '1', 'Y', null, '', '1', '100', '代码生成', '0', '2020-12-25 20:47:03', '1265476890672672808', null, null);
+INSERT INTO `sys_menu` VALUES ('1359406155611545602', '0', '[0],', '测试菜单', 'tests_gen_codes', '1', 'play-circle', '/codegentest', 'main/codegentest/index', '', 'system_tool', '1', 'Y', null, '', '1', '100', null, '0', '2021-02-10 15:37:39', '1265476890672672808', '2021-02-18 16:04:22', '1265476890672672808');
 
 -- ----------------------------
 -- Table structure for `sys_notice`
@@ -4048,3 +4121,30 @@ INSERT INTO `sys_vis_log` VALUES ('1354468854351581186', '登录', 'Y', '登录�
 INSERT INTO `sys_vis_log` VALUES ('1354469038770933762', '登出', 'Y', '登出成功', '127.0.0.1', '-', 'Chrome', 'Windows 10 or Windows Server 2016', '2', '2021-01-28 00:39:18', 'yubaoshan');
 INSERT INTO `sys_vis_log` VALUES ('1354469235257298945', '登录', 'Y', '登录成功', '127.0.0.1', '-', 'Chrome', 'Windows 10 or Windows Server 2016', '1', '2021-01-28 00:40:05', 'superAdmin');
 INSERT INTO `sys_vis_log` VALUES ('1354469836447907841', '登录', 'Y', '登录成功', '127.0.0.1', '-', 'Chrome', 'Windows 10 or Windows Server 2016', '1', '2021-01-28 00:42:28', 'superAdmin');
+
+-- ----------------------------
+-- Table structure for `xn_code_gen_test`
+-- ----------------------------
+DROP TABLE IF EXISTS `xn_code_gen_test`;
+CREATE TABLE `xn_code_gen_test` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `name` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `age` int(11) DEFAULT NULL COMMENT '年龄',
+  `interest` varchar(255) DEFAULT NULL COMMENT '兴趣',
+  `switchTest` varchar(255) DEFAULT NULL COMMENT '开关',
+  `birthday` date DEFAULT NULL COMMENT '日期',
+  `whether` varchar(255) DEFAULT NULL COMMENT '是否已婚',
+  `explain_test` varchar(255) DEFAULT NULL COMMENT '简介',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(20) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `update_user` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试';
+
+-- ----------------------------
+-- Records of xn_code_gen_test
+-- ----------------------------
+INSERT INTO `xn_code_gen_test` VALUES ('1362314704808611841', '俞宝山', '28', '[\"2\",\"3\",\"1\"]', 'Y', '2021-02-18', 'Y', '测试简介', '2021-02-18 16:15:11', '1265476890672672808', null, null);
+INSERT INTO `xn_code_gen_test` VALUES ('1362314845863055361', '徐玉祥', '26', '[\"3\",\"2\"]', 'Y', '2021-02-18', 'Y', '玉祥也测试', '2021-02-18 16:15:44', '1265476890672672808', '2021-02-18 16:16:24', '1265476890672672808');
+INSERT INTO `xn_code_gen_test` VALUES ('1362314976637259777', '董夏雨', '27', '[\"3\"]', 'N', '2021-02-18', 'Y', '都测试', '2021-02-18 16:16:16', '1265476890672672808', null, null);
