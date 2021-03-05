@@ -18,7 +18,9 @@ import com.cn.xiaonuo.flowable.core.enums.FormNodeTypeEnum;
 import com.cn.xiaonuo.flowable.modular.event.service.FlowableEventService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 流程事件service接口实现类
@@ -76,20 +78,28 @@ public class FlowableEventServiceImpl extends ServiceImpl<FlowableEventMapper, F
 
     @Override
     public List<String> getScript(String processDefinitionId, String actId, String eventType) {
-        List<String> resultList = CollectionUtil.newArrayList();
         if (ObjectUtil.isAllNotEmpty(processDefinitionId, actId, eventType)) {
-            //查询全局配置的事件类型，升序排列
+            //查询全局配置的事件类型
             LambdaQueryWrapper<FlowableEvent> queryWrapperGlobal = new LambdaQueryWrapper<>();
-            queryWrapperGlobal.and(o -> o.and(a -> a.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
-                    .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.GLOBAL.getCode()))
-                    .or(b -> b.eq(FlowableEvent::getActId, actId)
-                            .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.NODE.getCode())))
-                    .eq(FlowableEvent::getType, eventType)
-                    .orderByAsc(FlowableEvent::getExecSort);
-            //多条按照执行顺序排序
-            this.list(queryWrapperGlobal).forEach(flowableEvent -> {
-                resultList.add(flowableEvent.getScript());
-            });
+            queryWrapperGlobal.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
+                    .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.GLOBAL.getCode())
+                    .eq(FlowableEvent::getType, eventType);
+            List<FlowableEvent> flowableEventList = this.list(queryWrapperGlobal);
+
+            //查询节点配置的事件类型，且节点为该节点的
+            LambdaQueryWrapper<FlowableEvent> queryWrapperAct = new LambdaQueryWrapper<>();
+            queryWrapperAct.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
+                    .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.NODE.getCode())
+                    .eq(FlowableEvent::getActId, actId)
+                    .eq(FlowableEvent::getType, eventType);
+            List<FlowableEvent> flowableEventListAct = this.list(queryWrapperAct);
+            //合并到一起
+            flowableEventList.addAll(flowableEventListAct);
+            //根据脚本执行顺序排序，并取出脚本内容
+            List<String> resultList = flowableEventList.stream()
+                    .sorted(Comparator.comparing(FlowableEvent::getExecSort))
+                    .map(FlowableEvent::getScript)
+                    .collect(Collectors.toList());
             return resultList;
         }
         return null;
