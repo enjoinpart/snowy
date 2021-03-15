@@ -114,6 +114,9 @@ export default {
       Object.assign(this.localPagination, {
         showSizeChanger: val
       })
+    },
+    columns(v) {
+      this.columnsSetting = v
     }
   },
   created () {
