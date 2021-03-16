@@ -127,4 +127,9 @@ public interface CommonConstant {
      */
     String IMAGE_CODE_TYPE = "clickWord";
 
+    /**
+     * undefined未知
+     */
+    String UNDEFINED = "undefined";
+
 }
