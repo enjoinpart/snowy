@@ -32,7 +32,6 @@
     </div>
   </div>
 </template>
-
 <script>
   import { flowableShortcutList } from '@/api/modular/flowable/shortcutManage'
   import createForm from './createForm'

@@ -1,22 +1,24 @@
 <template>
   <div>
+    <x-card v-if="hasPerm('flowableModel:list')">
+      <div slot="content" class="table-page-search-wrapper">
+        <a-form layout="inline">
+          <a-row :gutter="48">
+            <a-col :md="8" :sm="24">
+              <a-form-item label="流程名称" >
+                <a-input v-model="queryParam.name" allow-clear placeholder="请输入流程名称"/>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-button type="primary" @click="getModelList()">查询</a-button>
+              <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
     <a-card :bordered="false" v-show="indexShow">
       <a-spin :spinning="tableLoading">
-        <div class="table-page-search-wrapper" v-if="hasPerm('flowableModel:list')">
-          <a-form layout="inline">
-            <a-row :gutter="48">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="流程名称" >
-                  <a-input v-model="queryParam.name" allow-clear placeholder="请输入流程名称"/>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-button type="primary" @click="getModelList()">查询</a-button>
-                <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-              </a-col>
-            </a-row>
-          </a-form>
-        </div>
         <div class="table-operator" v-if="hasPerm('flowableModel:add') || hasPerm('flowableModel:importModel') ">
           <a-button @click="handleAdd" v-if="hasPerm('flowableModel:add')" type="primary" icon="plus" >新增模型</a-button>
           <a-upload
@@ -31,6 +33,7 @@
           </a-upload>
         </div>
         <a-table
+          size="middle"
           :columns="columns"
           :dataSource="loadData"
           :pagination="false"
@@ -91,7 +94,7 @@
 </template>
 
 <script>
-  import { Ellipsis } from '@/components'
+  import { Ellipsis, XCard } from '@/components'
   import { modelList, modelDelete, modelImportModel } from '@/api/modular/flowable/modelManage'
   import addForm from './addForm'
   import editForm from './editForm'
@@ -101,6 +104,7 @@
   import version from './version'
   export default {
     components: {
+      XCard,
       Ellipsis,
       addForm,
       editForm,

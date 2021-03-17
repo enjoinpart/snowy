@@ -1,7 +1,7 @@
 <template>
-  <a-card :bordered="false">
-    <a-spin :spinning="Loading">
-      <div class="table-page-search-wrapper" v-if="hasPerm('tenantInfo:page')">
+  <div>
+    <x-card v-if="hasPerm('tenantInfo:page')">
+      <div slot="content" class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -16,43 +16,47 @@
           </a-row>
         </a-form>
       </div>
-      <div class="table-operator" v-if="hasPerm('tenantInfo:add')">
-        <a-button type="primary" v-if="hasPerm('tenantInfo:add')" icon="plus" @click="$refs.addForm.add()">新增租户</a-button>
-      </div>
-      <s-table
-        ref="table"
-        size="default"
-        :columns="columns"
-        :data="loadData"
-        :alert="true"
-        :rowKey="(record) => record.id"
-        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }">
-        <span slot="name" slot-scope="text">
-          <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="code" slot-scope="text">
-          <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="action" slot-scope="text, record">
-          <a v-if="hasPerm('tenantInfo:edit')" @click="$refs.editForm.edit(record)">编辑</a>
-          <a-divider type="vertical" v-if="hasPerm('tenantInfo:edit') & hasPerm('tenantInfo:delete')"/>
-          <a-popconfirm v-if="hasPerm('tenantInfo:delete')" placement="topRight" title="确认删除？" @confirm="() => tenantDelete(record)">
-            <a>删除</a>
-          </a-popconfirm>
-        </span>
-      </s-table>
-      <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('tenantInfo:add')"/>
-      <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('tenantInfo:edit')"/>
+    </x-card>
+    <a-spin :spinning="Loading">
+      <a-card :bordered="false">
+        <s-table
+          ref="table"
+          :columns="columns"
+          :data="loadData"
+          :alert="true"
+          :rowKey="(record) => record.id"
+          :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }">
+          <template slot="operator" v-if="hasPerm('tenantInfo:add')">
+            <a-button type="primary" v-if="hasPerm('tenantInfo:add')" icon="plus" @click="$refs.addForm.add()">新增租户</a-button>
+          </template>
+          <span slot="name" slot-scope="text">
+            <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="code" slot-scope="text">
+            <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="action" slot-scope="text, record">
+            <a v-if="hasPerm('tenantInfo:edit')" @click="$refs.editForm.edit(record)">编辑</a>
+            <a-divider type="vertical" v-if="hasPerm('tenantInfo:edit') & hasPerm('tenantInfo:delete')"/>
+            <a-popconfirm v-if="hasPerm('tenantInfo:delete')" placement="topRight" title="确认删除？" @confirm="() => tenantDelete(record)">
+              <a>删除</a>
+            </a-popconfirm>
+          </span>
+        </s-table>
+        <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('tenantInfo:add')"/>
+        <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('tenantInfo:edit')"/>
+      </a-card>
     </a-spin>
-  </a-card>
+  </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { tenantPage, tenantDelete } from '@/api/modular/tenant/tenantInfoManage'
   import addForm from './addForm'
   import editForm from './editForm'
   export default {
     components: {
+      XCard,
       STable,
       Ellipsis,
       addForm,

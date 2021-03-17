@@ -5,6 +5,7 @@
     </div>
     <div v-if="hasPerm('flowableForm:list')">
       <a-table
+        size="middle"
         :columns="columns"
         :dataSource="loadData"
         :pagination="false"

@@ -5,6 +5,7 @@
         <a-button style="margin-left: 8px" type="dashed" @click="returnPage" icon="rollback">返回</a-button>
       </div>
       <a-table
+        size="middle"
         :columns="columns"
         :dataSource="loadData"
         :pagination="false"

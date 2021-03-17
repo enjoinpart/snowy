@@ -1,7 +1,7 @@
 <template>
-  <a-card :bordered="false">
-    <a-spin :spinning="Loading">
-      <div class="table-page-search-wrapper" v-if="hasPerm('aliPayMgr:tradeHisQuery')">
+  <div>
+    <x-card v-if="hasPerm('aliPayMgr:tradeHisQuery')">
+      <div slot="content" class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -18,61 +18,65 @@
           </a-row>
         </a-form>
       </div>
-      <s-table
-        ref="table"
-        size="default"
-        :columns="columns"
-        :data="loadData"
-        :alert="true"
-        :rowKey="(record) => record.id"
-        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
-      >
-        <span slot="outTradeNo" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="tradeNo" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="amount" slot-scope="text">
-          {{ text | Fmoney }}
-        </span>
-        <span slot="billDate" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="subject" slot-scope="text">
-          <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="body" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="status" slot-scope="text,record">
-          <a-tag
-            v-if="text!=null & text === 1"
-            :key="record.id"
-            :color="'green'"
-          >
-            {{ statusFilter(text) }}
-          </a-tag>
-          <span v-else>{{ statusFilter(text) }}</span>
-        </span>
-        <span slot="action" slot-scope="text, record">
-          <a v-if="hasPerm('aliPayMgr:tradeQuery') & record.status === 1 " @click="tradeQuery(record)">交易查询</a>
-          <a-divider type="vertical" v-if="hasPerm('aliPayMgr:tradeQuery') & record.status === 1 & hasPerm('aliPayMgr:tradeRefundQuery') & record.status === 2"/>
-          <a v-if="hasPerm('aliPayMgr:tradeRefundQuery') & record.status === 2" @click="tradeQuery(record)">退款查询</a>
-        </span>
-      </s-table>
-      <detail ref="detail" @ok="handleOk" v-if="hasPerm('aliPayMgr:tradeQuery')"/>
-    </a-spin>
-  </a-card>
+    </x-card>
+    <a-card :bordered="false">
+      <a-spin :spinning="Loading">
+        <s-table
+          ref="table"
+          :columns="columns"
+          :data="loadData"
+          :alert="true"
+          :rowKey="(record) => record.id"
+          :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
+        >
+          <span slot="outTradeNo" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="tradeNo" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="amount" slot-scope="text">
+            {{ text | Fmoney }}
+          </span>
+          <span slot="billDate" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="subject" slot-scope="text">
+            <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="body" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="status" slot-scope="text,record">
+            <a-tag
+              v-if="text!=null & text === 1"
+              :key="record.id"
+              :color="'green'"
+            >
+              {{ statusFilter(text) }}
+            </a-tag>
+            <span v-else>{{ statusFilter(text) }}</span>
+          </span>
+          <span slot="action" slot-scope="text, record">
+            <a v-if="hasPerm('aliPayMgr:tradeQuery') & record.status === 1 " @click="tradeQuery(record)">交易查询</a>
+            <a-divider type="vertical" v-if="hasPerm('aliPayMgr:tradeQuery') & record.status === 1 & hasPerm('aliPayMgr:tradeRefundQuery') & record.status === 2"/>
+            <a v-if="hasPerm('aliPayMgr:tradeRefundQuery') & record.status === 2" @click="tradeQuery(record)">退款查询</a>
+          </span>
+        </s-table>
+        <detail ref="detail" @ok="handleOk" v-if="hasPerm('aliPayMgr:tradeQuery')"/>
+      </a-spin>
+    </a-card>
+  </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { tradeHisQuery, tradeQuery } from '@/api/modular/pay/aliPayMgrManage'
   import { sysDictTypeDropDown } from '@/api/modular/system/dictManage'
   import detail from './detail'
 
   export default {
     components: {
+      XCard,
       STable,
       Ellipsis,
       detail

@@ -2,6 +2,7 @@
   <div>
     <div v-if="hasPerm('flowableOption:list')">
       <a-table
+        size="middle"
         :columns="columns"
         :dataSource="loadData"
         :pagination="false"

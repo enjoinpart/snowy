@@ -1,74 +1,74 @@
 <template>
-  <a-card :bordered="false">
-    <div class="table-page-search-wrapper" v-if="hasPerm('flowableShortcut:page')">
-      <a-form layout="inline">
-        <a-row :gutter="48">
-          <a-col :md="8" :sm="24">
-            <a-form-item label="申请名称" >
-              <a-input v-model="queryParam.name" allow-clear placeholder="请输入申请名称"/>
-            </a-form-item>
-          </a-col>
-          <a-col :md="8" :sm="24">
-            <a-form-item label="流程分类">
-              <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
-                <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-          <a-col :md="!advanced && 8 || 24" :sm="24">
-            <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
-              <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-              <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-            </span>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
-    <s-table
-      ref="table"
-      size="default"
-      :columns="columns"
-      :data="loadData"
-      :alert="true"
-      :rowKey="(record) => record.id"
-      :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
-    >
-      <span slot="icon" slot-scope="text">
-        <div v-if="text != ''">
-          <a-icon :type="text"/>
-        </div>
-      </span>
-      <span slot="status" slot-scope="text">
-        {{ statusFilter(text) }}
-      </span>
-      <span slot="action" slot-scope="text, record">
-        <a v-if="hasPerm('flowableShortcut:edit')" @click="$refs.editForm.edit(record)">编辑</a>
-        <a-divider type="vertical" v-if="hasPerm('flowableShortcut:edit') & hasPerm('flowableShortcut:delete')"/>
-        <a-popconfirm v-if="hasPerm('flowableShortcut:delete')" placement="topRight" title="确认删除？" @confirm="() => flowableShortcutDelete(record)">
-          <a>删除</a>
-        </a-popconfirm>
-      </span>
-    </s-table>
-    <edit-form ref="editForm" @ok="handleOk" />
-  </a-card>
+  <div>
+    <x-card v-if="hasPerm('flowableShortcut:page')">
+      <div slot="content" class="table-page-search-wrapper">
+        <a-form layout="inline">
+          <a-row :gutter="48">
+            <a-col :md="8" :sm="24">
+              <a-form-item label="申请名称" >
+                <a-input v-model="queryParam.name" allow-clear placeholder="请输入申请名称"/>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item label="流程分类">
+                <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
+                  <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="!advanced && 8 || 24" :sm="24">
+              <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+                <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
+                <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+              </span>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
+    <a-card :bordered="false">
+      <s-table
+        ref="table"
+        :columns="columns"
+        :data="loadData"
+        :alert="true"
+        :rowKey="(record) => record.id"
+        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
+      >
+        <span slot="icon" slot-scope="text">
+          <div v-if="text != ''">
+            <a-icon :type="text"/>
+          </div>
+        </span>
+        <span slot="status" slot-scope="text">
+          {{ statusFilter(text) }}
+        </span>
+        <span slot="action" slot-scope="text, record">
+          <a v-if="hasPerm('flowableShortcut:edit')" @click="$refs.editForm.edit(record)">编辑</a>
+          <a-divider type="vertical" v-if="hasPerm('flowableShortcut:edit') & hasPerm('flowableShortcut:delete')"/>
+          <a-popconfirm v-if="hasPerm('flowableShortcut:delete')" placement="topRight" title="确认删除？" @confirm="() => flowableShortcutDelete(record)">
+            <a>删除</a>
+          </a-popconfirm>
+        </span>
+      </s-table>
+      <edit-form ref="editForm" @ok="handleOk" />
+    </a-card>
+  </div>
 </template>
-
 <script>
-  import { STable } from '@/components'
+  import { STable, XCard } from '@/components'
   import { flowableShortcutPage, flowableShortcutDelete } from '@/api/modular/flowable/shortcutManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
   import { sysDictTypeDropDown } from '@/api/modular/system/dictManage'
   import editForm from './editForm'
-
   export default {
     components: {
+      XCard,
       STable,
       editForm
     },
-
     data () {
       return {
-
         // 高级搜索 展开/关闭
         advanced: false,
         // 查询参数

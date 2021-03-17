@@ -1,32 +1,33 @@
 z<template>
   <div>
+    <x-card v-if="hasPerm('flowableDraft:page')">
+      <div slot="content" class="table-page-search-wrapper">
+        <a-form layout="inline">
+          <a-row :gutter="48">
+            <a-col :md="8" :sm="24">
+              <a-form-item label="流程名称" >
+                <a-input v-model="queryParam.processName" allow-clear placeholder="请输入流程名称"/>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item label="流程分类">
+                <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
+                  <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
+              <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
     <a-spin :spinning="spinningLoading">
       <a-card :bordered="false" v-show="indexPageShow">
-        <div class="table-page-search-wrapper" v-if="hasPerm('flowableDraft:page')">
-          <a-form layout="inline">
-            <a-row :gutter="48">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="流程名称" >
-                  <a-input v-model="queryParam.processName" allow-clear placeholder="请输入流程名称"/>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="流程分类">
-                  <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
-                    <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-                <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-              </a-col>
-            </a-row>
-          </a-form>
-        </div>
         <s-table
           ref="table"
-          size="default"
           :columns="columns"
           :data="loadData"
           :alert="true"
@@ -43,12 +44,13 @@ z<template>
   </div>
 </template>
 <script>
-  import { STable } from '@/components'
+  import { STable, XCard } from '@/components'
   import { draftPage, draftDelete } from '@/api/modular/flowable/draftManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
   import createForm from '../draftapply/createForm'
   export default {
     components: {
+      XCard,
       STable,
       createForm
     },

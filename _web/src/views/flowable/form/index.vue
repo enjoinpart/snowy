@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-card :bordered="false" v-show="indexPageShow">
-      <div class="table-page-search-wrapper" v-if="hasPerm('flowableFormResource:page')">
+    <x-card v-if="hasPerm('flowableFormResource:page')">
+      <div slot="content" class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -21,23 +21,24 @@
           </a-row>
         </a-form>
       </div>
-      <div class="table-operator" v-if="hasPerm('flowableFormResource:add')">
-        <a-button
-          type="primary"
-          v-if="hasPerm('flowableFormResource:add')"
-          icon="plus"
-          @click="$refs.addForm.add()"
-        >新增表单</a-button>
-      </div>
+    </x-card>
+    <a-card :bordered="false" v-show="indexPageShow">
       <s-table
         ref="table"
-        size="default"
         :columns="columns"
         :data="loadData"
         :alert="true"
         :rowKey="(record) => record.code"
         :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
       >
+        <template slot="operator" v-if="hasPerm('flowableFormResource:add')">
+          <a-button
+            type="primary"
+            v-if="hasPerm('flowableFormResource:add')"
+            icon="plus"
+            @click="$refs.addForm.add()"
+          >新增表单</a-button>
+        </template>
         <span slot="category" slot-scope="text">{{ categoryFilter(text) }}</span>
         <span slot="remark" slot-scope="text">
           <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
@@ -94,7 +95,7 @@
   </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { formResourcePage, formResourceDelete } from '@/api/modular/flowable/formResourceManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
   import addForm from './addForm'
@@ -104,6 +105,7 @@
   import preview from './preview'
   export default {
     components: {
+      XCard,
       Ellipsis,
       STable,
       addForm,

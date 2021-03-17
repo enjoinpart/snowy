@@ -1,67 +1,69 @@
 <template>
-  <a-card :bordered="false">
-    <div class="table-page-search-wrapper" v-if="hasPerm('flowableScript:page')">
-      <a-form layout="inline">
-        <a-row :gutter="48">
-          <a-col :md="8" :sm="24">
-            <a-form-item label="名称">
-              <a-input v-model="queryParam.name" allow-clear placeholder="请输入名称"/>
-            </a-form-item>
-          </a-col>
-          <a-col :md="8" :sm="24">
-            <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
-            <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
-    <div class="table-operator" v-if="hasPerm('flowableScript:add')">
-      <a-button v-if="hasPerm('flowableScript:add')" type="primary" @click="$refs.addForm.add()" icon="plus" >新增脚本</a-button>
-    </div>
-    <s-table
-      ref="table"
-      size="default"
-      :columns="columns"
-      :data="loadData"
-      :alert="true"
-      :rowKey="(record) => record.id"
-      :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
-    >
-      <span slot="type" slot-scope="text">
-        {{ typeFilter(text) }}
-      </span>
-      <span slot="lang" slot-scope="text">
-        {{ langFilter(text) }}
-      </span>
-      <span slot="remark" slot-scope="text">
-        <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-      </span>
-      <span slot="action" slot-scope="text, record">
-        <a @click="$refs.Detail.detail(record)" v-if="hasPerm('flowableScript:detail')">详情</a>
-        <a-divider type="vertical" v-if="hasPerm('flowableScript:edit') & hasPerm('flowableScript:detail')"/>
-        <a @click="$refs.editForm.edit(record)" v-if="hasPerm('flowableScript:edit')">编辑</a>
-        <a-divider type="vertical" v-if="hasPerm('flowableScript:edit') & hasPerm('flowableScript:delete')"/>
-        <a-popconfirm v-if="hasPerm('flowableScript:delete')" placement="topRight" title="确认删除？" @confirm="() => flowableScriptDelete(record)">
-          <a>删除</a>
-        </a-popconfirm>
-      </span>
-    </s-table>
-    <add-form v-if="hasPerm('flowableScript:add')" ref="addForm" @ok="handleOk"/>
-    <edit-form v-if="hasPerm('flowableScript:edit')" ref="editForm" @ok="handleOk"/>
-    <detail v-if="hasPerm('flowableScript:detail')" ref="Detail" @ok="handleOk"/>
-  </a-card>
+  <div>
+    <x-card v-if="hasPerm('flowableScript:page')">
+      <div slot="content" class="table-page-search-wrapper">
+        <a-form layout="inline">
+          <a-row :gutter="48">
+            <a-col :md="8" :sm="24">
+              <a-form-item label="名称">
+                <a-input v-model="queryParam.name" allow-clear placeholder="请输入名称"/>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
+              <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
+    <a-card :bordered="false">
+      <s-table
+        ref="table"
+        :columns="columns"
+        :data="loadData"
+        :alert="true"
+        :rowKey="(record) => record.id"
+        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
+      >
+        <template slot="operator" v-if="hasPerm('flowableScript:add')">
+          <a-button v-if="hasPerm('flowableScript:add')" type="primary" @click="$refs.addForm.add()" icon="plus" >新增脚本</a-button>
+        </template>
+        <span slot="type" slot-scope="text">
+          {{ typeFilter(text) }}
+        </span>
+        <span slot="lang" slot-scope="text">
+          {{ langFilter(text) }}
+        </span>
+        <span slot="remark" slot-scope="text">
+          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+        </span>
+        <span slot="action" slot-scope="text, record">
+          <a @click="$refs.Detail.detail(record)" v-if="hasPerm('flowableScript:detail')">详情</a>
+          <a-divider type="vertical" v-if="hasPerm('flowableScript:edit') & hasPerm('flowableScript:detail')"/>
+          <a @click="$refs.editForm.edit(record)" v-if="hasPerm('flowableScript:edit')">编辑</a>
+          <a-divider type="vertical" v-if="hasPerm('flowableScript:edit') & hasPerm('flowableScript:delete')"/>
+          <a-popconfirm v-if="hasPerm('flowableScript:delete')" placement="topRight" title="确认删除？" @confirm="() => flowableScriptDelete(record)">
+            <a>删除</a>
+          </a-popconfirm>
+        </span>
+      </s-table>
+      <add-form v-if="hasPerm('flowableScript:add')" ref="addForm" @ok="handleOk"/>
+      <edit-form v-if="hasPerm('flowableScript:edit')" ref="editForm" @ok="handleOk"/>
+      <detail v-if="hasPerm('flowableScript:detail')" ref="Detail" @ok="handleOk"/>
+    </a-card>
+  </div>
 </template>
-
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { flowableScriptPage, flowableScriptDelete } from '@/api/modular/flowable/scriptManage'
   import { sysDictTypeDropDown } from '@/api/modular/system/dictManage'
   import addForm from './addForm'
   import editForm from './editForm'
   import Detail from './detail'
-
   export default {
     components: {
+      XCard,
       Ellipsis,
       STable,
       addForm,

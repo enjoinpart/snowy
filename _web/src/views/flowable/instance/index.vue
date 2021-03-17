@@ -1,61 +1,62 @@
 <template >
   <div>
+    <x-card>
+      <div slot="content" class="table-page-search-wrapper">
+        <a-form layout="inline">
+          <a-row :gutter="48">
+            <a-col :md="8" :sm="24">
+              <a-form-item label="发起人">
+                <a-select show-search :filter-option="filterOption" v-model="queryParam.startUserId" placeholder="请选择发起人" allow-clear>
+                  <a-select-option v-for="(item,index) in userSelector" :key="index" :value="item.id" >{{ item.name }}</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
+              <a-form-item label="流程分类">
+                <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
+                  <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <template v-if="advanced">
+              <a-col :md="8" :sm="24">
+                <a-form-item label="是否结束">
+                  <a-select v-model="queryParam.ended" placeholder="请选择是否结束" allow-clear>
+                    <a-select-option v-for="(item,index) in endedDictTypeDropDown" :key="index" :value="item.code" >{{ item.value }}</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="12" :sm="24">
+                <a-form-item label="发起时间">
+                  <a-range-picker
+                    v-model="queryParam.dates"
+                    :show-time="{
+                      hideDisabledOptions: true,
+                      defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
+                    }"
+                    format="YYYY-MM-DD HH:mm:ss"
+                  />
+                </a-form-item>
+              </a-col>
+            </template>
+            <a-col :md="!advanced && 8 || 24" :sm="24" >
+              <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+                <a-button type="primary" @click="$refs.table.refresh(true)" >查询</a-button>
+                <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+                <a @click="toggleAdvanced" style="margin-left: 8px">
+                  {{ advanced ? '收起' : '展开' }}
+                  <a-icon :type="advanced ? 'up' : 'down'"/>
+                </a>
+              </span>
+            </a-col>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
     <a-card :bordered="false" v-show="instanceShow">
       <a-spin :spinning="loading">
-        <div class="table-page-search-wrapper">
-          <a-form layout="inline">
-            <a-row :gutter="48">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="发起人">
-                  <a-select show-search :filter-option="filterOption" v-model="queryParam.startUserId" placeholder="请选择发起人" allow-clear>
-                    <a-select-option v-for="(item,index) in userSelector" :key="index" :value="item.id" >{{ item.name }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="流程分类">
-                  <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
-                    <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <template v-if="advanced">
-                <a-col :md="8" :sm="24">
-                  <a-form-item label="是否结束">
-                    <a-select v-model="queryParam.ended" placeholder="请选择是否结束" allow-clear>
-                      <a-select-option v-for="(item,index) in endedDictTypeDropDown" :key="index" :value="item.code" >{{ item.value }}</a-select-option>
-                    </a-select>
-                  </a-form-item>
-                </a-col>
-                <a-col :md="12" :sm="24">
-                  <a-form-item label="发起时间">
-                    <a-range-picker
-                      v-model="queryParam.dates"
-                      :show-time="{
-                        hideDisabledOptions: true,
-                        defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
-                      }"
-                      format="YYYY-MM-DD HH:mm:ss"
-                    />
-                  </a-form-item>
-                </a-col>
-              </template>
-              <a-col :md="!advanced && 8 || 24" :sm="24" >
-                <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
-                  <a-button type="primary" @click="$refs.table.refresh(true)" >查询</a-button>
-                  <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-                  <a @click="toggleAdvanced" style="margin-left: 8px">
-                    {{ advanced ? '收起' : '展开' }}
-                    <a-icon :type="advanced ? 'up' : 'down'"/>
-                  </a>
-                </span>
-              </a-col>
-            </a-row>
-          </a-form>
-        </div>
         <s-table
           ref="table"
-          size="default"
           :columns="columns"
           :data="loadData"
           :alert="true"
@@ -122,7 +123,7 @@
   </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { flowableInstancePage, flowableInstanceActive, flowableInstanceSuspend } from '@/api/modular/flowable/instanceManage'
   import { sysDictTypeDropDown } from '@/api/modular/system/dictManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
@@ -132,9 +133,9 @@
   import { sysUserSelector } from '@/api/modular/system/userManage'
   import tracking from '../tracking/tracking'
   import seeForm from '../applyed/seeForm'
-
   export default {
     components: {
+      XCard,
       InstanceTask,
       STable,
       Ellipsis,

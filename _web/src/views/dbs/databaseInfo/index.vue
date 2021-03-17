@@ -1,7 +1,7 @@
 <template>
-  <a-card :bordered="false">
-    <a-spin :spinning="Loading">
-      <div class="table-page-search-wrapper" v-if="hasPerm('databaseInfo:page')">
+  <div>
+    <x-card v-if="hasPerm('databaseInfo:page')">
+      <div slot="content" class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -16,58 +16,61 @@
           </a-row>
         </a-form>
       </div>
-      <div class="table-operator" v-if="hasPerm('databaseInfo:add')" >
-        <a-button type="primary" v-if="hasPerm('databaseInfo:add')" icon="plus" @click="$refs.addForm.add()">新增数据源</a-button>
-      </div>
-      <s-table
-        ref="table"
-        size="default"
-        :columns="columns"
-        :data="loadData"
-        :alert="true"
-        :rowKey="(record) => record.id"
-        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
-      >
-        <span slot="dbName" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="jdbcDriver" slot-scope="text">
-          {{ jdbcDriverFilter(text) }}
-        </span>
-        <span slot="userName" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="jdbcUrl" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="createTime" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="remarks" slot-scope="text">
-          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-        </span>
-        <span slot="action" slot-scope="text, record">
-          <a v-if="hasPerm('databaseInfo:edit')" @click="$refs.editForm.edit(record)">编辑</a>
-          <a-divider type="vertical" v-if="hasPerm('databaseInfo:edit') & hasPerm('databaseInfo:delete')"/>
-          <a-popconfirm v-if="hasPerm('databaseInfo:delete')" placement="topRight" title="确认删除？" @confirm="() => databaseInfoDelete(record)">
-            <a>删除</a>
-          </a-popconfirm>
-        </span>
-      </s-table>
-      <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('databaseInfo:add')"/>
-      <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('databaseInfo:edit')"/>
-    </a-spin>
-  </a-card>
+    </x-card>
+    <a-card :bordered="false">
+      <a-spin :spinning="Loading">
+        <s-table
+          ref="table"
+          :columns="columns"
+          :data="loadData"
+          :alert="true"
+          :rowKey="(record) => record.id"
+          :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
+        >
+          <template slot="operator" v-if="hasPerm('databaseInfo:add')" >
+            <a-button type="primary" v-if="hasPerm('databaseInfo:add')" icon="plus" @click="$refs.addForm.add()">新增数据源</a-button>
+          </template>
+          <span slot="dbName" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="jdbcDriver" slot-scope="text">
+            {{ jdbcDriverFilter(text) }}
+          </span>
+          <span slot="userName" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="jdbcUrl" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="createTime" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="remarks" slot-scope="text">
+            <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+          </span>
+          <span slot="action" slot-scope="text, record">
+            <a v-if="hasPerm('databaseInfo:edit')" @click="$refs.editForm.edit(record)">编辑</a>
+            <a-divider type="vertical" v-if="hasPerm('databaseInfo:edit') & hasPerm('databaseInfo:delete')"/>
+            <a-popconfirm v-if="hasPerm('databaseInfo:delete')" placement="topRight" title="确认删除？" @confirm="() => databaseInfoDelete(record)">
+              <a>删除</a>
+            </a-popconfirm>
+          </span>
+        </s-table>
+        <add-form ref="addForm" @ok="handleOk" v-if="hasPerm('databaseInfo:add')"/>
+        <edit-form ref="editForm" @ok="handleOk" v-if="hasPerm('databaseInfo:edit')"/>
+      </a-spin>
+    </a-card>
+  </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { databaseInfoPage, databaseInfoDelete } from '@/api/modular/dbs/databaseInfoManage'
   import { sysDictTypeDropDown } from '@/api/modular/system/dictManage'
   import addForm from './addForm'
   import editForm from './editForm'
-
   export default {
     components: {
+      XCard,
       STable,
       Ellipsis,
       addForm,

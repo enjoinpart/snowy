@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-card :bordered="false" v-show="indexCardShow">
-      <div class="table-page-search-wrapper" >
+    <x-card>
+      <div slot="content" class="table-page-search-wrapper" >
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
@@ -53,9 +53,10 @@
           </a-row>
         </a-form>
       </div>
+    </x-card>
+    <a-card :bordered="false" v-show="indexCardShow">
       <s-table
         ref="table"
-        size="default"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -101,15 +102,15 @@
   </div>
 </template>
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { flowableTodoTaskPage } from '@/api/modular/flowable/taskTodoManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
   import moment from 'moment'
   import tracking from '../../tracking/tracking'
   import taskForm from './taskForm'
-
   export default {
     components: {
+      XCard,
       STable,
       Ellipsis,
       tracking,

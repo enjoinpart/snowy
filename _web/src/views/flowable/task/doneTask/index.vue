@@ -1,95 +1,98 @@
 <template>
-  <a-card :bordered="false">
-    <div class="table-page-search-wrapper" >
-      <a-form layout="inline">
-        <a-row :gutter="48">
-          <a-col :md="8" :sm="24">
-            <a-form-item label="流程名称">
-              <a-input v-model="queryParam.processName" allow-clear placeholder="请输入流程名称"/>
-            </a-form-item>
-          </a-col>
-          <a-col :md="8" :sm="24">
-            <a-form-item label="任务名称">
-              <a-input v-model="queryParam.name" allow-clear placeholder="请输入任务名称"/>
-            </a-form-item>
-          </a-col>
-          <template v-if="advanced">
+  <div>
+    <x-card>
+      <div slot="content" class="table-page-search-wrapper" >
+        <a-form layout="inline">
+          <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="流程分类">
-                <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
-                  <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
-                </a-select>
+              <a-form-item label="流程名称">
+                <a-input v-model="queryParam.processName" allow-clear placeholder="请输入流程名称"/>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
-              <a-form-item label="优先级">
-                <a-input-number placeholder="请选择优先级" v-model="queryParam.priority" style="width: 100%" :min="1" :max="1000" />
+              <a-form-item label="任务名称">
+                <a-input v-model="queryParam.name" allow-clear placeholder="请输入任务名称"/>
               </a-form-item>
             </a-col>
-            <a-col :md="12" :sm="24">
-              <a-form-item label="创建时间">
-                <a-range-picker
-                  v-model="queryParam.dates"
-                  :show-time="{
-                    hideDisabledOptions: true,
-                    defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
-                  }"
-                  format="YYYY-MM-DD HH:mm:ss"
-                />
-              </a-form-item>
+            <template v-if="advanced">
+              <a-col :md="8" :sm="24">
+                <a-form-item label="流程分类">
+                  <a-select v-model="queryParam.category" placeholder="请选择流程分类" allow-clear>
+                    <a-select-option v-for="(item,index) in flowableCategoryListData" :key="index" :value="item.code" >{{ item.name }}</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="优先级">
+                  <a-input-number placeholder="请选择优先级" v-model="queryParam.priority" style="width: 100%" :min="1" :max="1000" />
+                </a-form-item>
+              </a-col>
+              <a-col :md="12" :sm="24">
+                <a-form-item label="创建时间">
+                  <a-range-picker
+                    v-model="queryParam.dates"
+                    :show-time="{
+                      hideDisabledOptions: true,
+                      defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')],
+                    }"
+                    format="YYYY-MM-DD HH:mm:ss"
+                  />
+                </a-form-item>
+              </a-col>
+            </template>
+            <a-col :md="!advanced && 8 || 24" :sm="24" >
+              <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
+                <a-button type="primary" @click="$refs.table.refresh(true)" >查询</a-button>
+                <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
+                <a @click="toggleAdvanced" style="margin-left: 8px">
+                  {{ advanced ? '收起' : '展开' }}
+                  <a-icon :type="advanced ? 'up' : 'down'"/>
+                </a>
+              </span>
             </a-col>
-          </template>
-          <a-col :md="!advanced && 8 || 24" :sm="24" >
-            <span class="table-page-search-submitButtons" :style="advanced && { float: 'right', overflow: 'hidden' } || {} ">
-              <a-button type="primary" @click="$refs.table.refresh(true)" >查询</a-button>
-              <a-button style="margin-left: 8px" @click="() => queryParam = {}">重置</a-button>
-              <a @click="toggleAdvanced" style="margin-left: 8px">
-                {{ advanced ? '收起' : '展开' }}
-                <a-icon :type="advanced ? 'up' : 'down'"/>
-              </a>
-            </span>
-          </a-col>
-        </a-row>
-      </a-form>
-    </div>
-    <s-table
-      ref="table"
-      size="default"
-      :columns="columns"
-      :data="loadData"
-      :alert="true"
-      :rowKey="(record) => record.id"
-      :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
-    >
-      <span slot="procInsName" slot-scope="text">
-        <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
-      </span>
-      <span slot="formatStartTime" slot-scope="text,record">
-        <a-tooltip placement="top">
-          <template slot="title">
-            <span>{{ record.procIns.startTime }}</span>
-          </template>
-          {{ text }}
-        </a-tooltip>
-      </span>
-      <span slot="formatEndTime" slot-scope="text,record">
-        <a-tooltip placement="top">
-          <template slot="title">
-            <span>{{ record.endTime }}</span>
-          </template>
-          {{ text }}
-        </a-tooltip>
-      </span>
-      <span slot="action" slot-scope="text,record">
-        <a @click="$refs.tracking.tracking(record.procIns.id)">追踪</a>
-      </span>
-    </s-table>
-    <tracking ref="tracking"/>
-  </a-card>
+          </a-row>
+        </a-form>
+      </div>
+    </x-card>
+    <a-card :bordered="false">
+      <s-table
+        ref="table"
+        :columns="columns"
+        :data="loadData"
+        :alert="true"
+        :rowKey="(record) => record.id"
+        :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
+      >
+        <span slot="procInsName" slot-scope="text">
+          <ellipsis :length="10" tooltip>{{ text }}</ellipsis>
+        </span>
+        <span slot="formatStartTime" slot-scope="text,record">
+          <a-tooltip placement="top">
+            <template slot="title">
+              <span>{{ record.procIns.startTime }}</span>
+            </template>
+            {{ text }}
+          </a-tooltip>
+        </span>
+        <span slot="formatEndTime" slot-scope="text,record">
+          <a-tooltip placement="top">
+            <template slot="title">
+              <span>{{ record.endTime }}</span>
+            </template>
+            {{ text }}
+          </a-tooltip>
+        </span>
+        <span slot="action" slot-scope="text,record">
+          <a @click="$refs.tracking.tracking(record.procIns.id)">追踪</a>
+        </span>
+      </s-table>
+      <tracking ref="tracking"/>
+    </a-card>
+  </div>
 </template>
 
 <script>
-  import { STable, Ellipsis } from '@/components'
+  import { STable, Ellipsis, XCard } from '@/components'
   import { flowableDoneTaskPage } from '@/api/modular/flowable/taskDoneManage'
   import { flowableCategoryList } from '@/api/modular/flowable/categoryManage'
   import moment from 'moment'
@@ -97,6 +100,7 @@
 
   export default {
     components: {
+      XCard,
       STable,
       Ellipsis,
       tracking
