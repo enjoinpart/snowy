@@ -256,7 +256,7 @@
             }
             const loginParams = { ...values }
             delete loginParams.account
-            loginParams[!state.loginType ? 'email' : 'account'] = values.account
+            loginParams[state.loginType !== 0 ? 'email' : 'account'] = values.account
             loginParams.password = values.password
             if (this.tenantOpen) {
               loginParams.tenantCode = values.tenantCode
