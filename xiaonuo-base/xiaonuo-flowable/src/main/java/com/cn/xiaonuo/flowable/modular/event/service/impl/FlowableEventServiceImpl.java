@@ -86,15 +86,17 @@ public class FlowableEventServiceImpl extends ServiceImpl<FlowableEventMapper, F
                     .eq(FlowableEvent::getType, eventType);
             List<FlowableEvent> flowableEventList = this.list(queryWrapperGlobal);
 
-            //查询节点配置的事件类型，且节点为该节点的
-            LambdaQueryWrapper<FlowableEvent> queryWrapperAct = new LambdaQueryWrapper<>();
-            queryWrapperAct.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
-                    .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.NODE.getCode())
-                    .eq(FlowableEvent::getActId, actId)
-                    .eq(FlowableEvent::getType, eventType);
-            List<FlowableEvent> flowableEventListAct = this.list(queryWrapperAct);
-            //合并到一起
-            flowableEventList.addAll(flowableEventListAct);
+            if(ObjectUtil.isNotEmpty(actId)) {
+                //查询节点配置的事件类型，且节点为该节点的
+                LambdaQueryWrapper<FlowableEvent> queryWrapperAct = new LambdaQueryWrapper<>();
+                queryWrapperAct.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
+                        .eq(FlowableEvent::getNodeType, EventNodeTypeEnum.NODE.getCode())
+                        .eq(FlowableEvent::getActId, actId)
+                        .eq(FlowableEvent::getType, eventType);
+                List<FlowableEvent> flowableEventListAct = this.list(queryWrapperAct);
+                //合并到一起
+                flowableEventList.addAll(flowableEventListAct);
+            }
             //根据脚本执行顺序排序，并取出脚本内容
             List<String> resultList = flowableEventList.stream()
                     .sorted(Comparator.comparing(FlowableEvent::getExecSort))
