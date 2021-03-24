@@ -78,7 +78,7 @@ public class FlowableEventServiceImpl extends ServiceImpl<FlowableEventMapper, F
 
     @Override
     public List<String> getScript(String processDefinitionId, String actId, String eventType) {
-        if (ObjectUtil.isAllNotEmpty(processDefinitionId, actId, eventType)) {
+        if (ObjectUtil.isAllNotEmpty(processDefinitionId, eventType)) {
             //查询全局配置的事件类型
             LambdaQueryWrapper<FlowableEvent> queryWrapperGlobal = new LambdaQueryWrapper<>();
             queryWrapperGlobal.eq(FlowableEvent::getProcessDefinitionId, processDefinitionId)
