@@ -1,24 +1,23 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost_3306
+ Source Server         : 本机Mysql
  Source Server Type    : MySQL
  Source Server Version : 50710
  Source Host           : localhost:3306
- Source Schema         : xiaonuo-vue-oracle
+ Source Schema         : xiaonuo-vue
 
  Target Server Type    : Oracle
  Target Server Version : 110200
  File Encoding         : 65001
 
- Date: 02/03/2021 20:46:07
+ Date: 09/04/2021 19:16:13
 */
 
 
 -- ----------------------------
 -- Table structure for act_de_databasechangelog
 -- ----------------------------
--- DROP TABLE "ACT_DE_DATABASECHANGELOG";
 CREATE TABLE "ACT_DE_DATABASECHANGELOG" (
   "ID" NVARCHAR2(255) NOT NULL ,
   "AUTHOR" NVARCHAR2(255) NOT NULL ,
@@ -33,26 +32,24 @@ CREATE TABLE "ACT_DE_DATABASECHANGELOG" (
   "LIQUIBASE" NVARCHAR2(20) ,
   "CONTEXTS" NVARCHAR2(255) ,
   "LABELS" NVARCHAR2(255) ,
-  "DEPLOYMENT_ID" NVARCHAR2(10) 
+  "DEPLOYMENT_ID" NVARCHAR2(10)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_de_databasechangeloglock
 -- ----------------------------
--- DROP TABLE "ACT_DE_DATABASECHANGELOGLOCK";
 CREATE TABLE "ACT_DE_DATABASECHANGELOGLOCK" (
   "ID" NUMBER(11) NOT NULL ,
-  "LOCKED" NVARCHAR2(1) NOT NULL ,
+  "LOCKED" NCHAR(1) NOT NULL ,
   "LOCKGRANTED" DATE ,
-  "LOCKEDBY" NVARCHAR2(255) 
+  "LOCKEDBY" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_de_model
 -- ----------------------------
--- DROP TABLE "ACT_DE_MODEL";
 CREATE TABLE "ACT_DE_MODEL" (
   "ID" NVARCHAR2(255) NOT NULL ,
   "NAME" NVARCHAR2(400) NOT NULL ,
@@ -67,7 +64,7 @@ CREATE TABLE "ACT_DE_MODEL" (
   "MODEL_EDITOR_JSON" NCLOB ,
   "THUMBNAIL" BLOB ,
   "MODEL_TYPE" NUMBER(11) ,
-  "TENANT_ID" NVARCHAR2(255) 
+  "TENANT_ID" NVARCHAR2(255)
 )
 ;
 
@@ -83,7 +80,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_de_model_history
 -- ----------------------------
--- DROP TABLE "ACT_DE_MODEL_HISTORY";
 CREATE TABLE "ACT_DE_MODEL_HISTORY" (
   "ID" NVARCHAR2(255) NOT NULL ,
   "NAME" NVARCHAR2(400) NOT NULL ,
@@ -99,7 +95,7 @@ CREATE TABLE "ACT_DE_MODEL_HISTORY" (
   "MODEL_EDITOR_JSON" NCLOB ,
   "MODEL_ID" NVARCHAR2(255) NOT NULL ,
   "MODEL_TYPE" NUMBER(11) ,
-  "TENANT_ID" NVARCHAR2(255) 
+  "TENANT_ID" NVARCHAR2(255)
 )
 ;
 
@@ -112,19 +108,17 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_de_model_relation
 -- ----------------------------
--- DROP TABLE "ACT_DE_MODEL_RELATION";
 CREATE TABLE "ACT_DE_MODEL_RELATION" (
   "ID" NVARCHAR2(255) NOT NULL ,
   "PARENT_MODEL_ID" NVARCHAR2(255) ,
   "MODEL_ID" NVARCHAR2(255) ,
-  "RELATION_TYPE" NVARCHAR2(255) 
+  "RELATION_TYPE" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_evt_log
 -- ----------------------------
--- DROP TABLE "ACT_EVT_LOG";
 CREATE TABLE "ACT_EVT_LOG" (
   "LOG_NR_" NUMBER(20) NOT NULL ,
   "TYPE_" NVARCHAR2(64) ,
@@ -137,21 +131,20 @@ CREATE TABLE "ACT_EVT_LOG" (
   "DATA_" BLOB ,
   "LOCK_OWNER_" NVARCHAR2(255) ,
   "LOCK_TIME_" DATE ,
-  "IS_PROCESSED_" NUMBER(4) 
+  "IS_PROCESSED_" NUMBER(4)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ge_bytearray
 -- ----------------------------
--- DROP TABLE "ACT_GE_BYTEARRAY";
 CREATE TABLE "ACT_GE_BYTEARRAY" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
   "NAME_" NVARCHAR2(255) ,
   "DEPLOYMENT_ID_" NVARCHAR2(64) ,
   "BYTES_" BLOB ,
-  "GENERATED_" NUMBER(4) 
+  "GENERATED_" NUMBER(4)
 )
 ;
 
@@ -179,11 +172,10 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ge_property
 -- ----------------------------
--- DROP TABLE "ACT_GE_PROPERTY";
 CREATE TABLE "ACT_GE_PROPERTY" (
   "NAME_" NVARCHAR2(64) NOT NULL ,
   "VALUE_" NVARCHAR2(300) ,
-  "REV_" NUMBER(11) 
+  "REV_" NUMBER(11)
 )
 ;
 
@@ -208,7 +200,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_actinst
 -- ----------------------------
--- DROP TABLE "ACT_HI_ACTINST";
 CREATE TABLE "ACT_HI_ACTINST" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -225,7 +216,7 @@ CREATE TABLE "ACT_HI_ACTINST" (
   "END_TIME_" DATE ,
   "DURATION_" NUMBER(20) ,
   "DELETE_REASON_" NCLOB ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
@@ -318,7 +309,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_attachment
 -- ----------------------------
--- DROP TABLE "ACT_HI_ATTACHMENT";
 CREATE TABLE "ACT_HI_ATTACHMENT" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -330,14 +320,13 @@ CREATE TABLE "ACT_HI_ATTACHMENT" (
   "PROC_INST_ID_" NVARCHAR2(64) ,
   "URL_" NCLOB ,
   "CONTENT_ID_" NVARCHAR2(64) ,
-  "TIME_" DATE 
+  "TIME_" DATE
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_hi_comment
 -- ----------------------------
--- DROP TABLE "ACT_HI_COMMENT";
 CREATE TABLE "ACT_HI_COMMENT" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "TYPE_" NVARCHAR2(255) ,
@@ -347,7 +336,7 @@ CREATE TABLE "ACT_HI_COMMENT" (
   "PROC_INST_ID_" NVARCHAR2(64) ,
   "ACTION_" NVARCHAR2(255) ,
   "MESSAGE_" NCLOB ,
-  "FULL_MSG_" BLOB 
+  "FULL_MSG_" BLOB
 )
 ;
 
@@ -366,7 +355,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_detail
 -- ----------------------------
--- DROP TABLE "ACT_HI_DETAIL";
 CREATE TABLE "ACT_HI_DETAIL" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "TYPE_" NVARCHAR2(255) NOT NULL ,
@@ -382,7 +370,7 @@ CREATE TABLE "ACT_HI_DETAIL" (
   "DOUBLE_" NUMBER ,
   "LONG_" NUMBER(20) ,
   "TEXT_" NCLOB ,
-  "TEXT2_" NCLOB 
+  "TEXT2_" NCLOB
 )
 ;
 
@@ -409,7 +397,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_entitylink
 -- ----------------------------
--- DROP TABLE "ACT_HI_ENTITYLINK";
 CREATE TABLE "ACT_HI_ENTITYLINK" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "LINK_TYPE_" NVARCHAR2(255) ,
@@ -420,14 +407,13 @@ CREATE TABLE "ACT_HI_ENTITYLINK" (
   "REF_SCOPE_ID_" NVARCHAR2(255) ,
   "REF_SCOPE_TYPE_" NVARCHAR2(255) ,
   "REF_SCOPE_DEFINITION_ID_" NVARCHAR2(255) ,
-  "HIERARCHY_TYPE_" NVARCHAR2(255) 
+  "HIERARCHY_TYPE_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_hi_identitylink
 -- ----------------------------
--- DROP TABLE "ACT_HI_IDENTITYLINK";
 CREATE TABLE "ACT_HI_IDENTITYLINK" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "GROUP_ID_" NVARCHAR2(255) ,
@@ -439,7 +425,7 @@ CREATE TABLE "ACT_HI_IDENTITYLINK" (
   "SCOPE_ID_" NVARCHAR2(255) ,
   "SUB_SCOPE_ID_" NVARCHAR2(255) ,
   "SCOPE_TYPE_" NVARCHAR2(255) ,
-  "SCOPE_DEFINITION_ID_" NVARCHAR2(255) 
+  "SCOPE_DEFINITION_ID_" NVARCHAR2(255)
 )
 ;
 
@@ -550,7 +536,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_procinst
 -- ----------------------------
--- DROP TABLE "ACT_HI_PROCINST";
 CREATE TABLE "ACT_HI_PROCINST" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -570,7 +555,7 @@ CREATE TABLE "ACT_HI_PROCINST" (
   "CALLBACK_ID_" NVARCHAR2(255) ,
   "CALLBACK_TYPE_" NVARCHAR2(255) ,
   "REFERENCE_ID_" NVARCHAR2(255) ,
-  "REFERENCE_TYPE_" NVARCHAR2(255) 
+  "REFERENCE_TYPE_" NVARCHAR2(255)
 )
 ;
 
@@ -596,7 +581,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_taskinst
 -- ----------------------------
--- DROP TABLE "ACT_HI_TASKINST";
 CREATE TABLE "ACT_HI_TASKINST" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -625,7 +609,7 @@ CREATE TABLE "ACT_HI_TASKINST" (
   "FORM_KEY_" NVARCHAR2(255) ,
   "CATEGORY_" NVARCHAR2(255) ,
   "TENANT_ID_" NVARCHAR2(255) ,
-  "LAST_UPDATED_TIME_" DATE 
+  "LAST_UPDATED_TIME_" DATE
 )
 ;
 
@@ -672,7 +656,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_hi_tsk_log
 -- ----------------------------
--- DROP TABLE "ACT_HI_TSK_LOG";
 CREATE TABLE "ACT_HI_TSK_LOG" (
   "ID_" NUMBER(20) NOT NULL ,
   "TYPE_" NVARCHAR2(64) ,
@@ -687,14 +670,13 @@ CREATE TABLE "ACT_HI_TSK_LOG" (
   "SCOPE_DEFINITION_ID_" NVARCHAR2(255) ,
   "SUB_SCOPE_ID_" NVARCHAR2(255) ,
   "SCOPE_TYPE_" NVARCHAR2(255) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_hi_varinst
 -- ----------------------------
--- DROP TABLE "ACT_HI_VARINST";
 CREATE TABLE "ACT_HI_VARINST" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -712,7 +694,7 @@ CREATE TABLE "ACT_HI_VARINST" (
   "TEXT_" NCLOB ,
   "TEXT2_" NCLOB ,
   "CREATE_TIME_" DATE ,
-  "LAST_UPDATED_TIME_" DATE 
+  "LAST_UPDATED_TIME_" DATE
 )
 ;
 
@@ -769,31 +751,28 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_id_bytearray
 -- ----------------------------
--- DROP TABLE "ACT_ID_BYTEARRAY";
 CREATE TABLE "ACT_ID_BYTEARRAY" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
   "NAME_" NVARCHAR2(255) ,
-  "BYTES_" BLOB 
+  "BYTES_" BLOB
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_group
 -- ----------------------------
--- DROP TABLE "ACT_ID_GROUP";
 CREATE TABLE "ACT_ID_GROUP" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
   "NAME_" NVARCHAR2(255) ,
-  "TYPE_" NVARCHAR2(255) 
+  "TYPE_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_info
 -- ----------------------------
--- DROP TABLE "ACT_ID_INFO";
 CREATE TABLE "ACT_ID_INFO" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -802,50 +781,46 @@ CREATE TABLE "ACT_ID_INFO" (
   "KEY_" NVARCHAR2(255) ,
   "VALUE_" NVARCHAR2(255) ,
   "PASSWORD_" BLOB ,
-  "PARENT_ID_" NVARCHAR2(255) 
+  "PARENT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_membership
 -- ----------------------------
--- DROP TABLE "ACT_ID_MEMBERSHIP";
 CREATE TABLE "ACT_ID_MEMBERSHIP" (
   "USER_ID_" NVARCHAR2(64) NOT NULL ,
-  "GROUP_ID_" NVARCHAR2(64) NOT NULL 
+  "GROUP_ID_" NVARCHAR2(64) NOT NULL
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_priv
 -- ----------------------------
--- DROP TABLE "ACT_ID_PRIV";
 CREATE TABLE "ACT_ID_PRIV" (
   "ID_" NVARCHAR2(64) NOT NULL ,
-  "NAME_" NVARCHAR2(255) NOT NULL 
+  "NAME_" NVARCHAR2(255) NOT NULL
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_priv_mapping
 -- ----------------------------
--- DROP TABLE "ACT_ID_PRIV_MAPPING";
 CREATE TABLE "ACT_ID_PRIV_MAPPING" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "PRIV_ID_" NVARCHAR2(64) NOT NULL ,
   "USER_ID_" NVARCHAR2(255) ,
-  "GROUP_ID_" NVARCHAR2(255) 
+  "GROUP_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_property
 -- ----------------------------
--- DROP TABLE "ACT_ID_PROPERTY";
 CREATE TABLE "ACT_ID_PROPERTY" (
   "NAME_" NVARCHAR2(64) NOT NULL ,
   "VALUE_" NVARCHAR2(300) ,
-  "REV_" NUMBER(11) 
+  "REV_" NUMBER(11)
 )
 ;
 
@@ -858,7 +833,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_id_token
 -- ----------------------------
--- DROP TABLE "ACT_ID_TOKEN";
 CREATE TABLE "ACT_ID_TOKEN" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -867,14 +841,13 @@ CREATE TABLE "ACT_ID_TOKEN" (
   "IP_ADDRESS_" NVARCHAR2(255) ,
   "USER_AGENT_" NVARCHAR2(255) ,
   "USER_ID_" NVARCHAR2(255) ,
-  "TOKEN_DATA_" NCLOB 
+  "TOKEN_DATA_" NCLOB
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_id_user
 -- ----------------------------
--- DROP TABLE "ACT_ID_USER";
 CREATE TABLE "ACT_ID_USER" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -884,26 +857,24 @@ CREATE TABLE "ACT_ID_USER" (
   "EMAIL_" NVARCHAR2(255) ,
   "PWD_" NVARCHAR2(255) ,
   "PICTURE_ID_" NVARCHAR2(64) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_procdef_info
 -- ----------------------------
--- DROP TABLE "ACT_PROCDEF_INFO";
 CREATE TABLE "ACT_PROCDEF_INFO" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "PROC_DEF_ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
-  "INFO_JSON_ID_" NVARCHAR2(64) 
+  "INFO_JSON_ID_" NVARCHAR2(64)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_re_deployment
 -- ----------------------------
--- DROP TABLE "ACT_RE_DEPLOYMENT";
 CREATE TABLE "ACT_RE_DEPLOYMENT" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "NAME_" NVARCHAR2(255) ,
@@ -914,7 +885,7 @@ CREATE TABLE "ACT_RE_DEPLOYMENT" (
   "DERIVED_FROM_" NVARCHAR2(64) ,
   "DERIVED_FROM_ROOT_" NVARCHAR2(64) ,
   "PARENT_DEPLOYMENT_ID_" NVARCHAR2(255) ,
-  "ENGINE_VERSION_" NVARCHAR2(255) 
+  "ENGINE_VERSION_" NVARCHAR2(255)
 )
 ;
 
@@ -930,7 +901,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_re_model
 -- ----------------------------
--- DROP TABLE "ACT_RE_MODEL";
 CREATE TABLE "ACT_RE_MODEL" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -944,14 +914,13 @@ CREATE TABLE "ACT_RE_MODEL" (
   "DEPLOYMENT_ID_" NVARCHAR2(64) ,
   "EDITOR_SOURCE_VALUE_ID_" NVARCHAR2(64) ,
   "EDITOR_SOURCE_EXTRA_VALUE_ID_" NVARCHAR2(64) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_re_procdef
 -- ----------------------------
--- DROP TABLE "ACT_RE_PROCDEF";
 CREATE TABLE "ACT_RE_PROCDEF" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -970,7 +939,7 @@ CREATE TABLE "ACT_RE_PROCDEF" (
   "ENGINE_VERSION_" NVARCHAR2(255) ,
   "DERIVED_FROM_" NVARCHAR2(64) ,
   "DERIVED_FROM_ROOT_" NVARCHAR2(64) ,
-  "DERIVED_VERSION_" NUMBER(11) NOT NULL 
+  "DERIVED_VERSION_" NUMBER(11) NOT NULL
 )
 ;
 
@@ -986,7 +955,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ru_actinst
 -- ----------------------------
--- DROP TABLE "ACT_RU_ACTINST";
 CREATE TABLE "ACT_RU_ACTINST" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1003,7 +971,7 @@ CREATE TABLE "ACT_RU_ACTINST" (
   "END_TIME_" DATE ,
   "DURATION_" NUMBER(20) ,
   "DELETE_REASON_" NCLOB ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
@@ -1096,7 +1064,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ru_deadletter_job
 -- ----------------------------
--- DROP TABLE "ACT_RU_DEADLETTER_JOB";
 CREATE TABLE "ACT_RU_DEADLETTER_JOB" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1119,14 +1086,13 @@ CREATE TABLE "ACT_RU_DEADLETTER_JOB" (
   "HANDLER_CFG_" NCLOB ,
   "CUSTOM_VALUES_ID_" NVARCHAR2(64) ,
   "CREATE_TIME_" DATE ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_entitylink
 -- ----------------------------
--- DROP TABLE "ACT_RU_ENTITYLINK";
 CREATE TABLE "ACT_RU_ENTITYLINK" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1138,14 +1104,13 @@ CREATE TABLE "ACT_RU_ENTITYLINK" (
   "REF_SCOPE_ID_" NVARCHAR2(255) ,
   "REF_SCOPE_TYPE_" NVARCHAR2(255) ,
   "REF_SCOPE_DEFINITION_ID_" NVARCHAR2(255) ,
-  "HIERARCHY_TYPE_" NVARCHAR2(255) 
+  "HIERARCHY_TYPE_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_event_subscr
 -- ----------------------------
--- DROP TABLE "ACT_RU_EVENT_SUBSCR";
 CREATE TABLE "ACT_RU_EVENT_SUBSCR" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1161,14 +1126,13 @@ CREATE TABLE "ACT_RU_EVENT_SUBSCR" (
   "SCOPE_ID_" NVARCHAR2(64) ,
   "SCOPE_DEFINITION_ID_" NVARCHAR2(64) ,
   "SCOPE_TYPE_" NVARCHAR2(64) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_execution
 -- ----------------------------
--- DROP TABLE "ACT_RU_EXECUTION";
 CREATE TABLE "ACT_RU_EXECUTION" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1205,7 +1169,7 @@ CREATE TABLE "ACT_RU_EXECUTION" (
   "CALLBACK_TYPE_" NVARCHAR2(255) ,
   "REFERENCE_ID_" NVARCHAR2(255) ,
   "REFERENCE_TYPE_" NVARCHAR2(255) ,
-  "PROPAGATED_STAGE_INST_ID_" NVARCHAR2(255) 
+  "PROPAGATED_STAGE_INST_ID_" NVARCHAR2(255)
 )
 ;
 
@@ -1248,7 +1212,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ru_history_job
 -- ----------------------------
--- DROP TABLE "ACT_RU_HISTORY_JOB";
 CREATE TABLE "ACT_RU_HISTORY_JOB" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1263,14 +1226,13 @@ CREATE TABLE "ACT_RU_HISTORY_JOB" (
   "ADV_HANDLER_CFG_ID_" NVARCHAR2(64) ,
   "CREATE_TIME_" DATE ,
   "SCOPE_TYPE_" NVARCHAR2(255) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_identitylink
 -- ----------------------------
--- DROP TABLE "ACT_RU_IDENTITYLINK";
 CREATE TABLE "ACT_RU_IDENTITYLINK" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1283,7 +1245,7 @@ CREATE TABLE "ACT_RU_IDENTITYLINK" (
   "SCOPE_ID_" NVARCHAR2(255) ,
   "SUB_SCOPE_ID_" NVARCHAR2(255) ,
   "SCOPE_TYPE_" NVARCHAR2(255) ,
-  "SCOPE_DEFINITION_ID_" NVARCHAR2(255) 
+  "SCOPE_DEFINITION_ID_" NVARCHAR2(255)
 )
 ;
 
@@ -1357,7 +1319,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ru_job
 -- ----------------------------
--- DROP TABLE "ACT_RU_JOB";
 CREATE TABLE "ACT_RU_JOB" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1383,14 +1344,13 @@ CREATE TABLE "ACT_RU_JOB" (
   "HANDLER_CFG_" NCLOB ,
   "CUSTOM_VALUES_ID_" NVARCHAR2(64) ,
   "CREATE_TIME_" DATE ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_suspended_job
 -- ----------------------------
--- DROP TABLE "ACT_RU_SUSPENDED_JOB";
 CREATE TABLE "ACT_RU_SUSPENDED_JOB" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1414,14 +1374,13 @@ CREATE TABLE "ACT_RU_SUSPENDED_JOB" (
   "HANDLER_CFG_" NCLOB ,
   "CUSTOM_VALUES_ID_" NVARCHAR2(64) ,
   "CREATE_TIME_" DATE ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_task
 -- ----------------------------
--- DROP TABLE "ACT_RU_TASK";
 CREATE TABLE "ACT_RU_TASK" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1452,7 +1411,7 @@ CREATE TABLE "ACT_RU_TASK" (
   "IS_COUNT_ENABLED_" NUMBER(4) ,
   "VAR_COUNT_" NUMBER(11) ,
   "ID_LINK_COUNT_" NUMBER(11) ,
-  "SUB_TASK_COUNT_" NUMBER(11) 
+  "SUB_TASK_COUNT_" NUMBER(11)
 )
 ;
 
@@ -1480,7 +1439,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for act_ru_timer_job
 -- ----------------------------
--- DROP TABLE "ACT_RU_TIMER_JOB";
 CREATE TABLE "ACT_RU_TIMER_JOB" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1506,14 +1464,13 @@ CREATE TABLE "ACT_RU_TIMER_JOB" (
   "HANDLER_CFG_" NCLOB ,
   "CUSTOM_VALUES_ID_" NVARCHAR2(64) ,
   "CREATE_TIME_" DATE ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for act_ru_variable
 -- ----------------------------
--- DROP TABLE "ACT_RU_VARIABLE";
 CREATE TABLE "ACT_RU_VARIABLE" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -1529,7 +1486,7 @@ CREATE TABLE "ACT_RU_VARIABLE" (
   "DOUBLE_" NUMBER ,
   "LONG_" NUMBER(20) ,
   "TEXT_" NCLOB ,
-  "TEXT2_" NCLOB 
+  "TEXT2_" NCLOB
 )
 ;
 
@@ -1586,7 +1543,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_button
 -- ----------------------------
--- DROP TABLE "FLW_BUTTON";
 CREATE TABLE "FLW_BUTTON" (
   "ID" NUMBER(20) NOT NULL ,
   "PROCESS_DEFINITION_ID" NVARCHAR2(64) NOT NULL ,
@@ -1608,7 +1564,7 @@ CREATE TABLE "FLW_BUTTON" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_BUTTON"."ID" IS '主键';
@@ -1655,7 +1611,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_category
 -- ----------------------------
--- DROP TABLE "FLW_CATEGORY";
 CREATE TABLE "FLW_CATEGORY" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -1666,7 +1621,7 @@ CREATE TABLE "FLW_CATEGORY" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_CATEGORY"."ID" IS '主键';
@@ -1693,7 +1648,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_channel_definition
 -- ----------------------------
--- DROP TABLE "FLW_CHANNEL_DEFINITION";
 CREATE TABLE "FLW_CHANNEL_DEFINITION" (
   "ID_" NVARCHAR2(255) NOT NULL ,
   "NAME_" NVARCHAR2(255) ,
@@ -1704,14 +1658,13 @@ CREATE TABLE "FLW_CHANNEL_DEFINITION" (
   "CREATE_TIME_" DATE ,
   "TENANT_ID_" NVARCHAR2(255) ,
   "RESOURCE_NAME_" NVARCHAR2(255) ,
-  "DESCRIPTION_" NVARCHAR2(255) 
+  "DESCRIPTION_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_draft
 -- ----------------------------
--- DROP TABLE "FLW_DRAFT";
 CREATE TABLE "FLW_DRAFT" (
   "ID" NUMBER(20) NOT NULL ,
   "PROCESS_DEFINITION_ID" NVARCHAR2(64) NOT NULL ,
@@ -1723,7 +1676,7 @@ CREATE TABLE "FLW_DRAFT" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_DRAFT"."ID" IS '主键';
@@ -1759,7 +1712,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_ev_databasechangelog
 -- ----------------------------
--- DROP TABLE "FLW_EV_DATABASECHANGELOG";
 CREATE TABLE "FLW_EV_DATABASECHANGELOG" (
   "ID" NVARCHAR2(255) NOT NULL ,
   "AUTHOR" NVARCHAR2(255) NOT NULL ,
@@ -1774,26 +1726,24 @@ CREATE TABLE "FLW_EV_DATABASECHANGELOG" (
   "LIQUIBASE" NVARCHAR2(20) ,
   "CONTEXTS" NVARCHAR2(255) ,
   "LABELS" NVARCHAR2(255) ,
-  "DEPLOYMENT_ID" NVARCHAR2(10) 
+  "DEPLOYMENT_ID" NVARCHAR2(10)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_ev_databasechangeloglock
 -- ----------------------------
--- DROP TABLE "FLW_EV_DATABASECHANGELOGLOCK";
 CREATE TABLE "FLW_EV_DATABASECHANGELOGLOCK" (
   "ID" NUMBER(11) NOT NULL ,
-  "LOCKED" NVARCHAR2(1) NOT NULL ,
+  "LOCKED" NCHAR(1) NOT NULL ,
   "LOCKGRANTED" DATE ,
-  "LOCKEDBY" NVARCHAR2(255) 
+  "LOCKEDBY" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_event
 -- ----------------------------
--- DROP TABLE "FLW_EVENT";
 CREATE TABLE "FLW_EVENT" (
   "ID" NUMBER(20) NOT NULL ,
   "PROCESS_DEFINITION_ID" NVARCHAR2(64) NOT NULL ,
@@ -1808,7 +1758,7 @@ CREATE TABLE "FLW_EVENT" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_EVENT"."ID" IS '主键';
@@ -1849,7 +1799,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_event_definition
 -- ----------------------------
--- DROP TABLE "FLW_EVENT_DEFINITION";
 CREATE TABLE "FLW_EVENT_DEFINITION" (
   "ID_" NVARCHAR2(255) NOT NULL ,
   "NAME_" NVARCHAR2(255) ,
@@ -1859,40 +1808,37 @@ CREATE TABLE "FLW_EVENT_DEFINITION" (
   "DEPLOYMENT_ID_" NVARCHAR2(255) ,
   "TENANT_ID_" NVARCHAR2(255) ,
   "RESOURCE_NAME_" NVARCHAR2(255) ,
-  "DESCRIPTION_" NVARCHAR2(255) 
+  "DESCRIPTION_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_event_deployment
 -- ----------------------------
--- DROP TABLE "FLW_EVENT_DEPLOYMENT";
 CREATE TABLE "FLW_EVENT_DEPLOYMENT" (
   "ID_" NVARCHAR2(255) NOT NULL ,
   "NAME_" NVARCHAR2(255) ,
   "CATEGORY_" NVARCHAR2(255) ,
   "DEPLOY_TIME_" DATE ,
   "TENANT_ID_" NVARCHAR2(255) ,
-  "PARENT_DEPLOYMENT_ID_" NVARCHAR2(255) 
+  "PARENT_DEPLOYMENT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_event_resource
 -- ----------------------------
--- DROP TABLE "FLW_EVENT_RESOURCE";
 CREATE TABLE "FLW_EVENT_RESOURCE" (
   "ID_" NVARCHAR2(255) NOT NULL ,
   "NAME_" NVARCHAR2(255) ,
   "DEPLOYMENT_ID_" NVARCHAR2(255) ,
-  "RESOURCE_BYTES_" BLOB 
+  "RESOURCE_BYTES_" BLOB
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_form
 -- ----------------------------
--- DROP TABLE "FLW_FORM";
 CREATE TABLE "FLW_FORM" (
   "ID" NUMBER(20) NOT NULL ,
   "FORM_ID" NUMBER(20) NOT NULL ,
@@ -1903,7 +1849,7 @@ CREATE TABLE "FLW_FORM" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_FORM"."ID" IS '主键';
@@ -1939,7 +1885,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_form_resource
 -- ----------------------------
--- DROP TABLE "FLW_FORM_RESOURCE";
 CREATE TABLE "FLW_FORM_RESOURCE" (
   "ID" NUMBER(20) NOT NULL ,
   "CODE" NVARCHAR2(50) NOT NULL ,
@@ -1954,7 +1899,7 @@ CREATE TABLE "FLW_FORM_RESOURCE" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_FORM_RESOURCE"."ID" IS '主键id';
@@ -1990,7 +1935,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_option
 -- ----------------------------
--- DROP TABLE "FLW_OPTION";
 CREATE TABLE "FLW_OPTION" (
   "ID" NUMBER(20) NOT NULL ,
   "PROCESS_DEFINITION_ID" NVARCHAR2(64) NOT NULL ,
@@ -2001,7 +1945,7 @@ CREATE TABLE "FLW_OPTION" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_OPTION"."ID" IS '主键';
@@ -2028,7 +1972,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_ru_batch
 -- ----------------------------
--- DROP TABLE "FLW_RU_BATCH";
 CREATE TABLE "FLW_RU_BATCH" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -2039,14 +1982,13 @@ CREATE TABLE "FLW_RU_BATCH" (
   "COMPLETE_TIME_" DATE ,
   "STATUS_" NVARCHAR2(255) ,
   "BATCH_DOC_ID_" NVARCHAR2(64) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_ru_batch_part
 -- ----------------------------
--- DROP TABLE "FLW_RU_BATCH_PART";
 CREATE TABLE "FLW_RU_BATCH_PART" (
   "ID_" NVARCHAR2(64) NOT NULL ,
   "REV_" NUMBER(11) ,
@@ -2061,14 +2003,13 @@ CREATE TABLE "FLW_RU_BATCH_PART" (
   "COMPLETE_TIME_" DATE ,
   "STATUS_" NVARCHAR2(255) ,
   "RESULT_DOC_ID_" NVARCHAR2(64) ,
-  "TENANT_ID_" NVARCHAR2(255) 
+  "TENANT_ID_" NVARCHAR2(255)
 )
 ;
 
 -- ----------------------------
 -- Table structure for flw_script
 -- ----------------------------
--- DROP TABLE "FLW_SCRIPT";
 CREATE TABLE "FLW_SCRIPT" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -2080,7 +2021,7 @@ CREATE TABLE "FLW_SCRIPT" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_SCRIPT"."ID" IS '主键id';
@@ -2117,7 +2058,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for flw_shortcut
 -- ----------------------------
--- DROP TABLE "FLW_SHORTCUT";
 CREATE TABLE "FLW_SHORTCUT" (
   "ID" NUMBER(20) NOT NULL ,
   "PROCESS_DEFINITION_ID" NVARCHAR2(100) NOT NULL ,
@@ -2132,7 +2072,7 @@ CREATE TABLE "FLW_SHORTCUT" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "FLW_SHORTCUT"."ID" IS '主键';
@@ -2163,7 +2103,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for pay_ali_trade_history
 -- ----------------------------
--- DROP TABLE "PAY_ALI_TRADE_HISTORY";
 CREATE TABLE "PAY_ALI_TRADE_HISTORY" (
   "ID" NUMBER(20) NOT NULL ,
   "OUT_TRADE_NO" NVARCHAR2(20) NOT NULL ,
@@ -2176,7 +2115,7 @@ CREATE TABLE "PAY_ALI_TRADE_HISTORY" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "PAY_ALI_TRADE_HISTORY"."ID" IS '主键id';
@@ -2205,7 +2144,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_app
 -- ----------------------------
--- DROP TABLE "SYS_APP";
 CREATE TABLE "SYS_APP" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -2215,7 +2153,7 @@ CREATE TABLE "SYS_APP" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_APP"."ID" IS '主键id';
@@ -2240,9 +2178,39 @@ INSERT INTO "SYS_APP" VALUES ('1342451550318694401', '系统工具', 'system_too
 COMMIT;
 
 -- ----------------------------
+-- Table structure for sys_area
+-- ----------------------------
+CREATE TABLE "SYS_AREA" (
+  "ID" NUMBER(20) NOT NULL ,
+  "LEVEL" NUMBER(4) NOT NULL ,
+  "PARENT_CODE" NVARCHAR2(20) NOT NULL ,
+  "AREA_CODE" NVARCHAR2(20) NOT NULL ,
+  "ZIP_CODE" NVARCHAR2(6) NOT NULL ,
+  "CITY_CODE" NVARCHAR2(6) NOT NULL ,
+  "NAME" NVARCHAR2(50) NOT NULL ,
+  "SHORT_NAME" NVARCHAR2(50) NOT NULL ,
+  "MERGER_NAME" NVARCHAR2(50) NOT NULL ,
+  "PINYIN" NVARCHAR2(30) NOT NULL ,
+  "LNG" NUMBER NOT NULL ,
+  "LAT" NUMBER NOT NULL
+)
+;
+COMMENT ON COLUMN "SYS_AREA"."LEVEL" IS '层级';
+COMMENT ON COLUMN "SYS_AREA"."PARENT_CODE" IS '父级行政代码';
+COMMENT ON COLUMN "SYS_AREA"."AREA_CODE" IS '行政代码';
+COMMENT ON COLUMN "SYS_AREA"."ZIP_CODE" IS '邮政编码';
+COMMENT ON COLUMN "SYS_AREA"."CITY_CODE" IS '区号';
+COMMENT ON COLUMN "SYS_AREA"."NAME" IS '名称';
+COMMENT ON COLUMN "SYS_AREA"."SHORT_NAME" IS '简称';
+COMMENT ON COLUMN "SYS_AREA"."MERGER_NAME" IS '组合名';
+COMMENT ON COLUMN "SYS_AREA"."PINYIN" IS '拼音';
+COMMENT ON COLUMN "SYS_AREA"."LNG" IS '经度';
+COMMENT ON COLUMN "SYS_AREA"."LAT" IS '纬度';
+COMMENT ON TABLE "SYS_AREA" IS '中国行政地区表';
+
+-- ----------------------------
 -- Table structure for sys_code_generate
 -- ----------------------------
--- DROP TABLE "SYS_CODE_GENERATE";
 CREATE TABLE "SYS_CODE_GENERATE" (
   "ID" NUMBER(20) NOT NULL ,
   "AUTHOR_NAME" NVARCHAR2(255) NOT NULL ,
@@ -2256,7 +2224,7 @@ CREATE TABLE "SYS_CODE_GENERATE" (
   "CREATE_USER" NUMBER(20) ,
   "CREATE_TIME" DATE ,
   "UPDATE_USER" NUMBER(20) ,
-  "UPDATE_TIME" DATE 
+  "UPDATE_TIME" DATE
 )
 ;
 COMMENT ON COLUMN "SYS_CODE_GENERATE"."ID" IS '主键';
@@ -2283,30 +2251,29 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_code_generate_config
 -- ----------------------------
--- DROP TABLE "SYS_CODE_GENERATE_CONFIG";
 CREATE TABLE "SYS_CODE_GENERATE_CONFIG" (
   "ID" NUMBER(20) NOT NULL ,
   "CODE_GEN_ID" NUMBER(20) ,
-  "COLUMN_NAME" VARCHAR2(255) ,
-  "JAVA_NAME" VARCHAR2(255) ,
-  "DATA_TYPE" VARCHAR2(255) ,
+  "COLUMN_NAME" NVARCHAR2(255) ,
+  "JAVA_NAME" NVARCHAR2(255) ,
+  "DATA_TYPE" NVARCHAR2(255) ,
   "COLUMN_COMMENT" NVARCHAR2(255) ,
-  "JAVA_TYPE" VARCHAR2(255) ,
-  "EFFECT_TYPE" VARCHAR2(255) ,
-  "DICT_TYPE_CODE" VARCHAR2(255) ,
-  "WHETHER_TABLE" VARCHAR2(255) ,
-  "WHETHER_ADD_UPDATE" VARCHAR2(255) ,
-  "WHETHER_RETRACT" VARCHAR2(255) ,
-  "WHETHER_REQUIRED" VARCHAR2(255) ,
-  "QUERY_WHETHER" VARCHAR2(255) ,
-  "QUERY_TYPE" VARCHAR2(255) ,
-  "COLUMN_KEY" VARCHAR2(255) ,
-  "COLUMN_KEY_NAME" VARCHAR2(255) ,
-  "WHETHER_COMMON" VARCHAR2(255) ,
+  "JAVA_TYPE" NVARCHAR2(255) ,
+  "EFFECT_TYPE" NVARCHAR2(255) ,
+  "DICT_TYPE_CODE" NVARCHAR2(255) ,
+  "WHETHER_TABLE" NVARCHAR2(255) ,
+  "WHETHER_ADD_UPDATE" NVARCHAR2(255) ,
+  "WHETHER_RETRACT" NVARCHAR2(255) ,
+  "WHETHER_REQUIRED" NVARCHAR2(255) ,
+  "QUERY_WHETHER" NVARCHAR2(255) ,
+  "QUERY_TYPE" NVARCHAR2(255) ,
+  "COLUMN_KEY" NVARCHAR2(255) ,
+  "COLUMN_KEY_NAME" NVARCHAR2(255) ,
+  "WHETHER_COMMON" NVARCHAR2(255) ,
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_CODE_GENERATE_CONFIG"."ID" IS '主键';
@@ -2353,7 +2320,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_config
 -- ----------------------------
--- DROP TABLE "SYS_CONFIG";
 CREATE TABLE "SYS_CONFIG" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -2366,7 +2332,7 @@ CREATE TABLE "SYS_CONFIG" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_CONFIG"."ID" IS '主键';
@@ -2427,7 +2393,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_database_info
 -- ----------------------------
--- DROP TABLE "SYS_DATABASE_INFO";
 CREATE TABLE "SYS_DATABASE_INFO" (
   "ID" NUMBER(20) NOT NULL ,
   "DB_NAME" NVARCHAR2(255) NOT NULL ,
@@ -2436,7 +2401,7 @@ CREATE TABLE "SYS_DATABASE_INFO" (
   "PASSWORD" NVARCHAR2(255) NOT NULL ,
   "JDBC_URL" NCLOB NOT NULL ,
   "REMARKS" NVARCHAR2(255) ,
-  "CREATE_TIME" DATE 
+  "CREATE_TIME" DATE
 )
 ;
 COMMENT ON COLUMN "SYS_DATABASE_INFO"."ID" IS '主键id';
@@ -2452,16 +2417,12 @@ COMMENT ON TABLE "SYS_DATABASE_INFO" IS '数据库信息表';
 -- ----------------------------
 -- Records of sys_database_info
 -- ----------------------------
-INSERT INTO "SYS_DATABASE_INFO" VALUES ('1298984760954310657', 'backup', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://49.232.20.132:3306/xiaonuo-vue-backup?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '备份数据源', TO_DATE('2020-08-27 22:04:36', 'SYYYY-MM-DD HH24:MI:SS'));
-INSERT INTO "SYS_DATABASE_INFO" VALUES ('1304687049021960193', 'xiaonuo_tenant_db_beijing', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://39.107.82.232:3306/xiaonuo_tenant_db_beijing?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '北京客户数据源', TO_DATE('2020-09-12 15:43:27', 'SYYYY-MM-DD HH24:MI:SS'));
-INSERT INTO "SYS_DATABASE_INFO" VALUES ('1304687901644279809', 'xiaonuo_tenant_db_guangzhou', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://39.107.82.232:3306/xiaonuo_tenant_db_guangzhou?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '广州客户数据源', TO_DATE('2020-09-12 15:46:50', 'SYYYY-MM-DD HH24:MI:SS'));
-INSERT INTO "SYS_DATABASE_INFO" VALUES ('1364538410226274306', 'master', 'com.mysql.cj.jdbc.Driver', 'root', 'ybs1003', 'jdbc:mysql://localhost:3306/xiaonuo-vue?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '主数据源，项目启动数据源！', TO_DATE('2021-02-24 19:31:23', 'SYYYY-MM-DD HH24:MI:SS'));
+INSERT INTO "SYS_DATABASE_INFO" VALUES ('1380424104192102401', 'master', 'com.mysql.cj.jdbc.Driver', 'root', '123456', 'jdbc:mysql://localhost:3306/xiaonuo-vue?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true', '主数据源，项目启动数据源！', TO_DATE('2021-04-09 15:35:28', 'SYYYY-MM-DD HH24:MI:SS'));
 COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_demo_leave
 -- ----------------------------
--- DROP TABLE "SYS_DEMO_LEAVE";
 CREATE TABLE "SYS_DEMO_LEAVE" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(50) NOT NULL ,
@@ -2479,7 +2440,7 @@ CREATE TABLE "SYS_DEMO_LEAVE" (
   "FLW_START_USER_ID" NUMBER(20) ,
   "FLW_START_USER_NAME" NVARCHAR2(100) ,
   "FLW_START_ORG_ID" NUMBER(20) ,
-  "FLW_START_ORG_NAME" NVARCHAR2(100) 
+  "FLW_START_ORG_NAME" NVARCHAR2(100)
 )
 ;
 COMMENT ON COLUMN "SYS_DEMO_LEAVE"."ID" IS '主键';
@@ -2503,7 +2464,6 @@ COMMENT ON COLUMN "SYS_DEMO_LEAVE"."FLW_START_ORG_NAME" IS '发起人所属机�
 -- ----------------------------
 -- Table structure for sys_dict_data
 -- ----------------------------
--- DROP TABLE "SYS_DICT_DATA";
 CREATE TABLE "SYS_DICT_DATA" (
   "ID" NUMBER(20) NOT NULL ,
   "TYPE_ID" NUMBER(20) NOT NULL ,
@@ -2515,7 +2475,7 @@ CREATE TABLE "SYS_DICT_DATA" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_DICT_DATA"."ID" IS '主键';
@@ -2681,7 +2641,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_dict_type
 -- ----------------------------
--- DROP TABLE "SYS_DICT_TYPE";
 CREATE TABLE "SYS_DICT_TYPE" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -2692,7 +2651,7 @@ CREATE TABLE "SYS_DICT_TYPE" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_DICT_TYPE"."ID" IS '主键';
@@ -2750,12 +2709,11 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_emp
 -- ----------------------------
--- DROP TABLE "SYS_EMP";
 CREATE TABLE "SYS_EMP" (
   "ID" NUMBER(20) NOT NULL ,
   "JOB_NUM" NVARCHAR2(100) ,
   "ORG_ID" NUMBER(20) NOT NULL ,
-  "ORG_NAME" NVARCHAR2(100) NOT NULL 
+  "ORG_NAME" NVARCHAR2(100) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_EMP"."ID" IS '主键';
@@ -2775,12 +2733,11 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_emp_ext_org_pos
 -- ----------------------------
--- DROP TABLE "SYS_EMP_EXT_ORG_POS";
 CREATE TABLE "SYS_EMP_EXT_ORG_POS" (
   "ID" NUMBER(20) NOT NULL ,
   "EMP_ID" NUMBER(20) NOT NULL ,
   "ORG_ID" NUMBER(20) NOT NULL ,
-  "POS_ID" NUMBER(20) NOT NULL 
+  "POS_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_EMP_EXT_ORG_POS"."ID" IS '主键';
@@ -2792,11 +2749,10 @@ COMMENT ON TABLE "SYS_EMP_EXT_ORG_POS" IS '员工附属机构岗位表';
 -- ----------------------------
 -- Table structure for sys_emp_pos
 -- ----------------------------
--- DROP TABLE "SYS_EMP_POS";
 CREATE TABLE "SYS_EMP_POS" (
   "ID" NUMBER(20) NOT NULL ,
   "EMP_ID" NUMBER(20) NOT NULL ,
-  "POS_ID" NUMBER(20) NOT NULL 
+  "POS_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_EMP_POS"."ID" IS '主键';
@@ -2815,7 +2771,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_file_info
 -- ----------------------------
--- DROP TABLE "SYS_FILE_INFO";
 CREATE TABLE "SYS_FILE_INFO" (
   "ID" NUMBER(20) NOT NULL ,
   "FILE_LOCATION" NUMBER(4) NOT NULL ,
@@ -2829,7 +2784,7 @@ CREATE TABLE "SYS_FILE_INFO" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_FILE_INFO"."ID" IS '主键id';
@@ -2850,7 +2805,6 @@ COMMENT ON TABLE "SYS_FILE_INFO" IS '文件信息表';
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
--- DROP TABLE "SYS_MENU";
 CREATE TABLE "SYS_MENU" (
   "ID" NUMBER(20) NOT NULL ,
   "PID" NUMBER(20) NOT NULL ,
@@ -2874,7 +2828,7 @@ CREATE TABLE "SYS_MENU" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_MENU"."ID" IS '主键';
@@ -3181,7 +3135,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_notice
 -- ----------------------------
--- DROP TABLE "SYS_NOTICE";
 CREATE TABLE "SYS_NOTICE" (
   "ID" NUMBER(20) NOT NULL ,
   "TITLE" NVARCHAR2(1000) ,
@@ -3197,7 +3150,7 @@ CREATE TABLE "SYS_NOTICE" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_NOTICE"."ID" IS '主键';
@@ -3229,13 +3182,12 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_notice_user
 -- ----------------------------
--- DROP TABLE "SYS_NOTICE_USER";
 CREATE TABLE "SYS_NOTICE_USER" (
   "ID" NUMBER(20) NOT NULL ,
   "NOTICE_ID" NUMBER(20) NOT NULL ,
   "USER_ID" NUMBER(20) NOT NULL ,
   "STATUS" NUMBER(4) NOT NULL ,
-  "READ_TIME" DATE 
+  "READ_TIME" DATE
 )
 ;
 COMMENT ON COLUMN "SYS_NOTICE_USER"."ID" IS '主键';
@@ -3257,7 +3209,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_oauth_user
 -- ----------------------------
--- DROP TABLE "SYS_OAUTH_USER";
 CREATE TABLE "SYS_OAUTH_USER" (
   "ID" NUMBER(20) NOT NULL ,
   "UUID" NVARCHAR2(255) NOT NULL ,
@@ -3274,7 +3225,7 @@ CREATE TABLE "SYS_OAUTH_USER" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_OAUTH_USER"."ID" IS '主键';
@@ -3296,15 +3247,8 @@ COMMENT ON COLUMN "SYS_OAUTH_USER"."UPDATE_USER" IS '更新用户';
 COMMENT ON TABLE "SYS_OAUTH_USER" IS '第三方认证用户信息表';
 
 -- ----------------------------
--- Records of sys_oauth_user
--- ----------------------------
-INSERT INTO "SYS_OAUTH_USER" VALUES ('1288324058135449602', '1564001', '29b2ce48dc050056503c2cf237648e43', '就是那个锅', 'https://portrait.gitee.com/uploads/avatars/user/521/1564001_tpot_1590649435.png', 'http://tpot.com.cn', NULL, NULL, '1633655315@qq.com', '未知', 'GITEE', '', TO_DATE('2020-07-29 12:02:46', 'SYYYY-MM-DD HH24:MI:SS'), '-1', NULL, NULL);
-COMMIT;
-
--- ----------------------------
 -- Table structure for sys_op_log
 -- ----------------------------
--- DROP TABLE "SYS_OP_LOG";
 CREATE TABLE "SYS_OP_LOG" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(50) ,
@@ -3322,7 +3266,7 @@ CREATE TABLE "SYS_OP_LOG" (
   "PARAM" NCLOB ,
   "RESULT" NCLOB ,
   "OP_TIME" DATE ,
-  "ACCOUNT" NVARCHAR2(50) 
+  "ACCOUNT" NVARCHAR2(50)
 )
 ;
 COMMENT ON COLUMN "SYS_OP_LOG"."ID" IS '主键';
@@ -3347,7 +3291,6 @@ COMMENT ON TABLE "SYS_OP_LOG" IS '系统操作日志表';
 -- ----------------------------
 -- Table structure for sys_org
 -- ----------------------------
--- DROP TABLE "SYS_ORG";
 CREATE TABLE "SYS_ORG" (
   "ID" NUMBER(20) NOT NULL ,
   "PID" NUMBER(20) NOT NULL ,
@@ -3360,7 +3303,7 @@ CREATE TABLE "SYS_ORG" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_ORG"."ID" IS '主键';
@@ -3393,7 +3336,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_pos
 -- ----------------------------
--- DROP TABLE "SYS_POS";
 CREATE TABLE "SYS_POS" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -3404,7 +3346,7 @@ CREATE TABLE "SYS_POS" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_POS"."ID" IS '主键';
@@ -3431,7 +3373,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
--- DROP TABLE "SYS_ROLE";
 CREATE TABLE "SYS_ROLE" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(100) NOT NULL ,
@@ -3443,7 +3384,7 @@ CREATE TABLE "SYS_ROLE" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_ROLE"."ID" IS '主键id';
@@ -3470,11 +3411,10 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_role_data_scope
 -- ----------------------------
--- DROP TABLE "SYS_ROLE_DATA_SCOPE";
 CREATE TABLE "SYS_ROLE_DATA_SCOPE" (
   "ID" NUMBER(20) NOT NULL ,
   "ROLE_ID" NUMBER(20) NOT NULL ,
-  "ORG_ID" NUMBER(20) NOT NULL 
+  "ORG_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_ROLE_DATA_SCOPE"."ID" IS '主键';
@@ -3499,11 +3439,10 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_role_menu
 -- ----------------------------
--- DROP TABLE "SYS_ROLE_MENU";
 CREATE TABLE "SYS_ROLE_MENU" (
   "ID" NUMBER(20) NOT NULL ,
   "ROLE_ID" NUMBER(20) NOT NULL ,
-  "MENU_ID" NUMBER(20) NOT NULL 
+  "MENU_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_ROLE_MENU"."ID" IS '主键';
@@ -3722,7 +3661,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_sms
 -- ----------------------------
--- DROP TABLE "SYS_SMS";
 CREATE TABLE "SYS_SMS" (
   "ID" NUMBER(20) NOT NULL ,
   "PHONE_NUMBERS" NVARCHAR2(200) NOT NULL ,
@@ -3735,7 +3673,7 @@ CREATE TABLE "SYS_SMS" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_SMS"."ID" IS '主键';
@@ -3755,7 +3693,6 @@ COMMENT ON TABLE "SYS_SMS" IS '短信信息发送表';
 -- ----------------------------
 -- Table structure for sys_tenant_info
 -- ----------------------------
--- DROP TABLE "SYS_TENANT_INFO";
 CREATE TABLE "SYS_TENANT_INFO" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(255) ,
@@ -3764,7 +3701,7 @@ CREATE TABLE "SYS_TENANT_INFO" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_TENANT_INFO"."ID" IS '主键id';
@@ -3781,14 +3718,11 @@ COMMENT ON TABLE "SYS_TENANT_INFO" IS '租户表';
 -- Records of sys_tenant_info
 -- ----------------------------
 INSERT INTO "SYS_TENANT_INFO" VALUES ('1301724123547000811', '总公司（管理单位）', 'default', 'master', TO_DATE('2020-09-04 11:29:51', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', NULL, NULL);
-INSERT INTO "SYS_TENANT_INFO" VALUES ('1304687130978660353', '北京分公司', 'beijing', 'xiaonuo_tenant_db_beijing', TO_DATE('2020-09-12 15:43:47', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', NULL, NULL);
-INSERT INTO "SYS_TENANT_INFO" VALUES ('1304687938700955650', '广州分公司', 'guangzhou', 'xiaonuo_tenant_db_guangzhou', TO_DATE('2020-09-12 15:46:59', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_timers
 -- ----------------------------
--- DROP TABLE "SYS_TIMERS";
 CREATE TABLE "SYS_TIMERS" (
   "ID" NUMBER(20) NOT NULL ,
   "TIMER_NAME" NVARCHAR2(255) ,
@@ -3799,7 +3733,7 @@ CREATE TABLE "SYS_TIMERS" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_TIMERS"."ID" IS '定时器id';
@@ -3824,7 +3758,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
--- DROP TABLE "SYS_USER";
 CREATE TABLE "SYS_USER" (
   "ID" NUMBER(20) NOT NULL ,
   "ACCOUNT" NVARCHAR2(50) NOT NULL ,
@@ -3844,7 +3777,7 @@ CREATE TABLE "SYS_USER" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "SYS_USER"."ID" IS '主键';
@@ -3871,20 +3804,19 @@ COMMENT ON TABLE "SYS_USER" IS '系统用户表';
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO "SYS_USER" VALUES ('1265476890672672808', 'superAdmin', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '超级管理员', '超级管理员', '1307862361155280898', TO_DATE('2020-03-18', 'SYYYY-MM-DD HH24:MI:SS'), '1', 'superAdmin@qq.com', '15228937093', '1234567890', '127.0.0.1', TO_DATE('2021-01-28 00:42:28', 'SYYYY-MM-DD HH24:MI:SS'), '1', '0', TO_DATE('2020-05-29 16:39:28', 'SYYYY-MM-DD HH24:MI:SS'), '-1', TO_DATE('2021-01-28 00:42:28', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
-INSERT INTO "SYS_USER" VALUES ('1275735541155614721', 'yubaoshan', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '俞宝山', '俞宝山', '1307866860842360834', TO_DATE('1992-10-03', 'SYYYY-MM-DD HH24:MI:SS'), '1', 'await183@qq.com', '18200001102', '', '127.0.0.1', TO_DATE('2021-01-28 00:38:34', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-06-24 18:20:30', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2021-01-28 00:38:34', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
-INSERT INTO "SYS_USER" VALUES ('1280700700074041345', 'laoyu', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', 'laoyu', '老俞', '1307863984313180161', TO_DATE('2020-07-01', 'SYYYY-MM-DD HH24:MI:SS'), '1', NULL, '18200001103', NULL, '127.0.0.1', TO_DATE('2020-09-23 10:17:27', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-07-08 11:10:16', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2020-09-23 10:17:27', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
-INSERT INTO "SYS_USER" VALUES ('1280709549107552257', 'xuyuxiang', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '就是那个锅', '徐玉祥', '1307863777357832194', TO_DATE('2020-07-01', 'SYYYY-MM-DD HH24:MI:SS'), '1', NULL, '18200001100', NULL, '127.0.0.1', TO_DATE('2020-09-23 10:16:54', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-07-08 11:45:26', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2020-09-23 10:16:54', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
+INSERT INTO "SYS_USER" VALUES ('1265476890672672808', 'superAdmin', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '超级管理员', '超级管理员', NULL, TO_DATE('2020-03-18', 'SYYYY-MM-DD HH24:MI:SS'), '1', 'superAdmin@qq.com', '15228937093', '1234567890', '127.0.0.1', TO_DATE('2021-01-28 00:42:28', 'SYYYY-MM-DD HH24:MI:SS'), '1', '0', TO_DATE('2020-05-29 16:39:28', 'SYYYY-MM-DD HH24:MI:SS'), '-1', TO_DATE('2021-01-28 00:42:28', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
+INSERT INTO "SYS_USER" VALUES ('1275735541155614721', 'yubaoshan', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '俞宝山', '俞宝山', NULL, TO_DATE('1992-10-03', 'SYYYY-MM-DD HH24:MI:SS'), '1', 'await183@qq.com', '18200001102', '', '127.0.0.1', TO_DATE('2021-01-28 00:38:34', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-06-24 18:20:30', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2021-01-28 00:38:34', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
+INSERT INTO "SYS_USER" VALUES ('1280700700074041345', 'laoyu', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', 'laoyu', '老俞', NULL, TO_DATE('2020-07-01', 'SYYYY-MM-DD HH24:MI:SS'), '1', NULL, '18200001103', NULL, '127.0.0.1', TO_DATE('2020-09-23 10:17:27', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-07-08 11:10:16', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2020-09-23 10:17:27', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
+INSERT INTO "SYS_USER" VALUES ('1280709549107552257', 'xuyuxiang', '$2a$09$PiCiFNspSlTBE9CakVs8ZOqx0xa03X9wOm01gMasHch4929TpEWCC', '就是那个锅', '徐玉祥', NULL, TO_DATE('2020-07-01', 'SYYYY-MM-DD HH24:MI:SS'), '1', NULL, '18200001100', NULL, '127.0.0.1', TO_DATE('2020-09-23 10:16:54', 'SYYYY-MM-DD HH24:MI:SS'), '2', '0', TO_DATE('2020-07-08 11:45:26', 'SYYYY-MM-DD HH24:MI:SS'), '1265476890672672808', TO_DATE('2020-09-23 10:16:54', 'SYYYY-MM-DD HH24:MI:SS'), '-1');
 COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_user_data_scope
 -- ----------------------------
--- DROP TABLE "SYS_USER_DATA_SCOPE";
 CREATE TABLE "SYS_USER_DATA_SCOPE" (
   "ID" NUMBER(20) NOT NULL ,
   "USER_ID" NUMBER(20) NOT NULL ,
-  "ORG_ID" NUMBER(20) NOT NULL 
+  "ORG_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_USER_DATA_SCOPE"."ID" IS '主键';
@@ -3919,11 +3851,10 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_user_role
 -- ----------------------------
--- DROP TABLE "SYS_USER_ROLE";
 CREATE TABLE "SYS_USER_ROLE" (
   "ID" NUMBER(20) NOT NULL ,
   "USER_ID" NUMBER(20) NOT NULL ,
-  "ROLE_ID" NUMBER(20) NOT NULL 
+  "ROLE_ID" NUMBER(20) NOT NULL
 )
 ;
 COMMENT ON COLUMN "SYS_USER_ROLE"."ID" IS '主键';
@@ -3942,7 +3873,6 @@ COMMIT;
 -- ----------------------------
 -- Table structure for sys_vis_log
 -- ----------------------------
--- DROP TABLE "SYS_VIS_LOG";
 CREATE TABLE "SYS_VIS_LOG" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(50) ,
@@ -3954,7 +3884,7 @@ CREATE TABLE "SYS_VIS_LOG" (
   "OS" NVARCHAR2(255) ,
   "VIS_TYPE" NUMBER(4) NOT NULL ,
   "VIS_TIME" DATE ,
-  "ACCOUNT" NVARCHAR2(50) 
+  "ACCOUNT" NVARCHAR2(50)
 )
 ;
 COMMENT ON COLUMN "SYS_VIS_LOG"."ID" IS '主键';
@@ -3973,7 +3903,6 @@ COMMENT ON TABLE "SYS_VIS_LOG" IS '系统访问日志表';
 -- ----------------------------
 -- Table structure for xn_code_gen_test
 -- ----------------------------
--- DROP TABLE "XN_CODE_GEN_TEST";
 CREATE TABLE "XN_CODE_GEN_TEST" (
   "ID" NUMBER(20) NOT NULL ,
   "NAME" NVARCHAR2(255) ,
@@ -3986,7 +3915,7 @@ CREATE TABLE "XN_CODE_GEN_TEST" (
   "CREATE_TIME" DATE ,
   "CREATE_USER" NUMBER(20) ,
   "UPDATE_TIME" DATE ,
-  "UPDATE_USER" NUMBER(20) 
+  "UPDATE_USER" NUMBER(20)
 )
 ;
 COMMENT ON COLUMN "XN_CODE_GEN_TEST"."ID" IS '主键';
@@ -4669,6 +4598,19 @@ ALTER TABLE "PAY_ALI_TRADE_HISTORY" ADD PRIMARY KEY ("ID");
 -- Primary Key structure for table sys_app
 -- ----------------------------
 ALTER TABLE "SYS_APP" ADD PRIMARY KEY ("ID");
+
+-- ----------------------------
+-- Primary Key structure for table sys_area
+-- ----------------------------
+ALTER TABLE "SYS_AREA" ADD PRIMARY KEY ("ID");
+
+-- ----------------------------
+-- Indexes structure for table sys_area
+-- ----------------------------
+CREATE UNIQUE INDEX "UK_CODE"
+  ON "SYS_AREA" ("AREA_CODE");
+CREATE INDEX "IDX_PARENT_CODE"
+  ON "SYS_AREA" ("PARENT_CODE");
 
 -- ----------------------------
 -- Primary Key structure for table sys_code_generate
