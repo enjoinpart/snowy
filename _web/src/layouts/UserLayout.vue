@@ -5,7 +5,7 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.png" class="logo" alt="logo">
-            <span class="title">XiaoNuo快速开发平台</span>
+            <span class="title">Snowy快速开发平台</span>
           </a>
         </div>
         <div class="desc">
@@ -22,7 +22,7 @@
           <a href="_self">条款</a>
         </div>
         <div class="copyright">
-          Copyright © 2020 <a target="_blank" href="https://www.xiaonuo.vip/">XiaoNuo</a> All rights reserved. xiaonuo-vue 1.2.0
+          Copyright © 2020 <a target="_blank" href="https://www.xiaonuo.vip/">小诺</a> All rights reserved. xiaonuo-vue 1.2.0
         </div>
       </div>
     </div>

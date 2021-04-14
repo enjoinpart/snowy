@@ -10,18 +10,18 @@
         <version>2.3.1.RELEASE</version>
     </parent>
 
-    <groupId>cn.xiaonuo</groupId>
-    <artifactId>xiaonuo-vue</artifactId>
+    <groupId>vip.xiaonuo</groupId>
+    <artifactId>snowy</artifactId>
     <version>1.1.0</version>
 
-    <name>xiaonuo-vue</name>
-    <description>xiaonuo-vue版本</description>
+    <name>snowy</name>
+    <description>snowy版本</description>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>xiaonuo-base</module>
-        <module>xiaonuo-main</module>
+        <module>snowy-base</module>
+        <module>snowy-main</module>
     </modules>
 
     <properties>

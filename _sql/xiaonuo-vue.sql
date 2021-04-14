@@ -2020,7 +2020,7 @@ CREATE TABLE `flw_event`  (
 -- ----------------------------
 INSERT INTO `flw_event` VALUES (1294925374511263745, 'leave:1:1294922085572947969', '', '', 1, '启动时打印一句话', 'PROCESS_STARTED', 'System.out.println(\"这是打印的内容\");', 100, '启动时打印一句话', '2020-08-16 17:14:02', 1265476890672672808, '2020-08-24 09:51:09', 1265476890672672808);
 INSERT INTO `flw_event` VALUES (1295536105399222273, 'leave:1:1294922085572947969', 'sid-A2D6A2CC-F596-471D-9CC1-FCF67491AAB4', '老俞审批', 2, '任务完成时打印一句话', 'TASK_COMPLETED', 'System.out.println(\"这是打印的内容\");', 100, '任务完成时打印一句话', '2020-08-18 09:40:52', 1265476890672672808, NULL, NULL);
-INSERT INTO `flw_event` VALUES (1304342885814124545, 'travel:1:1304341427379126274', '', '', 1, '流程启动时设置会签人员参数', 'PROCESS_STARTED', 'import cn.hutool.core.collection.CollectionUtil;\nimport com.cn.xiaonuo.flowable.core.utils.BpmScriptUtil;\n\nList<Long> userIdList = CollectionUtil.newArrayList();\nuserIdList.add(1275735541155614721);\nuserIdList.add(1280700700074041345);\nuserIdList.add(1280709549107552257);\n\n//调用脚本工具类，给执行实例设置会签人员\nBpmScriptUtil.setVariableForInstance(execution, \"pers\", userIdList);\n//调用脚本工具类，给执行实例设置多实例基数为会签人员数量\nBpmScriptUtil.setVariableForInstance(execution, \"num\", 3);', 100, '流程启动时设置会签人员参数', '2020-09-11 16:55:52', 1265476890672672808, NULL, NULL);
+INSERT INTO `flw_event` VALUES (1304342885814124545, 'travel:1:1304341427379126274', '', '', 1, '流程启动时设置会签人员参数', 'PROCESS_STARTED', 'import cn.hutool.core.collection.CollectionUtil;\nimport vip.xiaonuo.flowable.core.utils.BpmScriptUtil;\n\nList<Long> userIdList = CollectionUtil.newArrayList();\nuserIdList.add(1275735541155614721);\nuserIdList.add(1280700700074041345);\nuserIdList.add(1280709549107552257);\n\n//调用脚本工具类，给执行实例设置会签人员\nBpmScriptUtil.setVariableForInstance(execution, \"pers\", userIdList);\n//调用脚本工具类，给执行实例设置多实例基数为会签人员数量\nBpmScriptUtil.setVariableForInstance(execution, \"num\", 3);', 100, '流程启动时设置会签人员参数', '2020-09-11 16:55:52', 1265476890672672808, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for flw_event_definition
@@ -2247,7 +2247,7 @@ CREATE TABLE `flw_script`  (
 -- Records of flw_script
 -- ----------------------------
 INSERT INTO `flw_script` VALUES (1294898800718163970, '打印内容', 1, 1, 'System.out.println(\"这是打印的内容\");', '打印内容', 0, '2020-08-16 15:28:27', 1265476890672672808, '2020-08-16 18:23:26', 1265476890672672808);
-INSERT INTO `flw_script` VALUES (1304322960072609794, '设置会签人员', 1, 1, 'import cn.hutool.core.collection.CollectionUtil;\nimport com.cn.xiaonuo.flowable.core.utils.BpmScriptUtil;\n\nList<Long> userIdList = CollectionUtil.newArrayList();\nuserIdList.add(1275735541155614721);\nuserIdList.add(1280700700074041345);\nuserIdList.add(1280709549107552257);\n\n//调用脚本工具类，给执行实例设置会签人员\nBpmScriptUtil.setVariableForInstance(execution, \"pers\", userIdList);\n//调用脚本工具类，给执行实例设置多实例基数为会签人员数量\nBpmScriptUtil.setVariableForInstance(execution, \"num\", 3);', '流程启动时给流程实例设置会签人员', 0, '2020-09-11 15:36:41', 1265476890672672808, '2020-09-11 16:55:02', 1265476890672672808);
+INSERT INTO `flw_script` VALUES (1304322960072609794, '设置会签人员', 1, 1, 'import cn.hutool.core.collection.CollectionUtil;\nimport vip.xiaonuo.flowable.core.utils.BpmScriptUtil;\n\nList<Long> userIdList = CollectionUtil.newArrayList();\nuserIdList.add(1275735541155614721);\nuserIdList.add(1280700700074041345);\nuserIdList.add(1280709549107552257);\n\n//调用脚本工具类，给执行实例设置会签人员\nBpmScriptUtil.setVariableForInstance(execution, \"pers\", userIdList);\n//调用脚本工具类，给执行实例设置多实例基数为会签人员数量\nBpmScriptUtil.setVariableForInstance(execution, \"num\", 3);', '流程启动时给流程实例设置会签人员', 0, '2020-09-11 15:36:41', 1265476890672672808, '2020-09-11 16:55:02', 1265476890672672808);
 
 -- ----------------------------
 -- Table structure for flw_shortcut
@@ -2302,11 +2302,11 @@ CREATE TABLE `pay_ali_trade_history`  (
 -- ----------------------------
 -- Records of pay_ali_trade_history
 -- ----------------------------
-INSERT INTO `pay_ali_trade_history` VALUES (1308743504209526785, '1308743503441969153', '2020092322001400230504748834', '2020-09-23 20:22:21', 1.00, 'XiaoNuo快速开发平台PC支付测试商品', 'XiaoNuo快速开发平台PC支付测试商品', 1, '2020-09-23 20:22:21', -1, NULL, NULL);
-INSERT INTO `pay_ali_trade_history` VALUES (1308752588191268865, '1308752588027691009', NULL, '2020-09-23 20:58:27', 1.00, 'XiaoNuo快速开发平台WAP支付测试商品', 'XiaoNuo快速开发平台WAP支付测试商品', 0, '2020-09-23 20:58:27', -1, NULL, NULL);
-INSERT INTO `pay_ali_trade_history` VALUES (1308754130948579329, '1308754130894053377', NULL, '2020-09-23 21:04:35', 1.00, 'XiaoNuo快速开发平台扫码支付测试商品', 'XiaoNuo快速开发平台扫码支付测试商品', 1, '2020-09-23 21:04:35', -1, NULL, NULL);
-INSERT INTO `pay_ali_trade_history` VALUES (1308759207155326978, '1308759206559735810', NULL, '2020-09-23 21:24:45', 1.00, 'XiaoNuo快速开发平台PC支付测试商品', 'XiaoNuo快速开发平台PC支付测试商品', 0, '2020-09-23 21:24:45', -1, NULL, NULL);
-INSERT INTO `pay_ali_trade_history` VALUES (1308760139100315649, '1308760138500530177', '2020092322001400230504749933', '2020-09-23 21:28:27', 1.00, 'XiaoNuo快速开发平台PC支付测试商品', 'XiaoNuo快速开发平台PC支付测试商品', 1, '2020-09-23 21:28:27', -1, NULL, NULL);
+INSERT INTO `pay_ali_trade_history` VALUES (1308743504209526785, '1308743503441969153', '2020092322001400230504748834', '2020-09-23 20:22:21', 1.00, 'Snowy快速开发平台PC支付测试商品', 'Snowy快速开发平台PC支付测试商品', 1, '2020-09-23 20:22:21', -1, NULL, NULL);
+INSERT INTO `pay_ali_trade_history` VALUES (1308752588191268865, '1308752588027691009', NULL, '2020-09-23 20:58:27', 1.00, 'Snowy快速开发平台WAP支付测试商品', 'Snowy快速开发平台WAP支付测试商品', 0, '2020-09-23 20:58:27', -1, NULL, NULL);
+INSERT INTO `pay_ali_trade_history` VALUES (1308754130948579329, '1308754130894053377', NULL, '2020-09-23 21:04:35', 1.00, 'Snowy快速开发平台扫码支付测试商品', 'Snowy快速开发平台扫码支付测试商品', 1, '2020-09-23 21:04:35', -1, NULL, NULL);
+INSERT INTO `pay_ali_trade_history` VALUES (1308759207155326978, '1308759206559735810', NULL, '2020-09-23 21:24:45', 1.00, 'Snowy快速开发平台PC支付测试商品', 'Snowy快速开发平台PC支付测试商品', 0, '2020-09-23 21:24:45', -1, NULL, NULL);
+INSERT INTO `pay_ali_trade_history` VALUES (1308760139100315649, '1308760138500530177', '2020092322001400230504749933', '2020-09-23 21:28:27', 1.00, 'Snowy快速开发平台PC支付测试商品', 'Snowy快速开发平台PC支付测试商品', 1, '2020-09-23 21:28:27', -1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_app
@@ -2384,7 +2384,7 @@ CREATE TABLE `sys_code_generate`  (
 -- ----------------------------
 -- Records of sys_code_generate
 -- ----------------------------
-INSERT INTO `sys_code_generate` VALUES (1362310959781744641, 'yubaoshan、xuyuxiang、dongxiayu', 'CodeGenTest', 'Y', '2', 'xn_code_gen_test', 'com.cn.xiaonuo', 'codegentest', '测试', 1265476890672672808, '2021-02-18 16:00:18', NULL, NULL);
+INSERT INTO `sys_code_generate` VALUES (1362310959781744641, 'yubaoshan、xuyuxiang、dongxiayu', 'CodeGenTest', 'Y', '2', 'xn_code_gen_test', 'vip.xiaonuo', 'codegentest', '测试', 1265476890672672808, '2021-02-18 16:00:18', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_code_generate_config
@@ -2455,42 +2455,42 @@ CREATE TABLE `sys_config`  (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO `sys_config` VALUES (1265117443880853504, '验证码开关', 'XIAONUO_CAPTCHA_OPEN', 'true', 'Y', '登录验证码开关 false关闭 true打开', 0, 'DEFAULT', '2020-04-14 23:30:14', 1265476890672672808, '2021-02-18 16:19:01', 1265476890672672808);
-INSERT INTO `sys_config` VALUES (1265117443880853506, 'jwt密钥', 'XIAONUO_JWT_SECRET', 'xiaonuo', 'Y', '（重要）jwt密钥，默认为空，自行设置', 0, 'DEFAULT', '2020-05-26 06:35:19', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1265117443880853507, '默认密码', 'XIAONUO_DEFAULT_PASSWORD', '123456', 'Y', '默认密码', 0, 'DEFAULT', '2020-05-26 06:37:56', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1265117443880853508, 'token过期时间', 'XIAONUO_TOKEN_EXPIRE', '86400', 'Y', 'token过期时间（单位：秒）', 0, 'DEFAULT', '2020-05-27 11:54:49', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1265117443880853509, 'session会话过期时间', 'XIAONUO_SESSION_EXPIRE', '7200', 'Y', 'session会话过期时间（单位：秒）', 0, 'DEFAULT', '2020-05-27 11:54:49', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1265117443880853519, '阿里云短信keyId', 'XIAONUO_ALIYUN_SMS_ACCESSKEY_ID', '你的keyId', 'Y', '阿里云短信keyId', 0, 'ALIYUN_SMS', '2020-06-07 16:27:11', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269547042242371585, '阿里云短信secret', 'XIAONUO_ALIYUN_SMS_ACCESSKEY_SECRET', '你的secret', 'Y', '阿里云短信secret', 0, 'ALIYUN_SMS', '2020-06-07 16:29:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269547130041737217, '阿里云短信签名', 'XIAONUO_ALIYUN_SMS_SIGN_NAME', 'XiaoNuo快速开发平台', 'Y', '阿里云短信签名', 0, 'ALIYUN_SMS', '2020-06-07 16:29:58', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269547279530926081, '阿里云短信-登录模板号', 'XIAONUO_ALIYUN_SMS_LOGIN_TEMPLATE_CODE', 'SMS_1877123456', 'Y', '阿里云短信-登录模板号', 0, 'ALIYUN_SMS', '2020-06-07 16:30:33', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269547410879750145, '阿里云短信默认失效时间', 'XIAONUO_ALIYUN_SMS_INVALIDATE_MINUTES', '5', 'Y', '阿里云短信默认失效时间（单位：分钟）', 0, 'ALIYUN_SMS', '2020-06-07 16:31:04', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269575927357071361, '腾讯云短信secretId', 'XIAONUO_TENCENT_SMS_SECRET_ID', '你的secretId', 'Y', '腾讯云短信secretId', 0, 'TENCENT_SMS', '2020-06-07 18:24:23', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269575991693500418, '腾讯云短信secretKey', 'XIAONUO_TENCENT_SMS_SECRET_KEY', '你的secretkey', 'Y', '腾讯云短信secretKey', 0, 'TENCENT_SMS', '2020-06-07 18:24:39', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269576044084551682, '腾讯云短信sdkAppId', 'XIAONUO_TENCENT_SMS_SDK_APP_ID', '1400375123', 'Y', '腾讯云短信sdkAppId', 0, 'TENCENT_SMS', '2020-06-07 18:24:51', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1269576089294954497, '腾讯云短信签名', 'XIAONUO_TENCENT_SMS_SIGN', 'XiaoNuo快速开发平台', 'Y', '腾讯云短信签名', 0, 'TENCENT_SMS', '2020-06-07 18:25:02', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270378172860403713, '邮箱host', 'XIAONUO_EMAIL_HOST', 'smtp.126.com', 'Y', '邮箱host', 0, 'EMAIL', '2020-06-09 23:32:14', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270378295543795714, '邮箱用户名', 'XIAONUO_EMAIL_USERNAME', 'test@126.com', 'Y', '邮箱用户名', 0, 'EMAIL', '2020-06-09 23:32:43', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270378340510928897, '邮箱密码', 'XIAONUO_EMAIL_PASSWORD', '你的邮箱密码', 'Y', '邮箱密码', 0, 'EMAIL', '2020-06-09 23:32:54', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270378527358783489, '邮箱端口', 'XIAONUO_EMAIL_PORT', '465', 'Y', '邮箱端口', 0, 'EMAIL', '2020-06-09 23:33:38', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270378790035460097, '邮箱是否开启ssl', 'XIAONUO_EMAIL_SSL', 'true', 'Y', '邮箱是否开启ssl', 0, 'EMAIL', '2020-06-09 23:34:41', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270380786649972737, '邮箱发件人', 'XIAONUO_EMAIL_FROM', 'test@126.com', 'Y', '邮箱发件人', 0, 'EMAIL', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270380786649972738, 'win本地上传文件路径', 'XIAONUO_FILE_UPLOAD_PATH_FOR_WINDOWS', 'd:/tmp', 'Y', 'win本地上传文件路径', 0, 'FILE_PATH', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270380786649972739, 'linux/mac本地上传文件路径', 'XIAONUO_FILE_UPLOAD_PATH_FOR_LINUX', '/tmp', 'Y', 'linux/mac本地上传文件路径', 0, 'FILE_PATH', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270380786649982740, 'XiaoNuo演示环境', 'XIAONUO_DEMO_ENV_FLAG', 'false', 'Y', 'XiaoNuo演示环境的开关，true-打开，false-关闭，如果演示环境开启，则只能读数据不能写数据', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, '2020-09-03 14:38:17', 1265476890672672808);
-INSERT INTO `sys_config` VALUES (1270380786649982741, 'XiaoNuo放开XSS过滤的接口', 'XIAONUO_UN_XSS_FILTER_URL', '/demo/xssfilter,/demo/unxss', 'Y', '多个url可以用英文逗号隔开', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1270380786649982742, '单用户登陆的开关', 'XIAONUO_ENABLE_SINGLE_LOGIN', 'false', 'Y', '单用户登陆的开关，true-打开，false-关闭，如果一个人登录两次，就会将上一次登陆挤下去', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1280694183769792514, 'druid监控登录账号', 'XIAONUO_DRUID_USERNAME', 'superAdmin', 'Y', 'druid监控登录账号', 0, 'DEFAULT', '2020-07-08 10:44:22', 1265476890672672808, '2021-02-18 16:18:30', 1265476890672672808);
-INSERT INTO `sys_config` VALUES (1280694281648070658, 'druid监控界面登录密码', 'XIAONUO_DRUID_PASSWORD', '123456', 'Y', 'druid监控登录密码', 0, 'DEFAULT', '2020-07-08 10:44:46', 1265476890672672808, '2021-02-18 16:18:36', 1265476890672672808);
-INSERT INTO `sys_config` VALUES (1280694281648070659, '阿里云定位api接口地址', 'XIAONUO_IP_GEO_API', 'http://api01.aliyun.venuscn.com/ip?ip=%s', 'Y', '阿里云定位api接口地址', 0, 'DEFAULT', '2020-07-20 10:44:46', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1280694281648070660, '阿里云定位appCode', 'XIAONUO_IP_GEO_APP_CODE', '461535aabeae4f34861884d392f5d452', 'Y', '阿里云定位appCode', 0, 'DEFAULT', '2020-07-20 10:44:46', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288309751255412737, 'Oauth用户登录的开关', 'XIAONUO_ENABLE_OAUTH_LOGIN', 'true', 'Y', 'Oauth用户登录的开关', 0, 'OAUTH', '2020-07-29 11:05:55', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288310043346743297, 'Oauth码云登录ClientId', 'XIAONUO_OAUTH_GITEE_CLIENT_ID', '你的clientId', 'Y', 'Oauth码云登录ClientId', 0, 'OAUTH', '2020-07-29 11:07:05', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288310157876408321, 'Oauth码云登录ClientSecret', 'XIAONUO_OAUTH_GITEE_CLIENT_SECRET', '你的clientSecret', 'Y', 'Oauth码云登录ClientSecret', 0, 'OAUTH', '2020-07-29 11:07:32', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288310280056483841, 'Oauth码云登录回调地址', 'XIAONUO_OAUTH_GITEE_REDIRECT_URI', 'http://127.0.0.1:82/oauth/callback/gitee', 'Y', 'Oauth码云登录回调地址', 0, 'OAUTH', '2020-07-29 11:08:01', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288358228593221633, '前端项目地址', 'XIAONUO_WEB_URL', 'http://localhost:8080', 'Y', '前端项目地址', 0, 'DEFAULT', '2020-07-29 14:18:33', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288358228593221634, '支付宝支付跳转地址', 'XIAONUO_ALIPAY_RETURN_URL', 'http://localhost:8080/pay/index', 'Y', '支付宝支付跳转地址', 0, 'DEFAULT', '2020-07-29 14:18:33', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1288358228593221635, '是否开启多租户', 'XIAONUO_TENANT_OPEN', 'true', 'Y', '是否开启多租户', 0, 'DEFAULT', '2020-09-03 17:45:58', 1265476890672672808, '2021-02-16 00:09:24', 1265476890672672808);
+INSERT INTO `sys_config` VALUES (1265117443880853504, '验证码开关', 'SNOWY_CAPTCHA_OPEN', 'true', 'Y', '登录验证码开关 false关闭 true打开', 0, 'DEFAULT', '2020-04-14 23:30:14', 1265476890672672808, '2021-02-18 16:19:01', 1265476890672672808);
+INSERT INTO `sys_config` VALUES (1265117443880853506, 'jwt密钥', 'SNOWY_JWT_SECRET', 'xiaonuo', 'Y', '（重要）jwt密钥，默认为空，自行设置', 0, 'DEFAULT', '2020-05-26 06:35:19', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1265117443880853507, '默认密码', 'SNOWY_DEFAULT_PASSWORD', '123456', 'Y', '默认密码', 0, 'DEFAULT', '2020-05-26 06:37:56', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1265117443880853508, 'token过期时间', 'SNOWY_TOKEN_EXPIRE', '86400', 'Y', 'token过期时间（单位：秒）', 0, 'DEFAULT', '2020-05-27 11:54:49', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1265117443880853509, 'session会话过期时间', 'SNOWY_SESSION_EXPIRE', '7200', 'Y', 'session会话过期时间（单位：秒）', 0, 'DEFAULT', '2020-05-27 11:54:49', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1265117443880853519, '阿里云短信keyId', 'SNOWY_ALIYUN_SMS_ACCESSKEY_ID', '你的keyId', 'Y', '阿里云短信keyId', 0, 'ALIYUN_SMS', '2020-06-07 16:27:11', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269547042242371585, '阿里云短信secret', 'SNOWY_ALIYUN_SMS_ACCESSKEY_SECRET', '你的secret', 'Y', '阿里云短信secret', 0, 'ALIYUN_SMS', '2020-06-07 16:29:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269547130041737217, '阿里云短信签名', 'SNOWY_ALIYUN_SMS_SIGN_NAME', 'Snowy快速开发平台', 'Y', '阿里云短信签名', 0, 'ALIYUN_SMS', '2020-06-07 16:29:58', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269547279530926081, '阿里云短信-登录模板号', 'SNOWY_ALIYUN_SMS_LOGIN_TEMPLATE_CODE', 'SMS_1877123456', 'Y', '阿里云短信-登录模板号', 0, 'ALIYUN_SMS', '2020-06-07 16:30:33', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269547410879750145, '阿里云短信默认失效时间', 'SNOWY_ALIYUN_SMS_INVALIDATE_MINUTES', '5', 'Y', '阿里云短信默认失效时间（单位：分钟）', 0, 'ALIYUN_SMS', '2020-06-07 16:31:04', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269575927357071361, '腾讯云短信secretId', 'SNOWY_TENCENT_SMS_SECRET_ID', '你的secretId', 'Y', '腾讯云短信secretId', 0, 'TENCENT_SMS', '2020-06-07 18:24:23', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269575991693500418, '腾讯云短信secretKey', 'SNOWY_TENCENT_SMS_SECRET_KEY', '你的secretkey', 'Y', '腾讯云短信secretKey', 0, 'TENCENT_SMS', '2020-06-07 18:24:39', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269576044084551682, '腾讯云短信sdkAppId', 'SNOWY_TENCENT_SMS_SDK_APP_ID', '1400375123', 'Y', '腾讯云短信sdkAppId', 0, 'TENCENT_SMS', '2020-06-07 18:24:51', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1269576089294954497, '腾讯云短信签名', 'SNOWY_TENCENT_SMS_SIGN', 'Snowy快速开发平台', 'Y', '腾讯云短信签名', 0, 'TENCENT_SMS', '2020-06-07 18:25:02', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270378172860403713, '邮箱host', 'SNOWY_EMAIL_HOST', 'smtp.126.com', 'Y', '邮箱host', 0, 'EMAIL', '2020-06-09 23:32:14', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270378295543795714, '邮箱用户名', 'SNOWY_EMAIL_USERNAME', 'test@126.com', 'Y', '邮箱用户名', 0, 'EMAIL', '2020-06-09 23:32:43', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270378340510928897, '邮箱密码', 'SNOWY_EMAIL_PASSWORD', '你的邮箱密码', 'Y', '邮箱密码', 0, 'EMAIL', '2020-06-09 23:32:54', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270378527358783489, '邮箱端口', 'SNOWY_EMAIL_PORT', '465', 'Y', '邮箱端口', 0, 'EMAIL', '2020-06-09 23:33:38', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270378790035460097, '邮箱是否开启ssl', 'SNOWY_EMAIL_SSL', 'true', 'Y', '邮箱是否开启ssl', 0, 'EMAIL', '2020-06-09 23:34:41', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270380786649972737, '邮箱发件人', 'SNOWY_EMAIL_FROM', 'test@126.com', 'Y', '邮箱发件人', 0, 'EMAIL', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270380786649972738, 'win本地上传文件路径', 'SNOWY_FILE_UPLOAD_PATH_FOR_WINDOWS', 'd:/tmp', 'Y', 'win本地上传文件路径', 0, 'FILE_PATH', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270380786649972739, 'linux/mac本地上传文件路径', 'SNOWY_FILE_UPLOAD_PATH_FOR_LINUX', '/tmp', 'Y', 'linux/mac本地上传文件路径', 0, 'FILE_PATH', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270380786649982740, 'Snowy演示环境', 'SNOWY_DEMO_ENV_FLAG', 'false', 'Y', 'Snowy演示环境的开关，true-打开，false-关闭，如果演示环境开启，则只能读数据不能写数据', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, '2020-09-03 14:38:17', 1265476890672672808);
+INSERT INTO `sys_config` VALUES (1270380786649982741, 'Snowy放开XSS过滤的接口', 'SNOWY_UN_XSS_FILTER_URL', '/demo/xssfilter,/demo/unxss', 'Y', '多个url可以用英文逗号隔开', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1270380786649982742, '单用户登陆的开关', 'SNOWY_ENABLE_SINGLE_LOGIN', 'false', 'Y', '单用户登陆的开关，true-打开，false-关闭，如果一个人登录两次，就会将上一次登陆挤下去', 0, 'DEFAULT', '2020-06-09 23:42:37', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1280694183769792514, 'druid监控登录账号', 'SNOWY_DRUID_USERNAME', 'superAdmin', 'Y', 'druid监控登录账号', 0, 'DEFAULT', '2020-07-08 10:44:22', 1265476890672672808, '2021-02-18 16:18:30', 1265476890672672808);
+INSERT INTO `sys_config` VALUES (1280694281648070658, 'druid监控界面登录密码', 'SNOWY_DRUID_PASSWORD', '123456', 'Y', 'druid监控登录密码', 0, 'DEFAULT', '2020-07-08 10:44:46', 1265476890672672808, '2021-02-18 16:18:36', 1265476890672672808);
+INSERT INTO `sys_config` VALUES (1280694281648070659, '阿里云定位api接口地址', 'SNOWY_IP_GEO_API', 'http://api01.aliyun.venuscn.com/ip?ip=%s', 'Y', '阿里云定位api接口地址', 0, 'DEFAULT', '2020-07-20 10:44:46', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1280694281648070660, '阿里云定位appCode', 'SNOWY_IP_GEO_APP_CODE', '461535aabeae4f34861884d392f5d452', 'Y', '阿里云定位appCode', 0, 'DEFAULT', '2020-07-20 10:44:46', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288309751255412737, 'Oauth用户登录的开关', 'SNOWY_ENABLE_OAUTH_LOGIN', 'true', 'Y', 'Oauth用户登录的开关', 0, 'OAUTH', '2020-07-29 11:05:55', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288310043346743297, 'Oauth码云登录ClientId', 'SNOWY_OAUTH_GITEE_CLIENT_ID', '你的clientId', 'Y', 'Oauth码云登录ClientId', 0, 'OAUTH', '2020-07-29 11:07:05', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288310157876408321, 'Oauth码云登录ClientSecret', 'SNOWY_OAUTH_GITEE_CLIENT_SECRET', '你的clientSecret', 'Y', 'Oauth码云登录ClientSecret', 0, 'OAUTH', '2020-07-29 11:07:32', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288310280056483841, 'Oauth码云登录回调地址', 'SNOWY_OAUTH_GITEE_REDIRECT_URI', 'http://127.0.0.1:82/oauth/callback/gitee', 'Y', 'Oauth码云登录回调地址', 0, 'OAUTH', '2020-07-29 11:08:01', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288358228593221633, '前端项目地址', 'SNOWY_WEB_URL', 'http://localhost:8080', 'Y', '前端项目地址', 0, 'DEFAULT', '2020-07-29 14:18:33', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288358228593221634, '支付宝支付跳转地址', 'SNOWY_ALIPAY_RETURN_URL', 'http://localhost:8080/pay/index', 'Y', '支付宝支付跳转地址', 0, 'DEFAULT', '2020-07-29 14:18:33', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1288358228593221635, '是否开启多租户', 'SNOWY_TENANT_OPEN', 'true', 'Y', '是否开启多租户', 0, 'DEFAULT', '2020-09-03 17:45:58', 1265476890672672808, '2021-02-16 00:09:24', 1265476890672672808);
 
 -- ----------------------------
 -- Table structure for sys_database_info
@@ -2568,7 +2568,7 @@ CREATE TABLE `sys_dict_data`  (
 INSERT INTO `sys_dict_data` VALUES (1265216536659087357, 1265216211667636234, '男', '1', 100, '男性', 0, '2020-04-01 10:23:29', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (1265216536659087358, 1265216211667636234, '女', '2', 100, '女性', 0, '2020-04-01 10:23:49', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (1265216536659087359, 1265216211667636234, '未知', '3', 100, '未知性别', 0, '2020-04-01 10:24:01', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_dict_data` VALUES (1265216536659087361, 1265216211667636235, '默认常量', 'DEFAULT', 100, '默认常量，都以XIAONUO_开头的', 0, '2020-04-14 23:25:45', 1265476890672672808, NULL, NULL);
+INSERT INTO `sys_dict_data` VALUES (1265216536659087361, 1265216211667636235, '默认常量', 'DEFAULT', 100, '默认常量，都以SNOWY_开头的', 0, '2020-04-14 23:25:45', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (1265216536659087363, 1265216211667636235, '阿里云短信', 'ALIYUN_SMS', 100, '阿里云短信配置', 0, '2020-04-14 23:25:45', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (1265216536659087364, 1265216211667636235, '腾讯云短信', 'TENCENT_SMS', 100, '腾讯云短信', 0, '2020-04-14 23:25:45', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_dict_data` VALUES (1265216536659087365, 1265216211667636235, '邮件配置', 'EMAIL', 100, '邮箱配置', 0, '2020-04-14 23:25:45', 1265476890672672808, NULL, NULL);
@@ -3651,8 +3651,8 @@ CREATE TABLE `sys_timers`  (
 -- ----------------------------
 -- Records of sys_timers
 -- ----------------------------
-INSERT INTO `sys_timers` VALUES (1288760324837851137, '定时同步缓存常量', 'com.cn.xiaonuo.sys.modular.timer.tasks.RefreshConstantsTaskRunner', '0 0/1 * * * ?', 1, '定时同步sys_config表的数据到缓存常量中', '2020-07-30 16:56:20', 1265476890672672808, '2020-07-30 16:58:52', 1265476890672672808);
-INSERT INTO `sys_timers` VALUES (1304971718170832898, '定时打印一句话', 'com.cn.xiaonuo.sys.modular.timer.tasks.SystemOutTaskRunner', '0 0 * * * ? *', 2, '定时打印一句话', '2020-09-13 10:34:37', 1265476890672672808, '2020-09-23 20:37:48', 1265476890672672808);
+INSERT INTO `sys_timers` VALUES (1288760324837851137, '定时同步缓存常量', 'vip.xiaonuo.sys.modular.timer.tasks.RefreshConstantsTaskRunner', '0 0/1 * * * ?', 1, '定时同步sys_config表的数据到缓存常量中', '2020-07-30 16:56:20', 1265476890672672808, '2020-07-30 16:58:52', 1265476890672672808);
+INSERT INTO `sys_timers` VALUES (1304971718170832898, '定时打印一句话', 'vip.xiaonuo.sys.modular.timer.tasks.SystemOutTaskRunner', '0 0 * * * ? *', 2, '定时打印一句话', '2020-09-13 10:34:37', 1265476890672672808, '2020-09-23 20:37:48', 1265476890672672808);
 
 -- ----------------------------
 -- Table structure for sys_user

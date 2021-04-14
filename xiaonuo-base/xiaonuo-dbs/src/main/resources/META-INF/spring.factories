@@ -1,2 +1,0 @@
-org.springframework.context.ApplicationListener=\
-com.cn.xiaonuo.dbs.core.listener.MultiDatasourceInitListener

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vip.xiaonuo.flowable.modular.shortcut.mapper.FlowableShortcutMapper">
+
+    <resultMap id="flowableShortcutTreeNode" type="vip.xiaonuo.flowable.modular.shortcut.node.FlowableShortcutTreeNode">
+        <result column="p_category_name" property="categoryName" />
+        <collection property="childrenList" javaType="java.util.ArrayList" ofType="vip.xiaonuo.flowable.modular.shortcut.entity.FlowableShortcut">
+            <id column="id" property="id" />
+            <result column="process_definition_id" property="processDefinitionId" />
+            <result column="name" property="name" />
+            <result column="category" property="category" />
+            <result column="category_name" property="categoryName" />
+            <result column="description" property="description" />
+            <result column="version" property="version" />
+            <result column="icon" property="icon" />
+            <result column="sort" property="sort" />
+            <result column="status" property="status" />
+            <result column="create_time" property="createTime" />
+            <result column="create_user" property="createUser" />
+            <result column="update_time" property="updateTime" />
+            <result column="update_user" property="updateUser" />
+        </collection>
+    </resultMap>
+
+    <select id="list" resultMap="flowableShortcutTreeNode">
+        select distinct
+            a.category_name as p_category_name,
+            b.*
+        from
+            flw_shortcut a
+                left join flw_shortcut b on a.category = b.category
+        ${ew.customSqlSegment}
+    </select>
+</mapper>
