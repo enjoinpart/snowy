@@ -1,7 +1,40 @@
+/*
+Copyright [2020] [https://www.xiaonuo.vip]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Snowy采用APACHE LICENSE 2.0开源协议，您在使用过程中，需要注意以下几点：
+
+1.请不要删除和修改根目录下的LICENSE文件。
+2.请不要删除和修改Snowy源码头部的版权声明。
+3.请保留源码和相关描述文件的项目出处，作者声明等。
+4.分发源码时候，请注明软件出处 https://gitee.com/xiaonuobase/snowy
+5.在修改包名，模块名称，项目代码等时，请注明软件出处 https://gitee.com/xiaonuobase/snowy
+6.若您的项目无法满足以上几点，可申请商业授权，获取Snowy商业授权许可，请在官网购买授权，地址为 https://www.xiaonuo.vip
+ */
 package vip.xiaonuo.flowable.config;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
+import liquibase.Liquibase;
+import liquibase.database.Database;
+import liquibase.database.DatabaseConnection;
+import liquibase.database.DatabaseFactory;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.DatabaseException;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import org.flowable.ui.common.service.exception.InternalServerErrorException;
 import vip.xiaonuo.flowable.core.listener.*;
 import vip.xiaonuo.flowable.core.utils.BpmScriptUtil;
 import org.flowable.common.engine.api.delegate.event.FlowableEngineEventType;
@@ -13,8 +46,11 @@ import org.flowable.spring.boot.FlowableProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.flowable.eventregistry.impl.EventRegistryEngineConfiguration.LIQUIBASE_CHANGELOG_PREFIX;
 
 /**
  * flowable配置
@@ -24,6 +60,8 @@ import java.util.Map;
  */
 @Configuration
 public class FlowableConfig implements EngineConfigurationConfigurer<SpringProcessEngineConfiguration> {
+
+    private static final Log log = Log.get();
 
     @Resource
     private BpmScriptUtil bpmScriptUtil;
@@ -40,7 +78,7 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         //关闭自动任务
         flowableProperties.setAsyncExecutorActivate(false);
         //关闭自动创建表，第一次创建完表之后可以关闭
-        flowableProperties.setDatabaseSchemaUpdate(Convert.toStr(false));
+        flowableProperties.setDatabaseSchemaUpdate(Convert.toStr(true));
         //关闭自动部署resource/processes中的流程文件
         flowableProperties.setCheckProcessDefinitions(false);
         return flowableProperties;
@@ -84,5 +122,39 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         Map<Object, Object> beanMap = new HashMap<>();
         beanMap.put("BpmScriptUtil", bpmScriptUtil);
         springProcessEngineConfiguration.setBeans(beanMap);
+    }
+
+    @Bean
+    public Liquibase liquibase(DataSource dataSource) {
+        log.info("Configuring Liquibase");
+
+        Liquibase liquibase = null;
+        try {
+            DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
+            Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
+            database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName());
+            database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName());
+
+            liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
+            liquibase.update("flowable");
+            return liquibase;
+        } catch (Exception e) {
+            throw new InternalServerErrorException("Error creating liquibase database", e);
+        } finally {
+            closeDatabase(liquibase);
+        }
+    }
+
+    private void closeDatabase(Liquibase liquibase) {
+        if (liquibase != null) {
+            Database database = liquibase.getDatabase();
+            if (database != null) {
+                try {
+                    database.close();
+                } catch (DatabaseException e) {
+                    log.warn("Error closing database", e);
+                }
+            }
+        }
     }
 }

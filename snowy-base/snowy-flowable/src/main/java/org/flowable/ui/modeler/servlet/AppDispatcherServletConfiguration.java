@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 /**
  * 覆盖ApplicationConfiguration，移除flowable的idm认证
  * <p>
- * 使用xiaonuo-system模块下FlowableUserController中getUsers()来获取流程设计时选人信息
- * 使用xiaonuo-system模块下FlowableUserController中getGroups()来获取流程设计时选用户组（角色）信息
+ * 使用snowy-system模块下FlowableUserController中getUsers()来获取流程设计时选人信息
+ * 使用snowy-system模块下FlowableUserController中getGroups()来获取流程设计时选用户组（角色）信息
  * </p>
  *
  * @author xuyuxiang
