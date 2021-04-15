@@ -54,7 +54,7 @@
 
 ### 在线演示
 
-* 账号密码：superAdmin/123456，地址：https://vue.xiaonuo.vip
+* 账号密码：superAdmin/123456，地址：https://entvue.xiaonuo.vip
 
 ### 在线文档
 
