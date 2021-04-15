@@ -190,18 +190,18 @@
       addAction () {
         this.columns.push({ title: '节点名称', dataIndex: 'actName' })
         this.columnsButtonTitle.push(
-          { title: '提交', dataIndex: 'submit', scopedSlots: { customRender: 'button_yn' } },
-          { title: '保存', dataIndex: 'save', scopedSlots: { customRender: 'button_yn' } },
-          { title: '退回', dataIndex: 'back', scopedSlots: { customRender: 'button_yn' } },
-          { title: '转办', dataIndex: 'turn', scopedSlots: { customRender: 'button_yn' } },
-          { title: '指定', dataIndex: 'next', scopedSlots: { customRender: 'button_yn' } },
-          { title: '委托', dataIndex: 'entrust', scopedSlots: { customRender: 'button_yn' } },
-          { title: '终止', dataIndex: 'end', scopedSlots: { customRender: 'button_yn' } },
-          { title: '追踪', dataIndex: 'trace', scopedSlots: { customRender: 'button_yn' } },
-          { title: '挂起', dataIndex: 'suspend', scopedSlots: { customRender: 'button_yn' } },
-          { title: '跳转', dataIndex: 'jump', scopedSlots: { customRender: 'button_yn' } },
-          { title: '加签', dataIndex: 'addSign', scopedSlots: { customRender: 'button_yn' } },
-          { title: '减签', dataIndex: 'deleteSign', scopedSlots: { customRender: 'button_yn' } }
+          { title: '提交', dataIndex: 'submitBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '保存', dataIndex: 'saveBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '退回', dataIndex: 'backBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '转办', dataIndex: 'turnBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '指定', dataIndex: 'nextBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '委托', dataIndex: 'entrustBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '终止', dataIndex: 'endBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '追踪', dataIndex: 'traceBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '挂起', dataIndex: 'suspendBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '跳转', dataIndex: 'jumpBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '加签', dataIndex: 'addSignBtn', scopedSlots: { customRender: 'button_yn' } },
+          { title: '减签', dataIndex: 'deleteSignBtn', scopedSlots: { customRender: 'button_yn' } }
         )
         this.columnsButtonTitle.forEach(item => {
           this.columns.push(item)
