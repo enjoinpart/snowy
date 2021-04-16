@@ -36,20 +36,20 @@
 </template>
 
 <script>
-import {SysMenuTreeForGrant} from '@/api/modular/system/menuManage'
-import {sysRoleOwnMenu, sysRoleGrantMenu} from '@/api/modular/system/roleManage'
+import { SysMenuTreeForGrant } from '@/api/modular/system/menuManage'
+import { sysRoleOwnMenu, sysRoleGrantMenu } from '@/api/modular/system/roleManage'
 
 export default {
   data() {
     return {
       labelCol: {
-        style: {'padding-right': '20px'},
-        xs: {span: 24},
-        sm: {span: 5}
+        style: { 'padding-right': '20px' },
+        xs: { span: 24 },
+        sm: { span: 5 }
       },
       wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 15}
+        xs: { span: 24 },
+        sm: { span: 15 }
       },
       menuTreeData: [],
       expandedKeys: [],
@@ -97,7 +97,7 @@ export default {
       })
     },
 
-    getLeastChilds(data){
+    getLeastChilds(data) {
       for (let i = 0; i < data.length; i++) {
         this.pushLeastChilds(data[i])
       }
@@ -116,7 +116,7 @@ export default {
      */
     expandedMenuKeys(record) {
       const _this = this
-      sysRoleOwnMenu({id: record.id}).then((res) => {
+      sysRoleOwnMenu({ id: record.id }).then((res) => {
         if (res.success) {
           _this.pickCheckedKeys(res.data)
           _this.commitKeys = res.data
@@ -125,7 +125,7 @@ export default {
       })
     },
 
-    pickCheckedKeys(data){
+    pickCheckedKeys(data) {
       for (let i = 0; i < data.length; i++) {
         if (this.leastChilds.includes(data[i])) {
           this.checkedKeys.push(data[i])
@@ -140,7 +140,7 @@ export default {
 
     onCheck(checkedKeys, info) {
       this.checkedKeys = checkedKeys
-      this.commitKeys = checkedKeys.concat(info.halfCheckedKeys);
+      this.commitKeys = checkedKeys.concat(info.halfCheckedKeys)
     },
 
     onSelect(selectedKeys, info) {
@@ -150,12 +150,12 @@ export default {
     },
 
     handleSubmit() {
-      const _this = this;
-      const {form: {validateFields}} = this
+      const _this = this
+      const { form: { validateFields } } = this
       this.confirmLoading = true
       validateFields((errors, values) => {
         if (!errors) {
-          sysRoleGrantMenu({id: _this.roleEntity.id, grantMenuIdList: _this.commitKeys}).then((res) => {
+          sysRoleGrantMenu({ id: _this.roleEntity.id, grantMenuIdList: _this.commitKeys }).then((res) => {
             if (res.success) {
               _this.$message.success('授权成功')
               _this.confirmLoading = false
