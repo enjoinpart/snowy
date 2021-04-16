@@ -1040,7 +1040,6 @@ INSERT INTO `sys_menu` VALUES (1264622039642257681, 1264622039642257671, '[0],[1
 INSERT INTO `sys_menu` VALUES (1264622039642257691, 1264622039642257671, '[0],[1264622039642257671],', '支付订单', 'pay_manage_order', 1, NULL, '/pay/alipay/index', 'pay/alipay/index', NULL, 'experience', 1, 'Y', NULL, NULL, 1, 100, NULL, 0, '2020-09-03 00:39:56', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_menu` VALUES (1264622039642257701, 0, '[0],', '设计表单', 'form_design', 1, 'pic-left', '/formdesign', 'formDesign', NULL, 'experience', 1, 'Y', NULL, NULL, 1, 100, NULL, 0, '2020-08-15 15:48:23', 1265476890672672808, NULL, NULL);
 INSERT INTO `sys_menu` VALUES (1342451789402411009, 0, '[0],', '代码生成', 'code_gen', 1, 'thunderbolt', '/codeGenerate/index', 'gen/codeGenerate/index', '', 'system_tool', 1, 'Y', NULL, '', 1, 100, '代码生成', 0, '2020-12-25 20:47:03', 1265476890672672808, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (1359406155611545602, 0, '[0],', '测试菜单', 'tests_gen_codes', 1, 'play-circle', '/codegentest', 'main/codegentest/index', '', 'system_tool', 1, 'Y', NULL, '', 1, 100, NULL, 0, '2021-02-10 15:37:39', 1265476890672672808, '2021-02-18 16:04:22', 1265476890672672808);
 
 -- ----------------------------
 -- Table structure for sys_notice
