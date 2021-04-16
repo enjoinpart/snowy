@@ -124,6 +124,12 @@ public class FlowableConfig implements EngineConfigurationConfigurer<SpringProce
         springProcessEngineConfiguration.setBeans(beanMap);
     }
 
+    /**
+     * 此方法为自动创建act_de开头的几张表，即流程设计器所需要的几张表，如果您已经有这些表，可将此Bean注释
+     *
+     * @author xuyuxiang
+     * @date 2021/4/16 14:40
+     */
     @Bean
     public Liquibase liquibase(DataSource dataSource) {
         log.info("Configuring Liquibase");
