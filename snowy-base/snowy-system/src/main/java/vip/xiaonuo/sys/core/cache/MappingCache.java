@@ -26,8 +26,6 @@ package vip.xiaonuo.sys.core.cache;
 
 import cn.hutool.cache.impl.TimedCache;
 import vip.xiaonuo.sys.core.cache.base.AbstractMemoryCacheOperator;
-import vip.xiaonuo.sys.core.cache.base.AbstractMemoryCacheOperator;
-
 import java.util.Map;
 
 /**

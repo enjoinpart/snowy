@@ -37,11 +37,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import vip.xiaonuo.core.consts.SpringSecurityConstant;
-import vip.xiaonuo.sys.core.filter.security.JwtAuthenticationTokenFilter;
-import vip.xiaonuo.sys.core.filter.security.entrypoint.JwtAuthenticationEntryPoint;
-import vip.xiaonuo.sys.modular.auth.service.impl.AuthServiceImpl;
-
 import javax.annotation.Resource;
 
 /**

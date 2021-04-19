@@ -39,8 +39,6 @@ import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
-import vip.xiaonuo.core.consts.CommonConstant;
-
 import java.util.List;
 
 /**

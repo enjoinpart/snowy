@@ -26,15 +26,11 @@ package vip.xiaonuo.sys.config;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.druid.support.http.StatViewServlet;
-import vip.xiaonuo.core.context.constant.ConstantContextHolder;
 import vip.xiaonuo.dbs.config.MultiDataSourceConfig;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import vip.xiaonuo.core.context.constant.ConstantContextHolder;
-import vip.xiaonuo.dbs.config.MultiDataSourceConfig;
-
 import java.util.HashMap;
 
 /**

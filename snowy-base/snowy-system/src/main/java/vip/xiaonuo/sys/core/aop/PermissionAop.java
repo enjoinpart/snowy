@@ -42,12 +42,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
-import vip.xiaonuo.core.consts.AopSortConstant;
-import vip.xiaonuo.core.consts.SymbolConstant;
-import vip.xiaonuo.core.enums.LogicTypeEnum;
-import vip.xiaonuo.core.util.HttpServletUtil;
-import vip.xiaonuo.sys.core.log.LogManager;
-
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 

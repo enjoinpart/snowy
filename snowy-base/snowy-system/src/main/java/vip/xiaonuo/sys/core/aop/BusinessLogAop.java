@@ -39,11 +39,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
-import vip.xiaonuo.core.consts.AopSortConstant;
-import vip.xiaonuo.core.consts.CommonConstant;
-import vip.xiaonuo.core.pojo.login.SysLoginUser;
-import vip.xiaonuo.sys.core.log.LogManager;
-
 import java.lang.reflect.Method;
 
 /**

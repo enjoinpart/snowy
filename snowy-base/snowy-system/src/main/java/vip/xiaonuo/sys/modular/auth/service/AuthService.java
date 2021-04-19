@@ -27,9 +27,6 @@ package vip.xiaonuo.sys.modular.auth.service;
 import vip.xiaonuo.core.pojo.login.SysLoginUser;
 import vip.xiaonuo.sys.modular.user.entity.SysUser;
 import org.springframework.security.core.Authentication;
-import vip.xiaonuo.core.pojo.login.SysLoginUser;
-import vip.xiaonuo.sys.modular.user.entity.SysUser;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**

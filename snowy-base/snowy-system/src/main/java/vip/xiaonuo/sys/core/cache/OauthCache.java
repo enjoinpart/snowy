@@ -29,7 +29,6 @@ import cn.hutool.cache.impl.TimedCache;
 import me.zhyd.oauth.cache.AuthCacheConfig;
 import me.zhyd.oauth.cache.AuthStateCache;
 import org.springframework.stereotype.Component;
-
 import java.util.Iterator;
 
 /**
